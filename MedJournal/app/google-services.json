@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "120218711824",
+    "firebase_url": "https://med-journal-47b66.firebaseio.com",
+    "project_id": "med-journal-47b66",
+    "storage_bucket": "med-journal-47b66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120218711824:android:5ebfae03da79ba4115d795",
+        "android_client_info": {
+          "package_name": "com.example.medjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120218711824-g6trldiqe8ll35of75a22l9btbp57efm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medjournal",
+            "certificate_hash": "da297c2c8bbe54f773faa16ffb47c1a08c59348b"
+          }
+        },
+        {
+          "client_id": "120218711824-ijkvne7nkq0d3g0pbjsq9pi2373ek3jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO5i-HSvdR1z-_2tq6DBNM6TwTMyoOdqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120218711824-ijkvne7nkq0d3g0pbjsq9pi2373ek3jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
