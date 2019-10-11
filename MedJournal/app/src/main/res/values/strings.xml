@@ -1,3 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name">Med Journal</string>
+
+    <string name="btn_register">Register</string>
+    <string name="btn_select_photo">Select Photo</string>
+
+    <string name="et_email">Email</string>
+    <string name="et_login">Login</string>
+    <string name="et_password">Password</string>
+    <string name="et_username">Username</string>
+
+    <string name="toast_empty_email">Please enter text in email.</string>
+    <string name="toast_empty_password">Please enter text in password.</string>
+    <string name="toast_empty_username">Please enter text in username.</string>
+    <string name="toast_failed_to_create_user">Failed to create user: </string>
+
+    <string name="tv_already_have_an_account">Already have an account?</string>
+    <string name="tv_back_to_registration">Back to registration</string>
 </resources>
