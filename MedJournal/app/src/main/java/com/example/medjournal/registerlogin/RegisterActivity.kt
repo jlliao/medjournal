@@ -91,9 +91,10 @@ class RegisterActivity : AppCompatActivity() {
 
                 uploadImageToFirebaseStorage()
             }
-            .addOnFailureListener{
+            .addOnFailureListener {
                 Log.d(TAG, "Failed to create user: ${it.message}")
-                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
