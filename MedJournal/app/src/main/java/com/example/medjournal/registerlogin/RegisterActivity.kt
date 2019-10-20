@@ -20,7 +20,7 @@ import java.util.*
 class RegisterActivity : AppCompatActivity() {
 
     companion object {
-        val TAG = "RegisterActivity"
+        const val TAG = "RegisterActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,8 @@ class RegisterActivity : AppCompatActivity() {
 
             selectedPhotoUri = data.data
 
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+            @Suppress("DEPRECATION") val bitmap =
+                MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
             selectphoto_imageview_register.setImageBitmap(bitmap)
 
@@ -71,31 +72,62 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun performRegister() {
+        val username = username_edittext_register.text.toString()
         val email = email_edittext_register.text.toString()
         val password = password_edittext_register.text.toString()
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_SHORT).show()
-            return
+        // else if successful
+        when {
+            username.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.toast_empty_username),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+            email.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.toast_empty_email),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+            password.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.toast_empty_password),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+
+            // Firebase Authentication to create a user with email and password
+            else -> {
+                Log.d(TAG, "Attempting to create user with email: $email")
+
+                // Firebase Authentication to create a user with email and password
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener {
+                        if (!it.isSuccessful) return@addOnCompleteListener
+
+                        // else if successful
+                        Log.d(TAG, "Successfully created user with uid: ${it.result.user.uid}")
+
+                        uploadImageToFirebaseStorage()
+                    }
+                    .addOnFailureListener {
+                        Log.d(TAG, "Failed to create user: ${it.message}")
+                        Toast.makeText(
+                            this, resources.getString(R.string.toast_failed_to_create_user)
+                                    + "${it.message}", Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+            }
         }
 
-        Log.d(TAG, "Attempting to create user with email: $email")
-
-        // Firebase Authentication to create a user with email and password
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (!it.isSuccessful) return@addOnCompleteListener
-
-                // else if successful
-                Log.d(TAG, "Successfully created user with uid: ${it.result.user.uid}")
-
-                uploadImageToFirebaseStorage()
-            }
-            .addOnFailureListener {
-                Log.d(TAG, "Failed to create user: ${it.message}")
-                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT)
-                    .show()
-            }
     }
 
     private fun uploadImageToFirebaseStorage() {

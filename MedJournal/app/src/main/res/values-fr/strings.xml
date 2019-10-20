@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="app_name">Journal Médical</string>
+
+    <string name="btn_register">Créer un compte</string>
+    <string name="btn_select_photo">Sélectionner Une Photo</string>
+
+    <string name="et_email">Email</string>
+    <string name="et_login">Connexion</string>
+    <string name="et_password">Mot de passe</string>
+    <string name="et_username">Nom d\'utilisateur</string>
+
+    <string name="toast_empty_email">L\'email ne peut pas être vide.</string>
+    <string name="toast_empty_password">Le mot de passe ne peut pas être vide.</string>
+    <string name="toast_empty_username">Le nom d\'utilisateur ne peut pas être vide.</string>
+    <string name="toast_failed_to_create_user">Échec de la création de l\'utilisateur: </string>
+
+    <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
+    <string name="tv_back_to_registration">Retour à l\'inscription</string>
+</resources>
