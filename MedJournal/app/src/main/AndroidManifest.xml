@@ -11,15 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".medications.MedActivity"></activity>
         <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".registerlogin.RegisterActivity"/>
-        <activity android:name=".registerlogin.LoginActivity"/>
+        <activity android:name=".registerlogin.RegisterActivity" />
+        <activity android:name=".registerlogin.LoginActivity" />
     </application>
 
 </manifest>

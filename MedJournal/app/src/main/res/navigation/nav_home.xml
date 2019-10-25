@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/action_home">
+
+    <include app:graph="@navigation/nav_med" />
+
+    <fragment
+        android:id="@+id/action_home"
+        android:name="com.example.medjournal.home.MedReminderFragment"
+        android:label="fragment_med_reminder"
+        tools:layout="@layout/fragment_med_reminder">
+        <action
+            android:id="@+id/action_home_to_med"
+            app:destination="@id/nav_med" />
+    </fragment>
+    <fragment
+        android:id="@+id/action_medications"
+        android:name="com.example.medjournal.home.MedSummaryFragment"
+        android:label="fragment_med_summary"
+        tools:layout="@layout/fragment_med_summary" />
+    <fragment
+        android:id="@+id/action_measurements"
+        android:name="com.example.medjournal.home.MeasurementsFragment"
+        android:label="fragment_measurements"
+        tools:layout="@layout/fragment_measurements" />
+</navigation>

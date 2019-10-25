@@ -5,30 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import butterknife.BindView
-import butterknife.ButterKnife
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.medjournal.R
 import com.example.medjournal.registerlogin.RegisterActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
-import org.threeten.bp.format.DateTimeFormatter
 
-class HomeActivity : AppCompatActivity(), OnDateSelectedListener {
 
-    @BindView(R.id.calendarView) @JvmField var widget: MaterialCalendarView? = null
+class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         AndroidThreeTen.init(this)
-        ButterKnife.bind(this)
 
-        widget?.setOnDateChangedListener(this)
         verifyUserIsLoggedIn()
+
+        val navController = findNavController(R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController)
+        findViewById<BottomNavigationView>(R.id.home_bottom_navigation)
+            .setupWithNavController(navController)
 
     }
 
@@ -55,23 +54,8 @@ class HomeActivity : AppCompatActivity(), OnDateSelectedListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
+        menuInflater.inflate(R.menu.flow_nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-
-    override fun onDateSelected(
-        widget: MaterialCalendarView,
-        date: CalendarDay,
-        selected: Boolean
-    ) {
-        //if (selected) Log.d("Calendar", "Current Date: ${date.date}") else "No date selected"
-        if (selected) {
-            val text = DateTimeFormatter.ofPattern("EEE, d MMM yyyy").format(date.date)
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "No Selection", Toast.LENGTH_SHORT).show()
-        }
     }
 
 

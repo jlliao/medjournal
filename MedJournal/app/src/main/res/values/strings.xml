@@ -17,4 +17,14 @@
 
     <string name="tv_already_have_an_account">Already have an account?</string>
     <string name="tv_back_to_registration">Back to registration</string>
+    <string name="btn_bottom_nav_home">Home</string>
+    <string name="btn_botton_nav_medications">Medications</string>
+    <string name="btn_bottom_nav_measurements">Measurements</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_add_med">add medicine</string>
+    <string name="et_medication_name_hint">Type active ingredient</string>
+    <string name="et_medication_name_text">Vitamin A and D Softgel</string>
+    <string name="btn_med_select_next">NEXT</string>
 </resources>

@@ -17,4 +17,11 @@
 
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
     <string name="tv_back_to_registration">Retour à l\'inscription</string>
+    <string name="btn_bottom_nav_home">Home</string>
+    <string name="btn_botton_nav_medications">Medications</string>
+    <string name="btn_bottom_nav_measurements">Measurements</string>
+    <string name="btn_add_med">add medicine</string>
+    <string name="et_medication_name_hint">Type active ingredient</string>
+    <string name="et_medication_name_text">Vitamin A and D Softgel</string>
+    <string name="btn_med_select_next">NEXT</string>
 </resources>
