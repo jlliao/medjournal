@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".medications.MedSelectFragment"
+    android:orientation="vertical"
     android:padding="20dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.alespero.expandablecardview.ExpandableCardView
+        android:id="@+id/medication_name_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:animationDuration="300"
+        app:expandOnClick="false"
+        app:inner_view="@layout/medication_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startExpanded="true"
+        app:title="Medication Name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_med_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingTop="16dp"
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteY="65dp" />
 
-        <com.alespero.expandablecardview.ExpandableCardView
-            android:id="@+id/medication_name_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:title="Medication Name"
-            app:inner_view="@layout/medication_name"
-            app:expandOnClick="false"
-            app:animationDuration="300"
-            app:startExpanded="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <Button
-            android:id="@+id/med_select_next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/btn_med_select_next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/medication_name_card" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</FrameLayout>
+    <Button
+        android:id="@+id/med_select_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingTop="16dp"
+        android:text="@string/btn_med_select_next" />
+</LinearLayout>
