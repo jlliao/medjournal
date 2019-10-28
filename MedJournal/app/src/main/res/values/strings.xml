@@ -71,4 +71,11 @@
 
     <string name="tv_already_have_an_account">Already have an account?</string>
     <string name="tv_back_to_registration">Back to registration</string>
+
+    <string-array name="measurement_types_array">
+        <item> Cholesterol level</item>
+        <item> Heart Rate</item>
+        <item> Blood Sugar</item>
+        <item> Other </item>
+    </string-array>
 </resources>
