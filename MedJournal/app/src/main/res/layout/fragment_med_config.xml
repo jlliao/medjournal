@@ -12,13 +12,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/medication_reminder_time_card"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:padding="16dp">
 
                 <TextView
@@ -27,15 +28,45 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_reminder_times_title"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/medication_reminder_time_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_reminder_time_title"
                     android:layout_marginTop="16dp"/>
-            </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_reminder_time_input1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tv_reminder_time_input"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_reminder_time_input2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tv_reminder_time_input"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_reminder_time_input3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tv_reminder_time_input"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -57,7 +88,8 @@
                     android:text="@string/tv_schedule_title"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_schedule_start_date_label"

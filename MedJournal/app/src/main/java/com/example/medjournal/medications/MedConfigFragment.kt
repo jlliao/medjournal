@@ -21,6 +21,9 @@ class MedConfigFragment : Fragment() {
 
     var textview_date: TextView? = null
     var cal = Calendar.getInstance()
+    var reminderdate_selected1: TextView? = null
+    var reminderdate_selected2: TextView? = null
+    var reminderdate_selected3: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,39 @@ class MedConfigFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val medConfigView = inflater.inflate(R.layout.fragment_med_config, container, false)
         val spinner = medConfigView.findViewById<Spinner>(R.id.medication_reminder_time_spinner)
+        reminderdate_selected1 = medConfigView.findViewById(R.id.tv_reminder_time_input1)
+        reminderdate_selected2 = medConfigView.findViewById(R.id.tv_reminder_time_input2)
+        reminderdate_selected3 = medConfigView.findViewById(R.id.tv_reminder_time_input3)
         spinner.adapter = adapter
+
+        // reminder time spinner
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(position) {
+                    0 -> {
+                        reminderdate_selected1?.visibility = View.VISIBLE
+                        reminderdate_selected2?.visibility = View.GONE
+                        reminderdate_selected3?.visibility = View.GONE
+                    }
+                    1 -> {
+                        reminderdate_selected1?.visibility = View.VISIBLE
+                        reminderdate_selected2?.visibility = View.VISIBLE
+                        reminderdate_selected3?.visibility = View.GONE
+                    }
+                    2 -> {
+                        reminderdate_selected1?.visibility = View.VISIBLE
+                        reminderdate_selected2?.visibility = View.VISIBLE
+                        reminderdate_selected3?.visibility = View.VISIBLE
+                    }
+                }
+
+            }
+
+        }
 
         textview_date = medConfigView.findViewById(R.id.tv_schedule_start_date_input)
 
@@ -73,6 +108,5 @@ class MedConfigFragment : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         textview_date!!.text = sdf.format(cal.getTime())
     }
-
 
 }

@@ -40,4 +40,5 @@
     <string name="tv_specific_days">specifc days of the week</string>
     <string name="tv_days_interval">days interval</string>
     <string name="tv_days">Days</string>
+    <string name="tv_reminder_time_input">Take 1 at 08:00</string>
 </resources>
