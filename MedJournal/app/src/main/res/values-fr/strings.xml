@@ -28,4 +28,7 @@
 
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
     <string name="tv_back_to_registration">Retour à l\'inscription</string>
+    <string name="tv_reminder_times_title">Reminder Times</string>
+    <string name="btn_med_config_done">DONE</string>
+    <string name="tv_schedule_title">Schedule</string>
 </resources>
