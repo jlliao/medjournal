@@ -33,7 +33,8 @@ class MedSelectFragment : Fragment() {
     }
 
     private fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
-        this.addOnChildAttachStateChangeListener(object: RecyclerView.OnChildAttachStateChangeListener {
+        this.addOnChildAttachStateChangeListener(object :
+            RecyclerView.OnChildAttachStateChangeListener {
 
             override fun onChildViewDetachedFromWindow(view: View) {
                 view.setOnClickListener(null)
@@ -57,17 +58,19 @@ class MedSelectFragment : Fragment() {
 
         val nextBtn = medSelectView.findViewById<Button>(R.id.med_select_next_button)
         nextBtn.setOnClickListener {
-            medSelectView.findNavController().navigate(R.id.action_medSelectFragment_to_medConfigFragment)
+            medSelectView.findNavController()
+                .navigate(R.id.action_medSelectFragment_to_medConfigFragment)
         }
 
-        val medications = ArrayList<String>(listOf(*resources.getStringArray(R.array.medicine_names)))
+        val medications =
+            ArrayList<String>(listOf(*resources.getStringArray(R.array.medicine_names)))
 
         val recyclerView = medSelectView.findViewById<RecyclerView>(R.id.rv_med_name)
         linearLayoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = RecylerAdapter(medications, context!!)
         recyclerView.layoutParams.height = 800
-        recyclerView.addOnItemClickListener(object: OnItemClickListener {
+        recyclerView.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 //Toast.makeText(activity, medications[position], Toast.LENGTH_SHORT).show()
                 medSelectView.findViewById<TextInputEditText>(R.id.et_med_name)
