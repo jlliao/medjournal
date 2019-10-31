@@ -85,6 +85,15 @@
     <string name="tv_reminder_times_title">Reminder Times</string>
     <string name="btn_med_config_done">DONE</string>
     <string name="tv_schedule_title">Schedule</string>
+    <string name="tv_start_date">Start date:</string>
+    <string name="radio_text_ongoing">Ongoing treatment</string>
+    <string name="radio_text_number_of_days">number of days</string>
+    <string name="radio_text_number_of_days_with_colon">number of days:</string>
+    <string name="tv_duration">Duration</string>
+    <string name="tv_every_day">Every day</string>
+    <string name="tv_specific_days">specifc days of the week</string>
+    <string name="tv_days_interval">days interval</string>
+    <string name="tv_days">Days</string>
 
     <string-array name="measurement_types_array">
         <item> Cholesterol level</item>
