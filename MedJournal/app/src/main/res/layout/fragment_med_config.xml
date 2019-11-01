@@ -37,6 +37,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"/>
 
+                <Spinner
+                    android:id="@+id/medication_reminder_dosage_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"/>
+
                 <TextView
                     android:id="@+id/tv_reminder_time_input1"
                     android:layout_width="match_parent"
@@ -54,6 +60,8 @@
                     android:text="@string/tv_reminder_time_input"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
+                    android:clickable="true"
+                    android:onClick="onClick"
                     android:visibility="gone" />
 
                 <TextView
@@ -64,6 +72,8 @@
                     android:text="@string/tv_reminder_time_input"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
+                    android:clickable="true"
+                    android:onClick="onClick"
                     android:visibility="gone" />
 
             </LinearLayout>

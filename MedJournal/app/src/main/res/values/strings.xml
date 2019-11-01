@@ -68,6 +68,15 @@
         <item>3 times a day</item>
     </string-array>
 
+    <string-array name="medication_dosage">
+        <item>Take 1</item>
+        <item>Take 2</item>
+        <item>Take 3</item>
+        <item>Take 4</item>
+        <item>Take 5</item>
+        <item>Take 6</item>
+    </string-array>
+
     <string-array name="medication_schedule_duration">
         <item>Ongoing treatment</item>
         <item>number of days</item>
