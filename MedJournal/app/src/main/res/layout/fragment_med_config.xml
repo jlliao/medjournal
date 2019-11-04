@@ -202,19 +202,19 @@
                         android:textSize="20sp" />
 
                     <RadioButton
+                        android:id="@+id/radio_every_other_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="@string/tv_every_other_day"
+                        android:textSize="20sp" />
+
+                    <RadioButton
                         android:id="@+id/radio_specific_days"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/colorPrimary"
                         android:text="@string/tv_specific_days"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/radio_days_interval"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimary"
-                        android:text="@string/tv_days_interval"
                         android:textSize="20sp" />
 
                 </RadioGroup>
