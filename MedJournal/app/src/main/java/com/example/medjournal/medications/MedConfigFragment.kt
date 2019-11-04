@@ -117,6 +117,10 @@ class MedConfigFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 dosage = p0.toString()
+                if (dosage.length > 1 && dosage.startsWith("0")) {
+                    dosage = dosage.substring(1)
+                    dosageText.text = dosage
+                }
                 reminderdate_selected1?.text =
                     getString(takeString(dosage, unit), dosage, unit, remindertime1)
                 reminderdate_selected2?.text =
