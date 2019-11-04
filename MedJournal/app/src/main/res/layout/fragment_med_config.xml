@@ -58,7 +58,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
-                        android:layout_weight=".40"
+                        android:layout_weight=".30"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -66,13 +66,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
+                            android:maxLength="5"
+                            android:ems="5"
+                            android:maxEms="5"
                             android:text="@string/tv_one" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Spinner
                         android:layout_width="0dp"
-                        android:layout_weight=".30"
+                        android:layout_weight=".40"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/medication_reminder_dosage_spinner"
                         android:layout_height="wrap_content" />

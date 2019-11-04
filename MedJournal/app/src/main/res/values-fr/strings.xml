@@ -30,8 +30,10 @@
     <string name="tv_back_to_registration">Retour à l\'inscription</string>
     <string name="tv_reminder_times_title">Reminder Times</string>
     <string name="btn_med_config_done">DONE</string>
+    <string name="tv_take_pill">Take %s unit %s at %s</string>
     <string name="tv_schedule_title">Schedule</string>
     <string name="tv_start_date">Start date:</string>
+    <string name="tv_take_pill_plural">Take %s %ss at %s</string>
     <string name="radio_text_ongoing">Ongoing treatment</string>
     <string name="radio_text_number_of_days">number of days</string>
     <string name="radio_text_number_of_days_with_colon">number of days:</string>

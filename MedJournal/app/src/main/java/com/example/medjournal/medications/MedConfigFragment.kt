@@ -23,6 +23,7 @@ import com.example.medjournal.R
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_med_config.*
 import java.lang.StringBuilder
+import java.text.DateFormat.getTimeInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -116,24 +117,36 @@ class MedConfigFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 dosage = p0.toString()
-                reminderdate_selected1?.text = "Take " + dosage + " "+ unit + " at " + remindertime1
-                reminderdate_selected2?.text = "Take " + dosage + " " + unit + " at " + remindertime2
-                reminderdate_selected3?.text = "Take " + dosage + " " + unit + " at " + remindertime3
+                reminderdate_selected1?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime1)
+                reminderdate_selected2?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime2)
+                reminderdate_selected3?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime3)
 
             }
         })
 
         dosage = dosageText?.text.toString()
 
-        dosageSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        dosageSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 unit = parent?.getItemAtPosition(position).toString()
-                reminderdate_selected1?.text = "Take " + dosage + " "+ unit + " at " + remindertime1
-                reminderdate_selected2?.text = "Take " + dosage + " " + unit + " at " + remindertime2
-                reminderdate_selected3?.text = "Take " + dosage + " " + unit + " at " + remindertime3
+                reminderdate_selected1?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime1)
+                reminderdate_selected2?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime2)
+                reminderdate_selected3?.text =
+                    getString(takeString(dosage, unit), dosage, unit, remindertime3)
 
             }
 
@@ -145,10 +158,17 @@ class MedConfigFragment : Fragment() {
                 val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                     cal1.set(Calendar.HOUR_OF_DAY, hour)
                     cal1.set(Calendar.MINUTE, minute)
-                    remindertime1 = SimpleDateFormat("HH:mm").format(cal1.time)
-                    reminderdate_selected1?.text = "Take " + dosage + " " + unit + " at " + remindertime1
+                    remindertime1 = SimpleDateFormat("HH:mm", Locale.US).format(cal1.time)
+                    reminderdate_selected1?.text =
+                        getString(takeString(dosage, unit), dosage, unit, remindertime1)
                 }
-                TimePickerDialog(requireContext(), timeSetListener, cal1.get(Calendar.HOUR_OF_DAY), cal1.get(Calendar.MINUTE), true).show()
+                TimePickerDialog(
+                    requireContext(),
+                    timeSetListener,
+                    cal1.get(Calendar.HOUR_OF_DAY),
+                    cal1.get(Calendar.MINUTE),
+                    true
+                ).show()
             }
 
         })
@@ -159,10 +179,17 @@ class MedConfigFragment : Fragment() {
                 val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                     cal2.set(Calendar.HOUR_OF_DAY, hour)
                     cal2.set(Calendar.MINUTE, minute)
-                    remindertime2 = SimpleDateFormat("HH:mm").format(cal2.time)
-                    reminderdate_selected2?.text = "Take " + dosage + " " + unit + " at " + remindertime2
+                    remindertime2 = SimpleDateFormat("HH:mm", Locale.US).format(cal2.time)
+                    reminderdate_selected2?.text =
+                        getString(takeString(dosage, unit), dosage, unit, remindertime3)
                 }
-                TimePickerDialog(requireContext(), timeSetListener, cal2.get(Calendar.HOUR_OF_DAY), cal2.get(Calendar.MINUTE), true).show()
+                TimePickerDialog(
+                    requireContext(),
+                    timeSetListener,
+                    cal2.get(Calendar.HOUR_OF_DAY),
+                    cal2.get(Calendar.MINUTE),
+                    true
+                ).show()
             }
 
         })
@@ -173,10 +200,17 @@ class MedConfigFragment : Fragment() {
                 val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                     cal3.set(Calendar.HOUR_OF_DAY, hour)
                     cal3.set(Calendar.MINUTE, minute)
-                    remindertime3 = SimpleDateFormat("HH:mm").format(cal3.time)
-                    reminderdate_selected3?.text = "Take " + dosage + " " + unit + " at " + remindertime3
+                    remindertime3 = SimpleDateFormat("HH:mm", Locale.US).format(cal3.time)
+                    reminderdate_selected3?.text =
+                        getString(R.string.tv_take_pill, dosage, unit, remindertime3)
                 }
-                TimePickerDialog(requireContext(), timeSetListener, cal3.get(Calendar.HOUR_OF_DAY), cal3.get(Calendar.MINUTE), true).show()
+                TimePickerDialog(
+                    requireContext(),
+                    timeSetListener,
+                    cal3.get(Calendar.HOUR_OF_DAY),
+                    cal3.get(Calendar.MINUTE),
+                    true
+                ).show()
             }
 
         })
@@ -279,7 +313,7 @@ class MedConfigFragment : Fragment() {
             }
         }
 
-        var selectedDays = ArrayList<String>()
+        var selectedDays: ArrayList<String>
 
         val radio_group2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
         val radio_every_day: RadioButton = medConfigView.findViewById(R.id.radio_every_day)
@@ -290,8 +324,7 @@ class MedConfigFragment : Fragment() {
             if (radio.text.toString()[0] == 'E') {
                 radio_specific.text = getString(R.string.tv_specific_days)
                 radio_specific.setTextColor(Color.BLACK)
-            }
-            else {
+            } else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Select days of the week:")
 
@@ -379,10 +412,11 @@ class MedConfigFragment : Fragment() {
             }
         }
 
-        val doneButton : Button =  medConfigView.findViewById(R.id.med_config_done_button)
+        val doneButton: Button = medConfigView.findViewById(R.id.med_config_done_button)
 
         doneButton.setOnClickListener {
-            medConfigView.findNavController().navigate(R.id.action_medConfigFragment_to_homeActivity)
+            medConfigView.findNavController()
+                .navigate(R.id.action_medConfigFragment_to_homeActivity)
         }
 
         return medConfigView
@@ -394,4 +428,8 @@ class MedConfigFragment : Fragment() {
         textview_date!!.text = sdf.format(cal.getTime())
     }
 
+    private fun takeString(dosage: String, unit: String) =
+            if (unit.length <= 2 || dosage.isEmpty() || dosage.toInt() < 2)
+                R.string.tv_take_pill else
+                R.string.tv_take_pill_plural
 }
