@@ -18,5 +18,14 @@
         android:id="@+id/medConfigFragment"
         android:name="com.example.medjournal.medications.MedConfigFragment"
         android:label="fragment_med_config"
-        tools:layout="@layout/fragment_med_config" />
+        tools:layout="@layout/fragment_med_config" >
+        <action
+            android:id="@+id/action_medConfigFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.medjournal.home.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 </navigation>
