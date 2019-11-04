@@ -69,12 +69,12 @@
     </string-array>
 
     <string-array name="medication_dosage">
-        <item>Take 1</item>
-        <item>Take 2</item>
-        <item>Take 3</item>
-        <item>Take 4</item>
-        <item>Take 5</item>
-        <item>Take 6</item>
+        <item>pill</item>
+        <item>cc</item>
+        <item>ml</item>
+        <item>drop</item>
+        <item>teaspoon</item>
+        <item>patch</item>
     </string-array>
 
     <string-array name="medication_schedule_duration">
@@ -100,13 +100,12 @@
     <string name="radio_text_number_of_days_with_colon">number of days:</string>
     <string name="tv_duration">Duration</string>
     <string name="tv_every_day">Every day</string>
-    <string name="tv_every_other_day">Every other day</string>
-    <string name="tv_specific_days">Specific days of the week</string>
+    <string name="tv_specific_days">specifc days of the week</string>
     <string name="tv_days_interval">days interval</string>
     <string name="tv_days">Days</string>
-    <string name="tv_reminder_time_input">Take 1 at 08:00</string>
-    <string name="radio_number_of_days_changed" translatable="false">%s days</string>
-    <string name="test_number">14</string>
+    <string name="tv_reminder_time_input">Take 1 pill at 08:00</string>
+    <string name="tv_take">Take</string>
+    <string name="tv_one">1</string>
 
     <string-array name="measurement_types_array">
         <item> Cholesterol level</item>

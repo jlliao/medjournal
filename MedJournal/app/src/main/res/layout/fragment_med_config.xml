@@ -37,11 +37,47 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"/>
 
-                <Spinner
-                    android:id="@+id/medication_reminder_dosage_spinner"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"/>
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight=".30"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_take"
+                        android:textColor="@android:color/black"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/medication_reminder_dosage_input"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight=".40"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/medication_reminder_dosage_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@string/tv_one" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Spinner
+                        android:layout_width="0dp"
+                        android:layout_weight=".30"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/medication_reminder_dosage_spinner"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_reminder_time_input1"
@@ -202,19 +238,19 @@
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radio_every_other_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimary"
-                        android:text="@string/tv_every_other_day"
-                        android:textSize="20sp" />
-
-                    <RadioButton
                         android:id="@+id/radio_specific_days"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/colorPrimary"
                         android:text="@string/tv_specific_days"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_days_interval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="@string/tv_days_interval"
                         android:textSize="20sp" />
 
                 </RadioGroup>
