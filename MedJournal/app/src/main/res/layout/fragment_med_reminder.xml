@@ -6,11 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".home.MedReminderFragment">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:mcv_calendarMode="week" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mcv_calendarMode="week" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/med_item_event_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_med_button"
@@ -25,3 +45,4 @@
 
 
 </FrameLayout>
+

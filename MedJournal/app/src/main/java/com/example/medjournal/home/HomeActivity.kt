@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -29,6 +30,9 @@ class HomeActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.home_bottom_navigation)
             .setupWithNavController(navController)
 
+        val bundle = intent.extras
+        val unit = bundle?.getString("unit")
+        Toast.makeText(this, unit, Toast.LENGTH_SHORT).show()
     }
 
     private fun verifyUserIsLoggedIn() {
