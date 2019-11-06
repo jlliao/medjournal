@@ -111,6 +111,9 @@
     <string name="tv_take">Take</string>
     <string name="tv_one">1</string>
     <string name="format_time">HH:mm</string>
+    <string name="tv_medicine_name">Medication Name</string>
+    <string name="tv_8AM">8:00 AM</string>
+    <string name="tv_take_2_pills">Take 2 pills</string>
 
     <string-array name="measurement_types_array">
         <item> Cholesterol level</item>
