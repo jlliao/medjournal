@@ -9,7 +9,7 @@
         android:id="@+id/medSelectFragment"
         android:name="com.example.medjournal.medications.MedSelectFragment"
         android:label="fragment_med_select"
-        tools:layout="@layout/fragment_med_select" >
+        tools:layout="@layout/fragment_med_select">
         <action
             android:id="@+id/action_medSelectFragment_to_medConfigFragment"
             app:destination="@id/medConfigFragment" />
@@ -18,14 +18,18 @@
         android:id="@+id/medConfigFragment"
         android:name="com.example.medjournal.medications.MedConfigFragment"
         android:label="fragment_med_config"
-        tools:layout="@layout/fragment_med_config" >
+        tools:layout="@layout/fragment_med_config">
         <action
             android:id="@+id/action_medConfigFragment_to_homeActivity"
-            app:destination="@id/homeActivity" />
+            app:destination="@id/homeActivity" >
+        </action>
     </fragment>
     <activity
         android:id="@+id/homeActivity"
         android:name="com.example.medjournal.home.HomeActivity"
         android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+        tools:layout="@layout/activity_home" >
+        <argument android:name="unit"
+            app:argType="string"/>
+    </activity>
 </navigation>

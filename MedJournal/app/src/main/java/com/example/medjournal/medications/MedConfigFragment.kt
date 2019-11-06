@@ -15,13 +15,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 
 import com.example.medjournal.R
+import com.example.medjournal.models.MedInfo
 import com.google.android.material.textfield.TextInputEditText
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -141,6 +144,7 @@ class MedConfigFragment : Fragment() {
                 id: Long
             ) {
                 unit = parent?.getItemAtPosition(position).toString()
+                Log.d("Test", unit)
                 reminderDateSelected1?.text =
                     getString(takeString(dosage, unit), dosage, unit, reminderTime1)
                 reminderDateSelected2?.text =
@@ -340,7 +344,7 @@ class MedConfigFragment : Fragment() {
         val radioSpecific: RadioButton = medConfigView.findViewById(R.id.radio_specific_days)
         radioGroup2.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = medConfigView.findViewById(checkedId)
-            Log.d("test", radio.text.toString())
+            Log.d("RB1", radio.text.toString())
             if (radio.text.toString()[0] == 'E') {
                 radioSpecific.text = getString(R.string.tv_specific_days)
                 radioSpecific.setTextColor(Color.BLACK)
@@ -435,8 +439,9 @@ class MedConfigFragment : Fragment() {
         val doneButton: Button = medConfigView.findViewById(R.id.med_config_done_button)
 
         doneButton.setOnClickListener {
+            val bundle = bundleOf("unit" to unit)
             medConfigView.findNavController()
-                .navigate(R.id.action_medConfigFragment_to_homeActivity)
+                .navigate(R.id.action_medConfigFragment_to_homeActivity, bundle)
         }
 
         return medConfigView
@@ -445,7 +450,7 @@ class MedConfigFragment : Fragment() {
     private fun updateDateInView() {
         val myFormat = "MM/dd/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        textViewDate!!.text = sdf.format(cal.getTime())
+        textViewDate!!.text = sdf.format(cal.time)
     }
 
     private fun takeString(dosage: String, unit: String) =
