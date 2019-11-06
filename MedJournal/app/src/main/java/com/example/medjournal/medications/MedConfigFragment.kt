@@ -21,6 +21,7 @@ import androidx.navigation.findNavController
 import com.example.medjournal.R
 import com.example.medjournal.models.MedInfo
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.fragment_med_config.*
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.*
@@ -441,11 +442,11 @@ class MedConfigFragment : Fragment() {
         doneButton.setOnClickListener {
             val bundle = bundleOf("uid" to "2r123fh2f980y89",
                 "med_name" to "foo",
-                "times" to 1, // 1 2 or 3
-                "amount" to 2,
+                "times" to getTimes(spinner.selectedItem.toString()), // 1 2 or 3
+                "amount" to medication_reminder_dosage_text.text.toString().toInt(),
                 "unit" to unit,
-                "start_date" to "20191106",
-                "duration" to 14
+                "start_date" to textViewDate?.text.toString(),
+                "duration" to getDuration(rb, rb.isChecked)
             )
             //bundle.putSerializable("times", Date(1))
             //bundle.putSerializable("start_date", Date(2))
@@ -469,4 +470,17 @@ class MedConfigFragment : Fragment() {
         if (unit.length <= 2 || dosage.isEmpty() || dosage.toInt() < 2)
             R.string.tv_take_pill else
             R.string.tv_take_pill_plural
+
+    private fun getTimes(spinnerText : String) =
+        when (spinnerText) {
+            (resources.getStringArray(R.array.medication_frequency))[0] -> 1
+            (resources.getStringArray(R.array.medication_frequency))[1] -> 2
+            else -> 3
+        }
+
+    private fun getDuration(rb : RadioButton, inputBool : Boolean) =
+        when (inputBool) {
+            false -> 0
+            else -> (rb.text.split(" "))[0].toInt()
+        }
 }

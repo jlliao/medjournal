@@ -52,9 +52,10 @@ class HomeActivity : AppCompatActivity() {
         days = bundle?.getStringArrayList("days")
         Toast.makeText(
             this,
-            uid + " " + medName + " " + times.toString() + " " +
-                    amount.toString() + unit + " " + startDate + " " +
-                    duration,
+//            uid + " " + medName + " " + times.toString() + " " +
+//                    amount.toString() + unit + " " + startDate + " " +
+//                    duration,
+            duration.toString(),
             Toast.LENGTH_SHORT
         ).show()
     }
