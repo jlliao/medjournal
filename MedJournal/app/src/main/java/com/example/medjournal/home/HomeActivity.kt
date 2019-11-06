@@ -18,6 +18,16 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 
 class HomeActivity : AppCompatActivity() {
 
+    private var uid: String? = null
+    private var medName: String? = null
+    private var times: Int? = 1
+    private var amount: Int? = 0
+    private var unit: String? = null
+    private var timesArray: ArrayList<String>? = arrayListOf()
+    private var startDate: String? = null
+    private var duration: Int? = 14
+    private var days: ArrayList<String>? = arrayListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -31,8 +41,22 @@ class HomeActivity : AppCompatActivity() {
             .setupWithNavController(navController)
 
         val bundle = intent.extras
-        val unit = bundle?.getString("unit")
-        Toast.makeText(this, unit, Toast.LENGTH_SHORT).show()
+        uid = bundle?.getString("uid")
+        medName = bundle?.getString("med_name")
+        times = bundle?.getInt("times")
+        amount = bundle?.getInt("amount")
+        unit = bundle?.getString("unit")
+        timesArray = bundle?.getStringArrayList("times_array")
+        startDate = bundle?.getString("start_date")
+        duration = bundle?.getInt("duration")
+        days = bundle?.getStringArrayList("days")
+        Toast.makeText(
+            this,
+            uid + " " + medName + " " + times.toString() + " " +
+                    amount.toString() + unit + " " + startDate + " " +
+                    duration,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     private fun verifyUserIsLoggedIn() {

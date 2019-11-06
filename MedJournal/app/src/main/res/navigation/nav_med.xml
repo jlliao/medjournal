@@ -29,7 +29,19 @@
         android:name="com.example.medjournal.home.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" >
+        <argument android:name="uid"
+            app:argType="string"/>
+        <argument android:name="med_name"
+            app:argType="string"/>
+        <argument android:name="times"
+            app:argType="integer"/>
+        <argument android:name="amount"
+            app:argType="integer"/>
         <argument android:name="unit"
             app:argType="string"/>
+        <argument android:name="start_date"
+            app:argType="string"/>
+        <argument android:name="duration"
+            app:argType="integer"/>
     </activity>
 </navigation>

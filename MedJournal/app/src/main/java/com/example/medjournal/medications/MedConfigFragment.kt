@@ -439,7 +439,19 @@ class MedConfigFragment : Fragment() {
         val doneButton: Button = medConfigView.findViewById(R.id.med_config_done_button)
 
         doneButton.setOnClickListener {
-            val bundle = bundleOf("unit" to unit)
+            val bundle = bundleOf("uid" to "2r123fh2f980y89",
+                "med_name" to "foo",
+                "times" to 1, // 1 2 or 3
+                "amount" to 2,
+                "unit" to unit,
+                "start_date" to "20191106",
+                "duration" to 14
+            )
+            //bundle.putSerializable("times", Date(1))
+            //bundle.putSerializable("start_date", Date(2))
+            bundle.putStringArrayList("times_array", arrayListOf("0800"))
+            bundle.putStringArrayList("days", arrayListOf("Wednesday"))
+
             medConfigView.findNavController()
                 .navigate(R.id.action_medConfigFragment_to_homeActivity, bundle)
         }
