@@ -2,7 +2,6 @@ package com.example.medjournal.measurements
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
@@ -33,9 +32,9 @@ class AddMeasurementActivity : AppCompatActivity() {
         }
     }
 
-    fun submitMeasurement(view: View) {
+    fun submitMeasurement() {
         val measurementType : String = (findViewById<Spinner>(R.id.chooseTypeOfMeasurementSpinner).selectedItem.toString())
-        val valEditField : EditText = findViewById<EditText>(R.id.editMeasurementValue)
+        val valEditField : EditText = findViewById(R.id.editMeasurementValue)
 
         val measVal : Float = valEditField.text.toString().toFloat()
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
@@ -43,9 +42,9 @@ class AddMeasurementActivity : AppCompatActivity() {
 
         val myRef = FirebaseDatabase.getInstance().reference
 
-        newMeasurement.saveToFirebase(myRef)
+        newMeasurement.saveToFireBase(myRef)
 
-        val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered.toString(), Toast.LENGTH_SHORT)
+        val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered, Toast.LENGTH_SHORT)
         myToast.show()
     }
 }

@@ -8,7 +8,7 @@ data class MeasurementData(val userName: String, val typeOfMeasurement: String, 
     constructor(type: String, value: Float): this("UserX",type, Date().toString(), value)
     constructor(uid: String, type: String, value: Float): this(uid,type, Date().toString(), value)
 
-    fun saveToFirebase(myRef : DatabaseReference) {
+    fun saveToFireBase(myRef : DatabaseReference) {
         myRef.child("measurements").child(userName).child(typeOfMeasurement).child(datetimeEntered).setValue(measuredVal)
     }
 }

@@ -4,9 +4,7 @@ package com.example.medjournal.medications
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.graphics.Color
-import android.icu.lang.UCharacter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -21,9 +19,7 @@ import androidx.navigation.findNavController
 
 import com.example.medjournal.R
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_med_config.*
 import java.lang.StringBuilder
-import java.text.DateFormat.getTimeInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,16 +28,16 @@ import java.util.*
  */
 class MedConfigFragment : Fragment() {
 
-    var textview_date: TextView? = null
-    var cal = Calendar.getInstance()
-    var reminderdate_selected1: TextView? = null
-    var reminderdate_selected2: TextView? = null
-    var reminderdate_selected3: TextView? = null
+    private var textViewDate: TextView? = null
+    var cal: Calendar = Calendar.getInstance()
+    var reminderDateSelected1: TextView? = null
+    var reminderDateSelected2: TextView? = null
+    var reminderDateSelected3: TextView? = null
     var dosage: String = "1" // default dosage
     var unit: String = "pill" // default dosage unit
-    var remindertime1: String = "08:00" // default time
-    var remindertime2: String = "08:00" // default time
-    var remindertime3: String = "08:00" // default time
+    var reminderTime1: String = "08:00" // default time
+    var reminderTime2: String = "08:00" // default time
+    var reminderTime3: String = "08:00" // default time
 
 
     override fun onCreateView(
@@ -68,9 +64,9 @@ class MedConfigFragment : Fragment() {
         val dosageSpinner =
             medConfigView.findViewById<Spinner>(R.id.medication_reminder_dosage_spinner)
         val dosageText = medConfigView.findViewById<TextView>(R.id.medication_reminder_dosage_text)
-        reminderdate_selected1 = medConfigView.findViewById(R.id.tv_reminder_time_input1)
-        reminderdate_selected2 = medConfigView.findViewById(R.id.tv_reminder_time_input2)
-        reminderdate_selected3 = medConfigView.findViewById(R.id.tv_reminder_time_input3)
+        reminderDateSelected1 = medConfigView.findViewById(R.id.tv_reminder_time_input1)
+        reminderDateSelected2 = medConfigView.findViewById(R.id.tv_reminder_time_input2)
+        reminderDateSelected3 = medConfigView.findViewById(R.id.tv_reminder_time_input3)
         spinner.adapter = adapter
         dosageSpinner.adapter = dosageAdapter
 
@@ -88,19 +84,19 @@ class MedConfigFragment : Fragment() {
             ) {
                 when (position) {
                     0 -> {
-                        reminderdate_selected1?.visibility = View.VISIBLE
-                        reminderdate_selected2?.visibility = View.GONE
-                        reminderdate_selected3?.visibility = View.GONE
+                        reminderDateSelected1?.visibility = View.VISIBLE
+                        reminderDateSelected2?.visibility = View.GONE
+                        reminderDateSelected3?.visibility = View.GONE
                     }
                     1 -> {
-                        reminderdate_selected1?.visibility = View.VISIBLE
-                        reminderdate_selected2?.visibility = View.VISIBLE
-                        reminderdate_selected3?.visibility = View.GONE
+                        reminderDateSelected1?.visibility = View.VISIBLE
+                        reminderDateSelected2?.visibility = View.VISIBLE
+                        reminderDateSelected3?.visibility = View.GONE
                     }
                     2 -> {
-                        reminderdate_selected1?.visibility = View.VISIBLE
-                        reminderdate_selected2?.visibility = View.VISIBLE
-                        reminderdate_selected3?.visibility = View.VISIBLE
+                        reminderDateSelected1?.visibility = View.VISIBLE
+                        reminderDateSelected2?.visibility = View.VISIBLE
+                        reminderDateSelected3?.visibility = View.VISIBLE
                     }
                 }
 
@@ -117,16 +113,16 @@ class MedConfigFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 dosage = p0.toString()
-                if (dosage.length > 1 && dosage.startsWith("0")) {
+                if (dosage.isNotEmpty() && dosage.startsWith("0")) {
                     dosage = dosage.substring(1)
                     dosageText.text = dosage
                 }
-                reminderdate_selected1?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime1)
-                reminderdate_selected2?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime2)
-                reminderdate_selected3?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime3)
+                reminderDateSelected1?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime1)
+                reminderDateSelected2?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime2)
+                reminderDateSelected3?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime3)
 
             }
         })
@@ -145,100 +141,87 @@ class MedConfigFragment : Fragment() {
                 id: Long
             ) {
                 unit = parent?.getItemAtPosition(position).toString()
-                reminderdate_selected1?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime1)
-                reminderdate_selected2?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime2)
-                reminderdate_selected3?.text =
-                    getString(takeString(dosage, unit), dosage, unit, remindertime3)
+                reminderDateSelected1?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime1)
+                reminderDateSelected2?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime2)
+                reminderDateSelected3?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime3)
 
             }
 
         }
 
-        reminderdate_selected1!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                val cal1 = Calendar.getInstance()
-                val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                    cal1.set(Calendar.HOUR_OF_DAY, hour)
-                    cal1.set(Calendar.MINUTE, minute)
-                    remindertime1 = SimpleDateFormat("HH:mm", Locale.US).format(cal1.time)
-                    reminderdate_selected1?.text =
-                        getString(takeString(dosage, unit), dosage, unit, remindertime1)
-                }
-                TimePickerDialog(
-                    requireContext(),
-                    timeSetListener,
-                    cal1.get(Calendar.HOUR_OF_DAY),
-                    cal1.get(Calendar.MINUTE),
-                    true
-                ).show()
+        reminderDateSelected1!!.setOnClickListener {
+            val cal1 = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                cal1.set(Calendar.HOUR_OF_DAY, hour)
+                cal1.set(Calendar.MINUTE, minute)
+                reminderTime1 = SimpleDateFormat("HH:mm", Locale.US).format(cal1.time)
+                reminderDateSelected1?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime1)
             }
+            TimePickerDialog(
+                requireContext(),
+                timeSetListener,
+                cal1.get(Calendar.HOUR_OF_DAY),
+                cal1.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
 
-        })
-
-        reminderdate_selected2!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                val cal2 = Calendar.getInstance()
-                val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                    cal2.set(Calendar.HOUR_OF_DAY, hour)
-                    cal2.set(Calendar.MINUTE, minute)
-                    remindertime2 = SimpleDateFormat("HH:mm", Locale.US).format(cal2.time)
-                    reminderdate_selected2?.text =
-                        getString(takeString(dosage, unit), dosage, unit, remindertime3)
-                }
-                TimePickerDialog(
-                    requireContext(),
-                    timeSetListener,
-                    cal2.get(Calendar.HOUR_OF_DAY),
-                    cal2.get(Calendar.MINUTE),
-                    true
-                ).show()
+        reminderDateSelected2!!.setOnClickListener {
+            val cal2 = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                cal2.set(Calendar.HOUR_OF_DAY, hour)
+                cal2.set(Calendar.MINUTE, minute)
+                reminderTime2 = SimpleDateFormat("HH:mm", Locale.US).format(cal2.time)
+                reminderDateSelected2?.text =
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime3)
             }
+            TimePickerDialog(
+                requireContext(),
+                timeSetListener,
+                cal2.get(Calendar.HOUR_OF_DAY),
+                cal2.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
 
-        })
-
-        reminderdate_selected3!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                val cal3 = Calendar.getInstance()
-                val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                    cal3.set(Calendar.HOUR_OF_DAY, hour)
-                    cal3.set(Calendar.MINUTE, minute)
-                    remindertime3 = SimpleDateFormat("HH:mm", Locale.US).format(cal3.time)
-                    reminderdate_selected3?.text =
-                        getString(R.string.tv_take_pill, dosage, unit, remindertime3)
-                }
-                TimePickerDialog(
-                    requireContext(),
-                    timeSetListener,
-                    cal3.get(Calendar.HOUR_OF_DAY),
-                    cal3.get(Calendar.MINUTE),
-                    true
-                ).show()
+        reminderDateSelected3!!.setOnClickListener {
+            val cal3 = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                cal3.set(Calendar.HOUR_OF_DAY, hour)
+                cal3.set(Calendar.MINUTE, minute)
+                reminderTime3 = SimpleDateFormat("HH:mm", Locale.US).format(cal3.time)
+                reminderDateSelected3?.text =
+                    getString(R.string.tv_take_pill, dosage, unit, reminderTime3)
             }
+            TimePickerDialog(
+                requireContext(),
+                timeSetListener,
+                cal3.get(Calendar.HOUR_OF_DAY),
+                cal3.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
 
-        })
+        textViewDate = medConfigView.findViewById(R.id.tv_schedule_start_date_input)
 
-        textview_date = medConfigView.findViewById(R.id.tv_schedule_start_date_input)
-
-        textview_date!!.text = "--/--/----"
+        textViewDate!!.text = "--/--/----"
 
         updateDateInView()
 
         // create an OnDateSetListener
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(
-                view: DatePicker, year: Int, monthOfYear: Int,
-                dayOfMonth: Int
-            ) {
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _ , year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
-        }
 
-        textview_date!!.setOnClickListener(object : View.OnClickListener {
+        textViewDate!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 DatePickerDialog(
                     requireContext(),
@@ -254,9 +237,10 @@ class MedConfigFragment : Fragment() {
 
         val rb: RadioButton = medConfigView.findViewById(R.id.radio_number_of_days)
         val rb1: RadioButton = medConfigView.findViewById(R.id.radio_ongoing)
+        var curDuration = ""
 
-        val radio_group: RadioGroup = medConfigView.findViewById(R.id.radio_duration)
-        radio_group.setOnCheckedChangeListener { _, checkedId ->
+        val radioGroup: RadioGroup = medConfigView.findViewById(R.id.radio_duration)
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = medConfigView.findViewById(checkedId)
             if (radio.text != "Ongoing treatment") {
                 val builder = AlertDialog.Builder(requireContext())
@@ -270,27 +254,58 @@ class MedConfigFragment : Fragment() {
                     (input.parent as ViewGroup).removeView(input)
                 }
 
+                val recallText = curDuration.split(" ")
+
+                //Toast.makeText(requireContext(), recallText[0], Toast.LENGTH_SHORT).show()
+                if (curDuration.isNotEmpty() && !curDuration.startsWith('n')) input.setText(recallText[0])
+                var mText: String = input.text.toString()
+                input.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable?) {}
+
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        mText = input.text.toString()
+                        if (mText.isNotEmpty() && mText.startsWith("0")) input.setText(
+                            mText.substring(1)
+                        )
+                    }
+
+                })
+
                 builder.setView(input)
 
                 builder.setPositiveButton(
                     "OK"
                 ) { _, _ ->
-                    var mText: String = input.text.toString()
+
                     if (mText.isEmpty()) mText = "14"
-                    Toast.makeText(requireContext(), mText, Toast.LENGTH_SHORT).show()
                     rb.text = getString(R.string.radio_number_of_days_changed, mText)
+                    curDuration = rb.text.toString()
                     rb.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
                             R.color.design_default_color_primary
                         )
                     )
+
                     rb.setOnClickListener {
                         if (rb.text != getString(R.string.radio_text_number_of_days)) {
-                            val cur_duration = rb.text
+                            curDuration = rb.text.toString()
                             rb1.isChecked = true
                             rb.isChecked = true
-                            rb.text = cur_duration
+                            rb.text = curDuration
                             rb.setTextColor(
                                 ContextCompat.getColor(
                                     requireContext(),
@@ -314,20 +329,21 @@ class MedConfigFragment : Fragment() {
                 rb.text = getString(R.string.radio_text_number_of_days)
                 rb.setTextColor(Color.BLACK)
                 rb.isChecked = false
+
             }
         }
 
         var selectedDays: ArrayList<String>
 
-        val radio_group2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
-        val radio_every_day: RadioButton = medConfigView.findViewById(R.id.radio_every_day)
-        val radio_specific: RadioButton = medConfigView.findViewById(R.id.radio_specific_days)
-        radio_group2.setOnCheckedChangeListener { _, checkedId ->
+        val radioGroup2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
+        val radioEveryDay: RadioButton = medConfigView.findViewById(R.id.radio_every_day)
+        val radioSpecific: RadioButton = medConfigView.findViewById(R.id.radio_specific_days)
+        radioGroup2.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = medConfigView.findViewById(checkedId)
             Log.d("test", radio.text.toString())
             if (radio.text.toString()[0] == 'E') {
-                radio_specific.text = getString(R.string.tv_specific_days)
-                radio_specific.setTextColor(Color.BLACK)
+                radioSpecific.text = getString(R.string.tv_specific_days)
+                radioSpecific.setTextColor(Color.BLACK)
             } else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Select days of the week:")
@@ -355,17 +371,17 @@ class MedConfigFragment : Fragment() {
                     (chk7.parent as ViewGroup).removeView(chk7)
                 }
 
-                val linearlayout = LinearLayout(requireContext())
-                linearlayout.orientation = LinearLayout.VERTICAL
-                linearlayout.addView(chk1)
-                linearlayout.addView(chk2)
-                linearlayout.addView(chk3)
-                linearlayout.addView(chk4)
-                linearlayout.addView(chk5)
-                linearlayout.addView(chk6)
-                linearlayout.addView(chk7)
+                val linearLayout = LinearLayout(requireContext())
+                linearLayout.orientation = LinearLayout.VERTICAL
+                linearLayout.addView(chk1)
+                linearLayout.addView(chk2)
+                linearLayout.addView(chk3)
+                linearLayout.addView(chk4)
+                linearLayout.addView(chk5)
+                linearLayout.addView(chk6)
+                linearLayout.addView(chk7)
 
-                builder.setView(linearlayout)
+                builder.setView(linearLayout)
 
                 selectedDays = ArrayList()
                 builder.setPositiveButton(
@@ -380,17 +396,17 @@ class MedConfigFragment : Fragment() {
                     if (chk7.isChecked) selectedDays.add(chk7.text.toString())
 
                     if (selectedDays.isEmpty()) {
-                        radio_every_day.isChecked = true
+                        radioEveryDay.isChecked = true
                         Toast.makeText(
                             requireContext(), "Please select at least " +
                                     "one day of the week", Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        val alldays = StringBuilder()
-                        for (s in selectedDays) alldays.append(s + " ")
+                        val allDays = StringBuilder()
+                        for (s in selectedDays) allDays.append(s + " ")
                         //Toast.makeText(requireContext(), alldays, Toast.LENGTH_SHORT).show()
-                        radio_specific.text = alldays
-                        radio_specific.setTextColor(
+                        radioSpecific.text = allDays
+                        radioSpecific.setTextColor(
                             ContextCompat.getColor(
                                 requireContext(),
                                 R.color.design_default_color_primary
@@ -407,7 +423,7 @@ class MedConfigFragment : Fragment() {
                 builder.setNegativeButton(
                     "Cancel"
                 ) { dialog, _ ->
-                    radio_every_day.isChecked = true
+                    radioEveryDay.isChecked = true
                     dialog.cancel()
                 }
 
@@ -429,11 +445,11 @@ class MedConfigFragment : Fragment() {
     private fun updateDateInView() {
         val myFormat = "MM/dd/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        textview_date!!.text = sdf.format(cal.getTime())
+        textViewDate!!.text = sdf.format(cal.getTime())
     }
 
     private fun takeString(dosage: String, unit: String) =
-            if (unit.length <= 2 || dosage.isEmpty() || dosage.toInt() < 2)
-                R.string.tv_take_pill else
-                R.string.tv_take_pill_plural
+        if (unit.length <= 2 || dosage.isEmpty() || dosage.toInt() < 2)
+            R.string.tv_take_pill else
+            R.string.tv_take_pill_plural
 }
