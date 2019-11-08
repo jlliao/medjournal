@@ -39,6 +39,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
             medView.findNavController().navigate(R.id.action_home_to_med)
         }
 
+
+
         return medView
     }
 

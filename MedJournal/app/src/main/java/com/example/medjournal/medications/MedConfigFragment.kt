@@ -19,7 +19,10 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 
 import com.example.medjournal.R
+import com.example.medjournal.models.MedInfo
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_med_config.*
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
@@ -41,6 +44,10 @@ class MedConfigFragment : Fragment() {
     var reminderTime1: String = "08:00" // default time
     var reminderTime2: String = "08:00" // default time
     var reminderTime3: String = "08:00" // default time
+
+    companion object {
+        const val TAG = "MedicationActivity"
+    }
 
 
     override fun onCreateView(
@@ -442,25 +449,48 @@ class MedConfigFragment : Fragment() {
 
         doneButton.setOnClickListener {
 
-            val bundle = bundleOf(
-                "uid" to "sample_uid",
-                "med_name" to arguments?.getString("med_name"),
-                "times" to getTimes(spinner.selectedItem.toString()), // 1 2 or 3
-                "amount" to medication_reminder_dosage_text.text.toString().toInt(),
-                "unit" to unit,
-                "start_date" to textViewDate?.text.toString(),
-                "duration" to getDuration(rb, rb.isChecked)
-            )
-            //bundle.putSerializable("times", Date(1))
-            //bundle.putSerializable("start_date", Date(2))
-            bundle.putStringArrayList(
-                "times_array",
-                arrayListOf(reminderTime1, reminderTime2, reminderTime3)
-            )
-            bundle.putStringArrayList("days", selectedDays)
+            val uid = FirebaseAuth.getInstance().uid ?: ""
+            val medName = arguments?.getString("med_name")
+            val times = getTimes(spinner.selectedItem.toString())
+            val amount = medication_reminder_dosage_text.text.toString().toInt()
+            val startDate = textViewDate?.text.toString()
+            val timesArray = arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+            val duration = getDuration(rb, rb.isChecked)
+            val days = selectedDays
 
-            medConfigView.findNavController()
-                .navigate(R.id.action_medConfigFragment_to_homeActivity, bundle)
+            val medication = MedInfo(
+                uid,
+                medName ?: "null",
+                times,
+                amount,
+                unit,
+                timesArray,
+                startDate,
+                duration,
+                days
+            )
+
+            saveMedInfoToFirebaseDatabase(medication, medConfigView)
+
+//            val bundle = bundleOf(
+//                "uid" to "sample_uid",
+//                "med_name" to arguments?.getString("med_name"),
+//                "times" to getTimes(spinner.selectedItem.toString()), // 1 2 or 3
+//                "amount" to medication_reminder_dosage_text.text.toString().toInt(),
+//                "unit" to unit,
+//                "start_date" to textViewDate?.text.toString(),
+//                "duration" to getDuration(rb, rb.isChecked)
+//            )
+//            //bundle.putSerializable("times", Date(1))
+//            //bundle.putSerializable("start_date", Date(2))
+//            bundle.putStringArrayList(
+//                "times_array",
+//                arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+//            )
+//            bundle.putStringArrayList("days", selectedDays)
+//
+//            medConfigView.findNavController()
+//                .navigate(R.id.action_medConfigFragment_to_homeActivity, bundle)
         }
 
         return medConfigView
@@ -489,4 +519,23 @@ class MedConfigFragment : Fragment() {
             false -> 0
             else -> (rb.text.split(" "))[0].toInt()
         }
+
+    private fun saveMedInfoToFirebaseDatabase(medication: MedInfo, view: View) {
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/medications/$uid/${medication.med_name}")
+
+        ref.setValue(medication)
+            .addOnSuccessListener {
+                Log.d(TAG, "Finally we saved the user medication info to Firebase Database")
+
+                view.findNavController()
+                    .navigate(R.id.action_medConfigFragment_to_homeActivity)
+
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to set medication value to database: ${it.message}")
+                Toast.makeText(requireContext(), "Bad Internet Connection", Toast.LENGTH_SHORT)
+                    .show()
+            }
+    }
 }

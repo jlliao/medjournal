@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.medjournal.R
+import com.example.medjournal.models.MedInfo
 import com.example.medjournal.registerlogin.RegisterActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,8 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 
 
 class HomeActivity : AppCompatActivity() {
+
+    private val medMap = mutableMapOf<String, MedInfo>()
 
     private var uid: String? = null
     private var medName: String? = null
