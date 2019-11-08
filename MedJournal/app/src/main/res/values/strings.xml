@@ -49,46 +49,200 @@
     </string-array>
 
     <string-array name="medicine_names">
-        <item>Acetaminophen</item>
+        <item>Abilify</item>
         <item>Adderall</item>
-        <item>Alprazolam</item>
-        <item>Amitriptyline</item>
-        <item>Amlodipine</item>
+        <item>Adderall XR</item>
+        <item>Adrenaline</item>
+        <item>Albuterol Sulfate</item>
+        <item>Aldactone</item>
+        <item>Allegra</item>
+        <item>Ambien</item>
+        <item>Amikin</item>
         <item>Amoxicillin</item>
+        <item>Antivert</item>
+        <item>Aricept</item>
+        <item>Armour Thyroid</item>
+        <item>Atarax</item>
+        <item>Atenolol</item>
         <item>Ativan</item>
-        <item>Atorvastatin</item>
-        <item>Azithromycin</item>
-        <item>Ciprofloxacin</item>
-        <item>Citalopram</item>
+        <item>Atropine</item>
+        <item>Atrovent HFA</item>
+        <item>Augmentin</item>
+        <item>Avapro</item>
+        <item>Baclofen</item>
+        <item>Bactrim</item>
+        <item>Benadryl</item>
+        <item>Bentyl</item>
+        <item>Benzonatate</item>
+        <item>Bumex</item>
+        <item>Buspar</item>
+        <item>Carafate</item>
+        <item>Catapres</item>
+        <item>Ceftin</item>
+        <item>Celebrex</item>
+        <item>Celexa</item>
+        <item>Cialis</item>
+        <item>Cipro</item>
+        <item>Claritin</item>
         <item>Clindamycin</item>
-        <item>Clonazepam</item>
-        <item>Codeine</item>
-        <item>Cyclobenzaprine</item>
+        <item>Colchicine</item>
+        <item>Concerta</item>
+        <item>Coreg</item>
+        <item>Coumadin</item>
+        <item>Cozaar</item>
+        <item>Crestor</item>
         <item>Cymbalta</item>
-        <item>Doxycycline</item>
-        <item>Gabapentin</item>
-        <item>Hydrochlorothiazide</item>
-        <item>Ibuprofen</item>
+        <item>Cytomel</item>
+        <item>Cytotec</item>
+        <item>Depakote</item>
+        <item>Desoxyn</item>
+        <item>Desyrel</item>
+        <item>Dexamethasone</item>
+        <item>Diflucan</item>
+        <item>Dilaudid</item>
+        <item>Diovan</item>
+        <item>Dobutamine</item>
+        <item>Doryx</item>
+        <item>Duoneb</item>
+        <item>Effexor XR</item>
+        <item>Elavil</item>
+        <item>Eliquis</item>
+        <item>Estrace</item>
+        <item>Fioricet</item>
+        <item>Flagyl</item>
+        <item>Flexeril</item>
+        <item>Flomax</item>
+        <item>Flonase</item>
+        <item>Focalin XR</item>
+        <item>Fortamet</item>
+        <item>Fosamax</item>
+        <item>Glucotrol</item>
+        <item>Haldol</item>
+        <item>Hydrocortisone</item>
+        <item>Imodium</item>
+        <item>Imuran</item>
+        <item>Inderal</item>
+        <item>Indocin</item>
+        <item>Keflex</item>
+        <item>Keppra</item>
+        <item>Ketoconazole Cream</item>
+        <item>Klonopin</item>
+        <item>Klor-Con</item>
+        <item>Lamictal</item>
+        <item>Lamisil</item>
+        <item>Lasix</item>
+        <item>Levaquin</item>
+        <item>Levsin</item>
         <item>Lexapro</item>
-        <item>Lisinopril</item>
-        <item>Loratadine</item>
-        <item>Lorazepam</item>
-        <item>Losartan</item>
+        <item>Lexiscan</item>
+        <item>Librax</item>
+        <item>Lidoderm</item>
+        <item>Librium</item>
+        <item>Lipitor</item>
+        <item>Lomotil</item>
+        <item>Lopressor</item>
+        <item>Lovaza</item>
+        <item>Lovenox</item>
         <item>Lyrica</item>
-        <item>Meloxicam</item>
-        <item>Metformin</item>
-        <item>Metoprolol</item>
-        <item>Naproxen</item>
-        <item>Omeprazole</item>
-        <item>Oxycodone</item>
-        <item>Pantoprazole</item>
-        <item>Prednisone</item>
-        <item>Tramadol</item>
-        <item>Trazodone</item>
+        <item>Macrobid</item>
+        <item>Mannitol IV</item>
+        <item>Medrol</item>
+        <item>Megace</item>
+        <item>Merrem IV</item>
+        <item>Methergine</item>
+        <item>Minocin</item>
+        <item>Mirapex</item>
+        <item>Mobic</item>
+        <item>MS Contin</item>
+        <item>Naprelan</item>
+        <item>Narcan</item>
+        <item>Neurontin</item>
+        <item>Nexium</item>
+        <item>Nitrostat</item>
+        <item>Norco</item>
+        <item>Norco 5/325</item>
+        <item>Normal Saline</item>
+        <item>Norvasc</item>
+        <item>Norvir</item>
+        <item>Nystatin Cream</item>
+        <item>Nystatin Oral</item>
+        <item>Omnicef</item>
+        <item>Oxycontin</item>
+        <item>Paxil</item>
+        <item>Penicillin VK</item>
+        <item>Pepcid</item>
+        <item>Percocet</item>
+        <item>Phenergan</item>
+        <item>Plaquenil</item>
+        <item>Plavix</item>
+        <item>Pravachol</item>
+        <item>Prilosec</item>
+        <item>Prinivil</item>
+        <item>ProAir</item>
+        <item>Proamatine</item>
+        <item>Prolia</item>
+        <item>Prometrium</item>
+        <item>Protonix</item>
+        <item>Proscar</item>
+        <item>Prozac</item>
+        <item>Pyridium</item>
+        <item>Ranexa</item>
+        <item>Remeron</item>
+        <item>Remicade</item>
+        <item>Requip</item>
+        <item>Restoril</item>
+        <item>Risperdal</item>
+        <item>Ritalin</item>
+        <item>Robaxin</item>
+        <item>Rocephin</item>
+        <item>Roxicodone</item>
+        <item>Seroquel</item>
+        <item>Silvadene</item>
+        <item>Sinemet</item>
+        <item>Sinequan</item>
+        <item>Singulair</item>
+        <item>Skelaxin</item>
+        <item>Soma</item>
+        <item>Spiriva</item>
+        <item>Subutex</item>
+        <item>Suprax</item>
+        <item>Synthroid</item>
+        <item>Tapazole</item>
+        <item>Tegretol</item>
+        <item>Tessalon</item>
+        <item>Tofranil</item>
+        <item>Toprol</item>
+        <item>Toprol XR</item>
+        <item>Toradol</item>
+        <item>Triamcinolone Cream</item>
+        <item>Trileptal</item>
+        <item>Tussionex</item>
+        <item>Tylenol</item>
+        <item>Tylenol with Codeine</item>
+        <item>Ultracet</item>
+        <item>Ultram</item>
+        <item>Valium</item>
+        <item>Valtrex</item>
         <item>Viagra</item>
+        <item>Vicodin</item>
+        <item>Vistaril</item>
+        <item>Voltaren</item>
+        <item>Voltaren Gel</item>
+        <item>Vyvanse</item>
         <item>Wellbutrin</item>
+        <item>Wellbutrin XL</item>
         <item>Xanax</item>
+        <item>Xenical</item>
+        <item>Xyzal</item>
+        <item>Zanaflex</item>
+        <item>Zantac</item>
+        <item>Zithromax</item>
+        <item>Zofran</item>
         <item>Zoloft</item>
+        <item>Zosyn</item>
+        <item>Zovirax</item>
+        <item>Zyprexa</item>
+        <item>Zyrtec</item>
     </string-array>
 
     <string name="radio_number_of_days_changed">%s days</string>
