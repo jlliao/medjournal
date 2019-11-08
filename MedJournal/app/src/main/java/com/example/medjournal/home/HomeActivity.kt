@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
 //            uid + " " + medName + " " + times.toString() + " " +
 //                    amount.toString() + unit + " " + startDate + " " +
 //                    duration,
-            duration.toString(),
+            medName.toString(),
             Toast.LENGTH_SHORT
         ).show()
     }

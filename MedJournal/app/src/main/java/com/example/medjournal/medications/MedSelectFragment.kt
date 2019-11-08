@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,8 +70,12 @@ class MedSelectFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                val medName =
+                    medSelectView.findViewById<TextInputEditText>(R.id.et_med_name).text.toString()
+
+                val bundle = bundleOf("med_name" to medName)
                 medSelectView.findNavController()
-                    .navigate(R.id.action_medSelectFragment_to_medConfigFragment)
+                    .navigate(R.id.action_medSelectFragment_to_medConfigFragment, bundle)
             }
         }
 
@@ -133,6 +138,8 @@ class MedSelectFragment : Fragment() {
 
             }
         })
+
+
 
         return medSelectView
     }

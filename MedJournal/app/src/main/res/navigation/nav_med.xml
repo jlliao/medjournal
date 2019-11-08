@@ -23,6 +23,8 @@
             android:id="@+id/action_medConfigFragment_to_homeActivity"
             app:destination="@id/homeActivity" >
         </action>
+        <argument android:name="medName"
+            app:argType="string"/>
     </fragment>
     <activity
         android:id="@+id/homeActivity"

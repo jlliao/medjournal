@@ -19,7 +19,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 
 import com.example.medjournal.R
-import com.example.medjournal.models.MedInfo
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_med_config.*
 import java.lang.StringBuilder
@@ -219,7 +218,7 @@ class MedConfigFragment : Fragment() {
 
         // create an OnDateSetListener
         val dateSetListener =
-            DatePickerDialog.OnDateSetListener { _ , year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -262,7 +261,9 @@ class MedConfigFragment : Fragment() {
                 val recallText = curDuration.split(" ")
 
                 //Toast.makeText(requireContext(), recallText[0], Toast.LENGTH_SHORT).show()
-                if (curDuration.isNotEmpty() && !curDuration.startsWith('n')) input.setText(recallText[0])
+                if (curDuration.isNotEmpty() && !curDuration.startsWith('n')) input.setText(
+                    recallText[0]
+                )
                 var mText: String = input.text.toString()
                 input.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {}
@@ -338,7 +339,7 @@ class MedConfigFragment : Fragment() {
             }
         }
 
-        var selectedDays: ArrayList<String>
+        var selectedDays = arrayListOf<String>()
 
         val radioGroup2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
         val radioEveryDay: RadioButton = medConfigView.findViewById(R.id.radio_every_day)
@@ -408,8 +409,8 @@ class MedConfigFragment : Fragment() {
                         ).show()
                     } else {
                         val allDays = StringBuilder()
-                        for (s in selectedDays) allDays.append(s + " ")
-                        //Toast.makeText(requireContext(), alldays, Toast.LENGTH_SHORT).show()
+                        for (s in selectedDays) allDays.append("$s ")
+                        //Toast.makeText(requireContext(), allDays, Toast.LENGTH_SHORT).show()
                         radioSpecific.text = allDays
                         radioSpecific.setTextColor(
                             ContextCompat.getColor(
@@ -440,8 +441,10 @@ class MedConfigFragment : Fragment() {
         val doneButton: Button = medConfigView.findViewById(R.id.med_config_done_button)
 
         doneButton.setOnClickListener {
-            val bundle = bundleOf("uid" to "2r123fh2f980y89",
-                "med_name" to "foo",
+
+            val bundle = bundleOf(
+                "uid" to "sample_uid",
+                "med_name" to arguments?.getString("med_name"),
                 "times" to getTimes(spinner.selectedItem.toString()), // 1 2 or 3
                 "amount" to medication_reminder_dosage_text.text.toString().toInt(),
                 "unit" to unit,
@@ -450,8 +453,11 @@ class MedConfigFragment : Fragment() {
             )
             //bundle.putSerializable("times", Date(1))
             //bundle.putSerializable("start_date", Date(2))
-            bundle.putStringArrayList("times_array", arrayListOf("0800"))
-            bundle.putStringArrayList("days", arrayListOf("Wednesday"))
+            bundle.putStringArrayList(
+                "times_array",
+                arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+            )
+            bundle.putStringArrayList("days", selectedDays)
 
             medConfigView.findNavController()
                 .navigate(R.id.action_medConfigFragment_to_homeActivity, bundle)
@@ -471,14 +477,14 @@ class MedConfigFragment : Fragment() {
             R.string.tv_take_pill else
             R.string.tv_take_pill_plural
 
-    private fun getTimes(spinnerText : String) =
+    private fun getTimes(spinnerText: String) =
         when (spinnerText) {
             (resources.getStringArray(R.array.medication_frequency))[0] -> 1
             (resources.getStringArray(R.array.medication_frequency))[1] -> 2
             else -> 3
         }
 
-    private fun getDuration(rb : RadioButton, inputBool : Boolean) =
+    private fun getDuration(rb: RadioButton, inputBool: Boolean) =
         when (inputBool) {
             false -> 0
             else -> (rb.text.split(" "))[0].toInt()
