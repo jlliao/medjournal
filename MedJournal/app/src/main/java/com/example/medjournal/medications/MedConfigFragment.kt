@@ -16,7 +16,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 
 import com.example.medjournal.R
@@ -360,6 +359,8 @@ class MedConfigFragment : Fragment() {
             if (radio.text.toString()[0] == getString(R.string.trick_days).single()) {
                 radioSpecific.text = getString(R.string.tv_specific_days)
                 radioSpecific.setTextColor(Color.BLACK)
+                selectedDays.clear()
+                selectedDays.add(radio.text.toString())
             } else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle(getString(R.string.title_select_days))
@@ -454,13 +455,17 @@ class MedConfigFragment : Fragment() {
         doneButton.setOnClickListener {
 
             val uid = FirebaseAuth.getInstance().uid ?: ""
-            val medName = arguments?.getString("med_name")
+            val medName = arguments?.getString("medName")
             val times = getTimes(spinner.selectedItem.toString())
             val amount = medication_reminder_dosage_text.text.toString().toInt()
             val startDate = textViewDate?.text.toString()
-            val timesArray = arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+            val timesArray = when (times) {
+                1 -> arrayListOf(reminderTime1)
+                2 -> arrayListOf(reminderTime1, reminderTime2)
+                else -> arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+            }
             val duration = getDuration(rb, rb.isChecked)
-            val days = selectedDays
+
 
             val medication = MedInfo(
                 uid,
@@ -471,24 +476,24 @@ class MedConfigFragment : Fragment() {
                 timesArray,
                 startDate,
                 duration,
-                days
+                selectedDays
             )
 
             saveMedInfoToFirebaseDatabase(medication, medConfigView)
 
 //            val bundle = bundleOf(
 //                "uid" to "sample_uid",
-//                "med_name" to arguments?.getString("med_name"),
+//                "medName" to arguments?.getString("medName"),
 //                "times" to getTimes(spinner.selectedItem.toString()), // 1 2 or 3
 //                "amount" to medication_reminder_dosage_text.text.toString().toInt(),
 //                "unit" to unit,
-//                "start_date" to textViewDate?.text.toString(),
+//                "startDate" to textViewDate?.text.toString(),
 //                "duration" to getDuration(rb, rb.isChecked)
 //            )
 //            //bundle.putSerializable("times", Date(1))
-//            //bundle.putSerializable("start_date", Date(2))
+//            //bundle.putSerializable("startDate", Date(2))
 //            bundle.putStringArrayList(
-//                "times_array",
+//                "medTimes",
 //                arrayListOf(reminderTime1, reminderTime2, reminderTime3)
 //            )
 //            bundle.putStringArrayList("days", selectedDays)
@@ -526,7 +531,8 @@ class MedConfigFragment : Fragment() {
 
     private fun saveMedInfoToFirebaseDatabase(medication: MedInfo, view: View) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/medications/$uid/${medication.med_name}")
+        val ref =
+            FirebaseDatabase.getInstance().getReference("/medications/$uid/${medication.medName}")
 
         ref.setValue(medication)
             .addOnSuccessListener {

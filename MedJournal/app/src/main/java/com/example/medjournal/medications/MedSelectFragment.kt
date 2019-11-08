@@ -75,7 +75,7 @@ class MedSelectFragment : Fragment() {
                 val medName =
                     medSelectView.findViewById<TextInputEditText>(R.id.et_med_name).text.toString()
 
-                val bundle = bundleOf("med_name" to medName)
+                val bundle = bundleOf("medName" to medName)
                 medSelectView.findNavController()
                     .navigate(R.id.action_medSelectFragment_to_medConfigFragment, bundle)
             }
