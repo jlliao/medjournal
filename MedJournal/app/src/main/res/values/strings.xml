@@ -6,9 +6,12 @@
     <string name="btn_bottom_nav_home">Home</string>
     <string name="btn_bottom_nav_measurements">Measurements</string>
     <string name="btn_botton_nav_medications">Medications</string>
+    <string name="btn_med_config_done">DONE</string>
     <string name="btn_med_select_next">NEXT</string>
     <string name="btn_register">Register</string>
     <string name="btn_select_photo">Select Photo</string>
+
+    <string name="cv_medication_name">Medication Name</string>
 
     <string name="et_email">Email</string>
     <string name="et_login">Login</string>
@@ -17,7 +20,33 @@
     <string name="et_password">Password</string>
     <string name="et_username">Username</string>
 
+    <string name="format_time">HH:mm</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="measurement_types_array">
+        <item> Cholesterol level</item>
+        <item> Heart Rate</item>
+        <item> Blood Sugar</item>
+        <item> Other </item>
+    </string-array>
+
+    <string-array name="medication_dosage">
+        <item>pill</item>
+        <item>cc</item>
+        <item>mL</item>
+        <item>drop</item>
+        <item>teaspoon</item>
+    </string-array>
+    <string-array name="medication_frequency">
+        <item>Once daily</item>
+        <item>Twice daily</item>
+        <item>3 times a day</item>
+    </string-array>
+    <string-array name="medication_schedule_duration">
+        <item>Ongoing treatment</item>
+        <item>number of days</item>
+    </string-array>
 
     <string-array name="medicine_names">
         <item>Acetaminophen</item>
@@ -62,64 +91,59 @@
         <item>Zoloft</item>
     </string-array>
 
-    <string-array name="medication_frequency">
-        <item>Once daily</item>
-        <item>Twice daily</item>
-        <item>3 times a day</item>
-    </string-array>
+    <string name="radio_number_of_days_changed">%s days</string>
+    <string name="radio_text_number_of_days">number of days</string>
+    <string name="radio_text_number_of_days_with_colon">number of days:</string>
+    <string name="radio_text_ongoing">Ongoing treatment</string>
 
-    <string-array name="medication_dosage">
-        <item>pill</item>
-        <item>cc</item>
-        <item>mL</item>
-        <item>drop</item>
-        <item>teaspoon</item>
-    </string-array>
-
-    <string-array name="medication_schedule_duration">
-        <item>Ongoing treatment</item>
-        <item>number of days</item>
-    </string-array>
+    <string name="sign_out">Sign Out</string>
 
     <string name="test_hello_world">Hello World</string>
+    <string name="test_number">14</string>
+    <string name="test_username">John Doe</string>
+
+    <string name="title_add_medicine">Add Medicine</string>
+    <string name="title_more_details">More Details</string>
 
     <string name="toast_empty_email">Please enter text in email.</string>
     <string name="toast_empty_password">Please enter text in password.</string>
     <string name="toast_empty_username">Please enter text in username.</string>
     <string name="toast_failed_to_create_user">Failed to create user: </string>
 
+    <string name="tv_8AM">8:00 AM</string>
     <string name="tv_already_have_an_account">Already have an account?</string>
     <string name="tv_back_to_registration">Back to registration</string>
-    <string name="tv_reminder_times_title">Reminder Times</string>
-    <string name="btn_med_config_done">DONE</string>
-    <string name="tv_schedule_title">Schedule</string>
-    <string name="tv_start_date">Start date:</string>
-    <string name="radio_text_ongoing">Ongoing treatment</string>
-    <string name="radio_text_number_of_days">number of days</string>
-    <string name="radio_text_number_of_days_with_colon">number of days:</string>
+    <string name="tv_days">Days</string>
+    <string name="tv_days_interval">days interval</string>
     <string name="tv_duration">Duration</string>
     <string name="tv_every_day">Every day</string>
     <string name="tv_every_other_day">Every other day</string>
+    <string name="tv_friday">Friday</string>
+    <string name="tv_medicine_name">Medication Name</string>
+    <string name="tv_monday">Monday</string>
+    <string name="tv_ok">OK</string>
+    <string name="tv_one">1</string>
+    <string name="tv_reminder_time_input">Take 1 pill at 08:00</string>
+    <string name="tv_reminder_times_title">Reminder Times</string>
+    <string name="tv_saturday">Saturday</string>
+    <string name="tv_schedule_title">Schedule</string>
     <string name="tv_specific_days">Specific days of the week</string>
-    <string name="tv_days_interval">days interval</string>
-    <string name="tv_days">Days</string>
+    <string name="tv_start_date">Start date:</string>
+    <string name="tv_sunday">Sunday</string>
+    <string name="tv_take">Take</string>
+    <string name="tv_take_2_pills">Take 2 pills</string>
     <string name="tv_take_pill">Take %s %s at %s</string>
     <string name="tv_take_pill_plural">Take %s %ss at %s</string>
-    <string name="radio_number_of_days_changed" translatable="false">%s days</string>
-    <string name="test_number">14</string>
-    <string name="tv_reminder_time_input">Take 1 pill at 08:00</string>
-    <string name="tv_take">Take</string>
-    <string name="tv_one">1</string>
-    <string name="format_time">HH:mm</string>
-    <string name="tv_medicine_name">Medication Name</string>
-    <string name="tv_8AM">8:00 AM</string>
-    <string name="tv_take_2_pills">Take 2 pills</string>
-
-    <string-array name="measurement_types_array">
-        <item> Cholesterol level</item>
-        <item> Heart Rate</item>
-        <item> Blood Sugar</item>
-        <item> Other </item>
-    </string-array>
+    <string name="tv_thursday">Thursday</string>
+    <string name="tv_tuesday">Tuesday</string>
+    <string name="tv_wednesday">Wednesday</string>
+    <string name="title_select_days">Select days of the week:</string>
+    <string name="tv_no_matching">No matching found.</string>
+    <string name="toast_at_least_one_day">Please select at least one day of the week</string>
+    <string name="toast_enter_medname">Please enter medication name</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="toast_no_selection">No Selection</string>
+    <string name="title_set_number_of_days">Set number of days (from start date)</string>
+    <string name="trick_duration">n</string>
+    <string name="trick_days">E</string>
 </resources>
-

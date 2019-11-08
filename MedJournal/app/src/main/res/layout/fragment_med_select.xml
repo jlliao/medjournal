@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startExpanded="true"
-        app:title="Medication Name" />
+        app:title="@string/cv_medication_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_med_name"

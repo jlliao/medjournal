@@ -8,48 +8,48 @@
         android:id="@+id/chk1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monday" />
+        android:text="@string/tv_monday" />
 
     <CheckBox
         android:id="@+id/chk2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tuesday" />
+        android:text="@string/tv_tuesday" />
 
     <CheckBox
         android:id="@+id/chk3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wednesday" />
+        android:text="@string/tv_wednesday" />
 
     <CheckBox
         android:id="@+id/chk4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thursday" />
+        android:text="@string/tv_thursday" />
 
     <CheckBox
         android:id="@+id/chk5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday" />
+        android:text="@string/tv_friday" />
 
     <CheckBox
         android:id="@+id/chk6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saturday" />
+        android:text="@string/tv_saturday" />
 
     <CheckBox
         android:id="@+id/chk7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sunday" />
+        android:text="@string/tv_sunday" />
 
     <Button
         android:id="@+id/btnDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK" />
+        android:text="@string/tv_ok" />
 
 </LinearLayout>
