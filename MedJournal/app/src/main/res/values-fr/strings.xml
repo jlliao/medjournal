@@ -2,46 +2,105 @@
 <resources>
     <string name="app_name">Journal Médical</string>
 
-    <string name="btn_add_med">add medicine</string>
-    <string name="btn_bottom_nav_home">Home</string>
-    <string name="btn_bottom_nav_measurements">Measurements</string>
-    <string name="btn_botton_nav_medications">Medications</string>
-    <string name="btn_med_select_next">NEXT</string>
+    <string name="btn_add_med">ajouter des médicaments</string>
+    <string name="btn_bottom_nav_home">Accueil</string>
+    <string name="btn_bottom_nav_measurements">Mesures</string>
+    <string name="btn_botton_nav_medications">Médicaments</string>
+    <string name="btn_med_config_done">TERMINÉ</string>
+    <string name="btn_med_select_next">SUIVANT</string>
     <string name="btn_register">Créer un compte</string>
     <string name="btn_select_photo">Sélectionner Une Photo</string>
 
+    <string name="cv_medication_name">Nom du Médicament</string>
+
     <string name="et_email">Email</string>
     <string name="et_login">Connexion</string>
-    <string name="et_medication_name_hint">Type active ingredient</string>
-    <string name="et_medication_name_text">Vitamin A and D Softgel</string>
+    <string name="et_medication_name_hint">Nom du médicament</string>
+    <string name="et_medication_name_text">" Vitamine A et D Softgel"</string>
     <string name="et_password">Mot de passe</string>
     <string name="et_username">Nom d\'utilisateur</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="format_time">HH:mm</string>
 
-    <string name="test_hello_world">Hello World</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+
+    <string-array name="measurement_types_array">
+        <item> Niveau de cholestérol</item>
+        <item> Rythme cardiaque</item>
+        <item> Sucre dans le sang</item>
+        <item> Autres </item>
+    </string-array>
+
+    <string-array name="medication_dosage">
+        <item>comprimé</item>
+        <item>cc</item>
+        <item>ml</item>
+        <item>goutte</item>
+        <item>cuillère</item>
+    </string-array>
+    <string-array name="medication_frequency">
+        <item>Une fois par jour</item>
+        <item>Deux fois par jour</item>
+        <item>Trois fois par jour</item>
+    </string-array>
+    <string-array name="medication_schedule_duration">
+        <item>Traitement en cours</item>
+        <item>Nombre de jours</item>
+    </string-array>
+
+    <string name="radio_number_of_days_changed" translatable="false">%s jours</string>
+    <string name="radio_text_number_of_days">nombre de jours</string>
+    <string name="radio_text_number_of_days_with_colon">nombre de jours:</string>
+    <string name="radio_text_ongoing">Traitement en cours</string>
+
+    <string name="sign_out">Déconnexion</string>
+
+    <string name="test_hello_world">Bonjour le monde</string>
+    <string name="test_number">14</string>
+    <string name="test_username">Bodin Bruno</string>
+
+    <string name="title_add_medicine">Médicaments</string>
+    <string name="title_more_details">Détails</string>
 
     <string name="toast_empty_email">L\'email ne peut pas être vide.</string>
     <string name="toast_empty_password">Le mot de passe ne peut pas être vide.</string>
     <string name="toast_empty_username">Le nom d\'utilisateur ne peut pas être vide.</string>
     <string name="toast_failed_to_create_user">Échec de la création de l\'utilisateur: </string>
 
+    <string name="tv_8AM">8h00</string>
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
     <string name="tv_back_to_registration">Retour à l\'inscription</string>
-    <string name="tv_reminder_times_title">Reminder Times</string>
-    <string name="btn_med_config_done">DONE</string>
-    <string name="tv_take_pill">Take %s unit %s at %s</string>
-    <string name="tv_schedule_title">Schedule</string>
-    <string name="tv_start_date">Start date:</string>
-    <string name="tv_take_pill_plural">Take %s %ss at %s</string>
-    <string name="radio_text_ongoing">Ongoing treatment</string>
-    <string name="radio_text_number_of_days">number of days</string>
-    <string name="radio_text_number_of_days_with_colon">number of days:</string>
-    <string name="tv_duration">Duration</string>
-    <string name="tv_every_day">Every day</string>
-    <string name="tv_specific_days">specifc days of the week</string>
-    <string name="tv_days_interval">days interval</string>
-    <string name="tv_days">Days</string>
-    <string name="tv_reminder_time_input">Take 1 at 08:00</string>
-    <string name="tv_every_other_day">Every other day</string>
+    <string name="tv_days">Jours</string>
+    <string name="tv_days_interval">intervalle de jours</string>
+    <string name="tv_duration">Durée</string>
+    <string name="tv_every_day">Tous les jours</string>
+    <string name="tv_every_other_day">Tous les deux jours</string>
+    <string name="tv_friday">vendredi</string>
+    <string name="tv_medicine_name">Nom du Médicament</string>
+    <string name="tv_monday">lundi</string>
+    <string name="tv_ok">OK</string>
+    <string name="tv_one">1</string>
+    <string name="tv_reminder_time_input">Prendre 1 à 8h00</string>
+    <string name="tv_reminder_times_title">Temps de rappel</string>
+    <string name="tv_saturday">samedi</string>
+    <string name="tv_schedule_title">Programme</string>
+    <string name="tv_specific_days">Jours spécifiques de la semaine</string>
+    <string name="tv_start_date">Date de début:</string>
+    <string name="tv_sunday">dimanche</string>
+    <string name="tv_take">Prendre</string>
+    <string name="tv_take_2_pills">Prendre 2 comprimés</string>
+    <string name="tv_take_pill">Prendre %s %s à %s</string>
+    <string name="tv_take_pill_plural">Prendre %s %ss a %s</string>
+    <string name="tv_thursday">jeudi</string>
+    <string name="tv_tuesday">mardi</string>
+    <string name="tv_wednesday">mercredi</string>
+    <string name="title_select_days">Sélectionnez les jours:</string>
+    <string name="tv_no_matching">Aucune correspondance trouvée.</string>
+    <string name="toast_at_least_one_day">Veuillez sélectionner au moins un jour de la semaine</string>
+    <string name="toast_enter_medname">Veuillez entrer le nom du médicament</string>
+    <string name="btn_cancel">Annuler</string>
+    <string name="toast_no_selection">Rien n\'a été sélectionné</string>
+    <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
+    <string name="trick_duration">n</string>
+    <string name="trick_days">T</string>
 </resources>

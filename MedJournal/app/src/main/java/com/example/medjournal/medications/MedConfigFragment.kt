@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -48,6 +49,8 @@ class MedConfigFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.title_more_details)
 
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -144,7 +147,7 @@ class MedConfigFragment : Fragment() {
                 id: Long
             ) {
                 unit = parent?.getItemAtPosition(position).toString()
-                Log.d("Test", unit)
+                //Log.d("Test", unit)
                 reminderDateSelected1?.text =
                     getString(takeString(dosage, unit), dosage, unit, reminderTime1)
                 reminderDateSelected2?.text =
@@ -246,9 +249,9 @@ class MedConfigFragment : Fragment() {
         val radioGroup: RadioGroup = medConfigView.findViewById(R.id.radio_duration)
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = medConfigView.findViewById(checkedId)
-            if (radio.text != "Ongoing treatment") {
+            if (radio.text != getString(R.string.radio_text_ongoing)) {
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Set number of days (from start date)")
+                builder.setTitle(getString(R.string.title_set_number_of_days))
 
                 val view = layoutInflater.inflate(R.layout.popup_duration, container, false)
 
@@ -261,7 +264,7 @@ class MedConfigFragment : Fragment() {
                 val recallText = curDuration.split(" ")
 
                 //Toast.makeText(requireContext(), recallText[0], Toast.LENGTH_SHORT).show()
-                if (curDuration.isNotEmpty() && !curDuration.startsWith('n')) input.setText(
+                if (curDuration.isNotEmpty() && !curDuration.startsWith(getString(R.string.trick_duration))) input.setText(
                     recallText[0]
                 )
                 var mText: String = input.text.toString()
@@ -322,7 +325,7 @@ class MedConfigFragment : Fragment() {
                     }
                 }
                 builder.setNegativeButton(
-                    "Cancel"
+                    getString(R.string.btn_cancel)
                 ) { dialog, _ ->
                     dialog.cancel()
                     if (rb.text == getString(R.string.radio_text_number_of_days)) {
@@ -346,13 +349,13 @@ class MedConfigFragment : Fragment() {
         val radioSpecific: RadioButton = medConfigView.findViewById(R.id.radio_specific_days)
         radioGroup2.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = medConfigView.findViewById(checkedId)
-            Log.d("RB1", radio.text.toString())
-            if (radio.text.toString()[0] == 'E') {
+            //Log.d("RB1", radio.text.toString())
+            if (radio.text.toString()[0] == getString(R.string.trick_days).single()) {
                 radioSpecific.text = getString(R.string.tv_specific_days)
                 radioSpecific.setTextColor(Color.BLACK)
             } else {
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Select days of the week:")
+                builder.setTitle(getString(R.string.title_select_days))
 
                 val view = layoutInflater.inflate(R.layout.popup_days_of_week, container, false)
 
@@ -404,8 +407,9 @@ class MedConfigFragment : Fragment() {
                     if (selectedDays.isEmpty()) {
                         radioEveryDay.isChecked = true
                         Toast.makeText(
-                            requireContext(), "Please select at least " +
-                                    "one day of the week", Toast.LENGTH_SHORT
+                            requireContext(),
+                            getString(R.string.toast_at_least_one_day),
+                            Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         val allDays = StringBuilder()
@@ -427,7 +431,7 @@ class MedConfigFragment : Fragment() {
                     }
                 }
                 builder.setNegativeButton(
-                    "Cancel"
+                    getString(R.string.btn_cancel)
                 ) { dialog, _ ->
                     radioEveryDay.isChecked = true
                     dialog.cancel()

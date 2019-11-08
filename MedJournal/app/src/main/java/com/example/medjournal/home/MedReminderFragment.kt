@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 
 import com.example.medjournal.R
@@ -30,6 +31,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
+
         val medView = inflater.inflate(R.layout.fragment_med_reminder, container, false)
         widget = medView.findViewById(R.id.calendarView)
         widget.setOnDateChangedListener(this)
@@ -52,7 +55,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
             val text = DateTimeFormatter.ofPattern("EEE, d MMM yyyy").format(date.date)
             Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(requireContext(), "No Selection", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.toast_no_selection), Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,6 +57,7 @@ class MedSelectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_add_medicine)
 
         var textlength: Int
 
@@ -66,7 +68,7 @@ class MedSelectFragment : Fragment() {
         nextBtn.setOnClickListener {
             if (medSelectView.findViewById<TextInputEditText>(R.id.et_med_name).text.toString() == "") {
                 Toast.makeText(
-                    requireContext(), "Please enter medication name",
+                    requireContext(), getString(R.string.toast_enter_medname),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -93,7 +95,7 @@ class MedSelectFragment : Fragment() {
         recyclerView.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 //Toast.makeText(activity, medications[position], Toast.LENGTH_SHORT).show()
-                if (medicationsSort[position] != "No matching found.") {
+                if (medicationsSort[position] != getString(R.string.tv_no_matching)) {
                     medSelectView.findViewById<TextInputEditText>(R.id.et_med_name)
                         .setText(medicationsSort[position])
                 }
@@ -129,7 +131,7 @@ class MedSelectFragment : Fragment() {
                 }
 
                 if (medicationsSort.size == 0) {
-                    medicationsSort.add("No matching found.")
+                    medicationsSort.add(getString(R.string.tv_no_matching))
                 }
                 recyclerView!!.adapter = RecylerAdapter(medicationsSort, context!!)
                 recyclerView.layoutManager = linearLayoutManager
