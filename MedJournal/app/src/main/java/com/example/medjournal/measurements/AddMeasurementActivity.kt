@@ -2,6 +2,7 @@ package com.example.medjournal.measurements
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -11,8 +12,10 @@ import com.example.medjournal.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.example.medjournal.models.MeasurementData
+import com.google.firebase.database.DatabaseReference
 
 class AddMeasurementActivity : AppCompatActivity() {
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,8 @@ class AddMeasurementActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             dropdown.adapter = adapter
         }
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        database = FirebaseDatabase.getInstance().reference
     }
 
     fun submitMeasurement(view: View) {
@@ -41,11 +46,17 @@ class AddMeasurementActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val newMeasurement = MeasurementData(uid, measurementType, measVal)
 
-        val myRef = FirebaseDatabase.getInstance().reference
+        val myRef = database.child("measurements").child(uid).child(newMeasurement.datetimeEntered)
 
-        newMeasurement.saveToFireBase(myRef)
-
-        val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered, Toast.LENGTH_SHORT)
-        myToast.show()
+        myRef.setValue(newMeasurement).addOnSuccessListener {
+            val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered.toString(), Toast.LENGTH_SHORT)
+            myToast.show()
+        }
+            .addOnFailureListener{
+                Log.e("SubmitMeasurement", "Failed to add to Firebase at ${newMeasurement.datetimeEntered} " +
+                        "by user ${newMeasurement.userName}, type of measurement: ${newMeasurement.typeOfMeasurement} with value: ${newMeasurement.measuredVal}")
+                val myToast = Toast.makeText(this, "Failed to submit the measurement. Bug Reported", Toast.LENGTH_SHORT)
+                myToast.show()
+        }
     }
 }
