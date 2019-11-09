@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.medjournal"
-        minSdkVersion 27
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -48,5 +48,6 @@ dependencies {
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
     implementation 'com.alespero:expandable-cardview:0.8'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0' // for graphs
 
 }

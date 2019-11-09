@@ -2,6 +2,7 @@ package com.example.medjournal.measurements
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
@@ -32,7 +33,7 @@ class AddMeasurementActivity : AppCompatActivity() {
         }
     }
 
-    fun submitMeasurement() {
+    fun submitMeasurement(view: View) {
         val measurementType : String = (findViewById<Spinner>(R.id.chooseTypeOfMeasurementSpinner).selectedItem.toString())
         val valEditField : EditText = findViewById(R.id.editMeasurementValue)
 
