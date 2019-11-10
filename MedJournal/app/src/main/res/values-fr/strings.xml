@@ -53,7 +53,7 @@
         <item> La semaine dernière </item>
         <item> Le mois dernier </item>
         <item> Les 3 derniers mois </item>
-        <item> L'année dernière </item>
+        <item> L\'année dernière </item>
     </string-array>
 
     <string name="radio_number_of_days_changed" translatable="false">%s jours</string>
