@@ -17,7 +17,7 @@ before_script:
 - echo y | ./google-cloud-sdk/bin/gcloud components update
 - echo y | ./google-cloud-sdk/bin/gcloud components install beta
 - source google-cloud-sdk/path.bash.inc
-- gcloud auth activate-service-account --key-file decrypted_key_file.json
+- gcloud auth activate-service-account --key-file firebase.json
 - gcloud config set project $FIREBASE_PROJECT_ID
 script:
 - chmod +x gradlew
