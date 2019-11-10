@@ -4,7 +4,7 @@ env:
   global:
   - ANDROID_TARGET=android-29
   - ANDROID_BUILD_TOOLS_VERSION=29.0.2
-  - FIREBASE_PROJECT_ID==med-journal-47b66
+  - FIREBASE_PROJECT_ID==medjournal
 android:
   components:
   - build-tools-$ANDROID_BUILD_TOOLS_VERSION
