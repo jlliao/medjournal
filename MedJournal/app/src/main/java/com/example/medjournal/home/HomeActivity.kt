@@ -30,8 +30,6 @@ import kotlin.concurrent.schedule
 
 class HomeActivity : AppCompatActivity() {
 
-    private val medications: MutableList<MedInfo> = ArrayList()
-
     companion object {
         const val TAG = "HomeActivity"
     }
@@ -52,8 +50,6 @@ class HomeActivity : AppCompatActivity() {
         AndroidThreeTen.init(this)
 
         verifyUserIsLoggedIn()
-
-        getMedInfoFromFirebaseDatabase()
 
 
 //        Toast.makeText(
@@ -110,32 +106,6 @@ class HomeActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
-    }
-
-    private fun getMedInfoFromFirebaseDatabase() {
-        val uid = FirebaseAuth.getInstance().uid
-        val ref = FirebaseDatabase.getInstance().reference.child("medications").child(uid!!)
-
-        val medInfoListener = object : ValueEventListener {
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w(TAG, "loadMedInfo:onCancelled", databaseError.toException())
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                medications.clear()
-                //medications = ArrayList()
-
-                dataSnapshot.children.forEach {
-                    val medication = it.getValue(MedInfo::class.java)
-                    medications.add(medication!!)
-//                    Log.d(TAG, medications[0].medName ?: "NULLL")
-
-                    Log.d(TAG, "Update MedInfo Successfully")
-                }
-            }
-        }
-
-        ref.addListenerForSingleValueEvent(medInfoListener)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

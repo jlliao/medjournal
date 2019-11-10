@@ -52,14 +52,15 @@ class MeasurementsFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
         val measurementMenuView = inflater.inflate(R.layout.fragment_measurements, container, false)
 
-        val measurements = ArrayList<String>(listOf(*resources.getStringArray(R.array.measurement_types_array)))
+        val measurements =
+            ArrayList<String>(listOf(*resources.getStringArray(R.array.measurement_types_array)))
 
         val recyclerView = measurementMenuView.findViewById<RecyclerView>(R.id.measurement_menu_rv)
         linearLayoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = MeasurementMenuRvAdapter(measurements, context!!)
         recyclerView.layoutParams.height = 800
-        recyclerView.addOnItemClickListener(object: OnItemClickListener{
+        recyclerView.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 if (position >= 0 && position < measurements.size) {
                     val intent = Intent(view.context, MeasurementVizActivity::class.java)
@@ -69,8 +70,9 @@ class MeasurementsFragment : Fragment() {
             }
         })
 
-        val addNewMeasurementBtn = measurementMenuView.findViewById<Button>(R.id.measurement_menu_add_measurement_btn)
-        addNewMeasurementBtn.setOnClickListener{
+        val addNewMeasurementBtn =
+            measurementMenuView.findViewById<Button>(R.id.measurement_menu_add_measurement_btn)
+        addNewMeasurementBtn.setOnClickListener {
             val intent = Intent(context, AddMeasurementActivity::class.java)
             startActivity(intent)
         }

@@ -89,7 +89,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         set1.valueTextSize = 0f
         set1.setDrawFilled(false)
 
-        val data : LineData = LineData(set1)
+        val data: LineData = LineData(set1)
 
         tempLineChart = findViewById(com.example.medjournal.R.id.measurement_lineChart)
         tempLineChart.data = data

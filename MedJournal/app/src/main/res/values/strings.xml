@@ -6,6 +6,7 @@
     <string name="btn_bottom_nav_home">Home</string>
     <string name="btn_bottom_nav_measurements">Measurements</string>
     <string name="btn_botton_nav_medications">Medications</string>
+    <string name="btn_cancel">Cancel</string>
     <string name="btn_med_config_done">DONE</string>
     <string name="btn_med_select_next">NEXT</string>
     <string name="btn_register">Register</string>
@@ -29,13 +30,6 @@
         <item> Heart Rate</item>
         <item> Blood Sugar</item>
         <item> Other </item>
-    </string-array>
-
-    <string-array name="period_choices_for_measurement_graphs">
-        <item> Last weeek </item>
-        <item> Last month </item>
-        <item> Last 3 months </item>
-        <item> Last year </item>
     </string-array>
 
     <string-array name="medication_dosage">
@@ -126,6 +120,7 @@
         <item>Glucotrol</item>
         <item>Haldol</item>
         <item>Hydrocortisone</item>
+        <item>Ibuprofen</item>
         <item>Imodium</item>
         <item>Imuran</item>
         <item>Inderal</item>
@@ -233,6 +228,11 @@
         <item>Viagra</item>
         <item>Vicodin</item>
         <item>Vistaril</item>
+        <item>Vitamin A</item>
+        <item>Vitamin B</item>
+        <item>Vitamin C</item>
+        <item>Vitamin D</item>
+        <item>Vitamin K1</item>
         <item>Voltaren</item>
         <item>Voltaren Gel</item>
         <item>Vyvanse</item>
@@ -252,6 +252,13 @@
         <item>Zyrtec</item>
     </string-array>
 
+    <string-array name="period_choices_for_measurement_graphs">
+        <item> Last week </item>
+        <item> Last month </item>
+        <item> Last 3 months </item>
+        <item> Last year </item>
+    </string-array>
+
     <string name="radio_number_of_days_changed">%s days</string>
     <string name="radio_text_number_of_days">number of days</string>
     <string name="radio_text_number_of_days_with_colon">number of days:</string>
@@ -265,15 +272,23 @@
 
     <string name="title_add_medicine">Add Medicine</string>
     <string name="title_more_details">More Details</string>
+    <string name="title_select_days">Select days of the week:</string>
+    <string name="title_set_number_of_days">Set number of days (from start date)</string>
 
+    <string name="toast_at_least_one_day">Please select at least one day of the week</string>
     <string name="toast_empty_email">Please enter text in email.</string>
     <string name="toast_empty_password">Please enter text in password.</string>
     <string name="toast_empty_username">Please enter text in username.</string>
+    <string name="toast_enter_medname">Please enter medication name</string>
     <string name="toast_failed_to_create_user">Failed to create user: </string>
+    <string name="toast_no_selection">No Selection</string>
+
+    <string name="trick_days">E</string>
+    <string name="trick_duration">n</string>
 
     <string name="tv_8AM">8:00 AM</string>
     <string name="tv_already_have_an_account">Already have an account?</string>
-    <string name="tv_back_to_registration">Back to registration</string>
+    <string name="tv_back_to_registration">Does not have an account? Register now.</string>
     <string name="tv_days">Days</string>
     <string name="tv_days_interval">days interval</string>
     <string name="tv_duration">Duration</string>
@@ -282,6 +297,7 @@
     <string name="tv_friday">Friday</string>
     <string name="tv_medicine_name">Medication Name</string>
     <string name="tv_monday">Monday</string>
+    <string name="tv_no_matching">No matching found.</string>
     <string name="tv_ok">OK</string>
     <string name="tv_one">1</string>
     <string name="tv_reminder_time_input">Take 1 pill at 08:00</string>
@@ -298,13 +314,4 @@
     <string name="tv_thursday">Thursday</string>
     <string name="tv_tuesday">Tuesday</string>
     <string name="tv_wednesday">Wednesday</string>
-    <string name="title_select_days">Select days of the week:</string>
-    <string name="tv_no_matching">No matching found.</string>
-    <string name="toast_at_least_one_day">Please select at least one day of the week</string>
-    <string name="toast_enter_medname">Please enter medication name</string>
-    <string name="btn_cancel">Cancel</string>
-    <string name="toast_no_selection">No Selection</string>
-    <string name="title_set_number_of_days">Set number of days (from start date)</string>
-    <string name="trick_duration">n</string>
-    <string name="trick_days">E</string>
 </resources>

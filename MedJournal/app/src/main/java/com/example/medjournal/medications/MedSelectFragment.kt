@@ -57,7 +57,8 @@ class MedSelectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_add_medicine)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.title_add_medicine)
 
         var textlength: Int
 

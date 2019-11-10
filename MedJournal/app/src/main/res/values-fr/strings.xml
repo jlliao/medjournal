@@ -6,6 +6,7 @@
     <string name="btn_bottom_nav_home">Accueil</string>
     <string name="btn_bottom_nav_measurements">Mesures</string>
     <string name="btn_botton_nav_medications">Médicaments</string>
+    <string name="btn_cancel">Annuler</string>
     <string name="btn_med_config_done">TERMINÉ</string>
     <string name="btn_med_select_next">SUIVANT</string>
     <string name="btn_register">Créer un compte</string>
@@ -48,6 +49,216 @@
         <item>Nombre de jours</item>
     </string-array>
 
+    <string-array name="medicine_names">
+        <item>Abilify</item>
+        <item>Adderall XR</item>
+        <item>Adderall</item>
+        <item>Adrénaline</item>
+        <item>Albutérol sulfa</item>
+        <item>Aldactone</item>
+        <item>Allegra</item>
+        <item>Ambien</item>
+        <item>Amikin</item>
+        <item>Amoxicilline</item>
+        <item>Antiver</item>
+        <item>Aricep</item>
+        <item>Armure de la Thyroïde</item>
+        <item>Atarax</item>
+        <item>Ativan</item>
+        <item>Atropine</item>
+        <item>Atrovent hfa</item>
+        <item>Aténolol</item>
+        <item>Augmentin</item>
+        <item>Avapro</item>
+        <item>Baclofène</item>
+        <item>Bactr</item>
+        <item>Benadryl</item>
+        <item>Bentyl</item>
+        <item>Benzonatate</item>
+        <item>Bumex</item>
+        <item>Buspar</item>
+        <item>Carafa</item>
+        <item>Catapres</item>
+        <item>Ceftin</item>
+        <item>Celebrex</item>
+        <item>Celexa</item>
+        <item>Cialis</item>
+        <item>Cipro</item>
+        <item>Claritin</item>
+        <item>Clindamycine</item>
+        <item>Colchicine</item>
+        <item>Concerta</item>
+        <item>Coreg</item>
+        <item>Coumadin</item>
+        <item>Cozaar</item>
+        <item>Crestor</item>
+        <item>Cymbalta</item>
+        <item>Cytomel</item>
+        <item>Cytotec</item>
+        <item>Depakote</item>
+        <item>Desoxyn</item>
+        <item>Desyrel</item>
+        <item>Dexamethason</item>
+        <item>Diflucan</item>
+        <item>Dilaudid</item>
+        <item>Diovan</item>
+        <item>Dobutamine</item>
+        <item>Doryx</item>
+        <item>Duoneb</item>
+        <item>Effexor XR</item>
+        <item>Elavil</item>
+        <item>Eliquis</item>
+        <item>Estrac</item>
+        <item>Fioric</item>
+        <item>Flagyl</item>
+        <item>Flexeril</item>
+        <item>Flomax</item>
+        <item>Flonase</item>
+        <item>Focalin XR</item>
+        <item>Forta</item>
+        <item>Fosamax</item>
+        <item>Glucotrol</item>
+        <item>Haldol</item>
+        <item>Hydrocortisone</item>
+        <item>Ibuprofène</item>
+        <item>Imodium</item>
+        <item>Imuran</item>
+        <item>Inderal</item>
+        <item>Indocin</item>
+        <item>IV mannitol</item>
+        <item>Keflex</item>
+        <item>Keppra</item>
+        <item>Klonopin</item>
+        <item>Klor-con</item>
+        <item>Kétoconazole crème</item>
+        <item>Lamictal</item>
+        <item>Lamisil</item>
+        <item>Lasix</item>
+        <item>Levaquin</item>
+        <item>Levsin</item>
+        <item>Lexapro</item>
+        <item>Lexiscan</item>
+        <item>Librax</item>
+        <item>Librium</item>
+        <item>Lidoder</item>
+        <item>Lipitor</item>
+        <item>Lomotil</item>
+        <item>Lopressor</item>
+        <item>Lovaza</item>
+        <item>Lovenox</item>
+        <item>Lyrica</item>
+        <item>Macrobid</item>
+        <item>Medrol</item>
+        <item>Megac</item>
+        <item>Merrem iv</item>
+        <item>Methergin</item>
+        <item>Minocin</item>
+        <item>Mirapex</item>
+        <item>Mobic</item>
+        <item>Ms contin</item>
+        <item>Naprelan</item>
+        <item>Narcan</item>
+        <item>Neurontin</item>
+        <item>Nexium</item>
+        <item>Nitrosta</item>
+        <item>Norco 5/325</item>
+        <item>Norco</item>
+        <item>Norvasc</item>
+        <item>Norvir</item>
+        <item>Nystatine crème</item>
+        <item>Nystatine orale</item>
+        <item>Omnicef</item>
+        <item>Oxycontin</item>
+        <item>Paxil</item>
+        <item>Pepcid</item>
+        <item>Percocet</item>
+        <item>Phenergan</item>
+        <item>Plaquenil</item>
+        <item>Plavix</item>
+        <item>Pravachol</item>
+        <item>Prilosec</item>
+        <item>Prinivil</item>
+        <item>Proair</item>
+        <item>Proamatin</item>
+        <item>Prolia</item>
+        <item>Prometrium</item>
+        <item>Proscar</item>
+        <item>Protonix</item>
+        <item>Prozac</item>
+        <item>Pyridium</item>
+        <item>Péché</item>
+        <item>Ranexa</item>
+        <item>Remeron</item>
+        <item>Remicade</item>
+        <item>Requip</item>
+        <item>Restoril</item>
+        <item>Risperdal</item>
+        <item>Ritalin</item>
+        <item>Robaxin</item>
+        <item>Rocephin</item>
+        <item>Roxicodon</item>
+        <item>Saline normale</item>
+        <item>Seroquel</item>
+        <item>Silvadene</item>
+        <item>Sinequan</item>
+        <item>Singulair</item>
+        <item>Skelaxin</item>
+        <item>Soma</item>
+        <item>Spiriva</item>
+        <item>Subutex®</item>
+        <item>Suprax</item>
+        <item>Synthroid</item>
+        <item>Tapazol</item>
+        <item>Tegretol</item>
+        <item>Tessalon</item>
+        <item>Tofranil</item>
+        <item>Toprol XR</item>
+        <item>Toprol</item>
+        <item>Toradol</item>
+        <item>Triamcinolone crème</item>
+        <item>Trileptal</item>
+        <item>Tussionex</item>
+        <item>Tylenol avec codéine</item>
+        <item>Tylenol</item>
+        <item>Ultra</item>
+        <item>Ultrac</item>
+        <item>Valiu</item>
+        <item>Valtrex</item>
+        <item>Viagra</item>
+        <item>Vicodin</item>
+        <item>Vistaril</item>
+        <item>Vitamine A</item>
+        <item>Vitamine B</item>
+        <item>Vitamine C</item>
+        <item>Vitamine D</item>
+        <item>Vitamine K1</item>
+        <item>Vk pénicilline</item>
+        <item>Voltaren gel</item>
+        <item>Voltaren</item>
+        <item>Vyvanse</item>
+        <item>Wellbutrin XL</item>
+        <item>Wellbutrin</item>
+        <item>Xanax</item>
+        <item>Xenical</item>
+        <item>Xyzal</item>
+        <item>Zanaflex</item>
+        <item>Zantac</item>
+        <item>Zithromax</item>
+        <item>Zofran</item>
+        <item>Zoloft</item>
+        <item>Zosyn</item>
+        <item>Zovirax</item>
+        <item>Zyprexa</item>
+        <item>Zyrtec</item>
+    </string-array>
+
+    <string-array name="period_choices_for_measurement_graphs">
+        <item> La semaine dernière </item>
+        <item> Le mois dernier </item>
+        <item> Les 3 derniers mois </item>
+        <item> L\'année dernière </item>
+    </string-array>
+
     <string name="radio_number_of_days_changed" translatable="false">%s jours</string>
     <string name="radio_text_number_of_days">nombre de jours</string>
     <string name="radio_text_number_of_days_with_colon">nombre de jours:</string>
@@ -61,15 +272,23 @@
 
     <string name="title_add_medicine">Médicaments</string>
     <string name="title_more_details">Détails</string>
+    <string name="title_select_days">Sélectionnez les jours:</string>
+    <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
 
+    <string name="toast_at_least_one_day">Veuillez sélectionner au moins un jour de la semaine</string>
     <string name="toast_empty_email">L\'email ne peut pas être vide.</string>
     <string name="toast_empty_password">Le mot de passe ne peut pas être vide.</string>
     <string name="toast_empty_username">Le nom d\'utilisateur ne peut pas être vide.</string>
+    <string name="toast_enter_medname">Veuillez entrer le nom du médicament</string>
     <string name="toast_failed_to_create_user">Échec de la création de l\'utilisateur: </string>
+    <string name="toast_no_selection">Rien n\'a été sélectionné</string>
+
+    <string name="trick_days">T</string>
+    <string name="trick_duration">n</string>
 
     <string name="tv_8AM">8h00</string>
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
-    <string name="tv_back_to_registration">Retour à l\'inscription</string>
+    <string name="tv_back_to_registration"> Vous n\'avez pas de compte? Inscrivez-vous maintenant. </string>
     <string name="tv_days">Jours</string>
     <string name="tv_days_interval">intervalle de jours</string>
     <string name="tv_duration">Durée</string>
@@ -78,6 +297,7 @@
     <string name="tv_friday">vendredi</string>
     <string name="tv_medicine_name">Nom du Médicament</string>
     <string name="tv_monday">lundi</string>
+    <string name="tv_no_matching">Aucune correspondance trouvée.</string>
     <string name="tv_ok">OK</string>
     <string name="tv_one">1</string>
     <string name="tv_reminder_time_input">Prendre 1 à 8h00</string>
@@ -94,13 +314,4 @@
     <string name="tv_thursday">jeudi</string>
     <string name="tv_tuesday">mardi</string>
     <string name="tv_wednesday">mercredi</string>
-    <string name="title_select_days">Sélectionnez les jours:</string>
-    <string name="tv_no_matching">Aucune correspondance trouvée.</string>
-    <string name="toast_at_least_one_day">Veuillez sélectionner au moins un jour de la semaine</string>
-    <string name="toast_enter_medname">Veuillez entrer le nom du médicament</string>
-    <string name="btn_cancel">Annuler</string>
-    <string name="toast_no_selection">Rien n\'a été sélectionné</string>
-    <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
-    <string name="trick_duration">n</string>
-    <string name="trick_days">T</string>
 </resources>
