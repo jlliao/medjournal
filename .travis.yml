@@ -1,4 +1,4 @@
-zlanguage: android
+language: android
 dist: trusty
 env:
   global:
