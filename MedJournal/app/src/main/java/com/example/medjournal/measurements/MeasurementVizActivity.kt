@@ -7,7 +7,11 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
+import com.example.medjournal.adapters.MeasurementHistoryRvAdapter
+import com.example.medjournal.adapters.MeasurementMenuRvAdapter
 import com.example.medjournal.models.MeasurementData
 import com.example.medjournal.utils.ChartValueDateFormatter
 import com.github.mikephil.charting.charts.LineChart
@@ -15,18 +19,21 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_measurement_viz.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MeasurementVizActivity : AppCompatActivity() {
+    lateinit var measurement_type: String
     private lateinit var database: DatabaseReference
     private val measurements: MutableList<MeasurementData> = ArrayList()
     lateinit var yVals : ArrayList<Entry>
     private lateinit var tempLineChart : LineChart
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvAdapter : MeasurementHistoryRvAdapter
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     companion object {
         const val TAG = "MeasurementVizActivity"
@@ -36,7 +43,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measurement_viz)
 
-        val measurement_type = intent.getStringExtra("measurement_type")
+        measurement_type = intent.getStringExtra("measurement_type")
         // FIXME: do not concatenate in setText
         findViewById<TextView>(R.id.measurement_activity_header).setText("Your Statistics for " + measurement_type + ":")
 
@@ -68,6 +75,7 @@ class MeasurementVizActivity : AppCompatActivity() {
             dropdown2.adapter = adapter
         }
 
+        // -------------------------------- GRAPH SETUP ----------------------------------------
         // FirebaseDatabase.getInstance().setPersistenceEnabled(true) // for Offline Persistence
         database = FirebaseDatabase.getInstance().reference
 
@@ -98,6 +106,16 @@ class MeasurementVizActivity : AppCompatActivity() {
         xAxis.valueFormatter = ChartValueDateFormatter("yyyy.MM.dd")
 
         tempLineChart.notifyDataSetChanged()
+        // -------------------------------- GRAPH SETUP ENDS -----------------------------------
+
+        // -------------------------- MEASUREMENT HISTORY RV SETUP -----------------------------
+        val measurements = ArrayList<String>(listOf(*resources.getStringArray(R.array.measurement_types_array)))
+
+        recyclerView = findViewById<RecyclerView>(R.id.measurement_history_rv)
+        linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = MeasurementMenuRvAdapter(measurements, this)
+        recyclerView.layoutParams.height = 800
     }
 
     override fun onStart() {
@@ -108,7 +126,6 @@ class MeasurementVizActivity : AppCompatActivity() {
     private fun setupLineChartData() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val myRef = database.child("measurements").child(uid)
-        val filter = "Blood Sugar"
         val measurementDataListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
@@ -119,7 +136,7 @@ class MeasurementVizActivity : AppCompatActivity() {
                 for (ds in snapshot.getChildren()) {
                     val temp : MeasurementData = ds.getValue(MeasurementData::class.java)!!
                     // filter by MeasurementType
-                    if (temp.typeOfMeasurement.equals(filter)) {
+                    if (temp.typeOfMeasurement.equals(measurement_type)) {
                         val format = java.text.SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
                             Locale.ENGLISH)
                         val d = format.parse(temp.datetimeEntered)!!
@@ -136,5 +153,11 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         myRef.addValueEventListener(measurementDataListener)
     }
+
+    private fun setupMeasurementHistoryRv() {
+
+    }
+
+
 
 }
