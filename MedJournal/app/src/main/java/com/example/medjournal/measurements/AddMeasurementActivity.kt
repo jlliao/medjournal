@@ -1,5 +1,6 @@
 package com.example.medjournal.measurements
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +35,6 @@ class AddMeasurementActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             dropdown.adapter = adapter
         }
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         database = FirebaseDatabase.getInstance().reference
     }
 
@@ -51,6 +51,10 @@ class AddMeasurementActivity : AppCompatActivity() {
         myRef.setValue(newMeasurement).addOnSuccessListener {
             val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered.toString(), Toast.LENGTH_SHORT)
             myToast.show()
+
+            val intent = Intent(view.context, MeasurementVizActivity::class.java)
+            intent.putExtra("measurement_type", newMeasurement.typeOfMeasurement)
+            startActivity(intent)
         }
             .addOnFailureListener{
                 Log.e("SubmitMeasurement", "Failed to add to Firebase at ${newMeasurement.datetimeEntered} " +

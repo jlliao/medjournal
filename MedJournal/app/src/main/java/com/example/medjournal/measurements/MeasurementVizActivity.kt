@@ -68,7 +68,6 @@ class MeasurementVizActivity : AppCompatActivity() {
             dropdown2.adapter = adapter
         }
 
-        // FirebaseDatabase.getInstance().setPersistenceEnabled(true) // for Offline Persistence
         database = FirebaseDatabase.getInstance().reference
 
         // Set up the linechart
