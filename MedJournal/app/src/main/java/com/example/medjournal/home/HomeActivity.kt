@@ -78,10 +78,10 @@ class HomeActivity : AppCompatActivity() {
 //        }
 
 
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        setupActionBarWithNavController(navController)
-//        findViewById<BottomNavigationView>(R.id.home_bottom_navigation)
-//            .setupWithNavController(navController)
+        val navController = findNavController(R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController)
+        findViewById<BottomNavigationView>(R.id.home_bottom_navigation)
+            .setupWithNavController(navController)
 //
 //        val bundle = intent.extras
 //        uid = bundle?.getString("uid")
