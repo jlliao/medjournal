@@ -39,28 +39,40 @@ class AddMeasurementActivity : AppCompatActivity() {
     }
 
     fun submitMeasurement(view: View) {
-        val measurementType : String = (findViewById<Spinner>(R.id.chooseTypeOfMeasurementSpinner).selectedItem.toString())
-        val valEditField : EditText = findViewById(R.id.editMeasurementValue)
+        val measurementType: String =
+            (findViewById<Spinner>(R.id.chooseTypeOfMeasurementSpinner).selectedItem.toString())
+        val valEditField: EditText = findViewById(R.id.editMeasurementValue)
 
-        val measVal : Float = valEditField.text.toString().toFloat()
+        val measVal: Float = valEditField.text.toString().toFloat()
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val newMeasurement = MeasurementData(uid, measurementType, measVal)
 
         val myRef = database.child("measurements").child(uid).child(newMeasurement.datetimeEntered)
 
         myRef.setValue(newMeasurement).addOnSuccessListener {
-            val myToast = Toast.makeText(this, "submitted at " + newMeasurement.datetimeEntered.toString(), Toast.LENGTH_SHORT)
+            val myToast = Toast.makeText(
+                this,
+                "submitted at " + newMeasurement.datetimeEntered.toString(),
+                Toast.LENGTH_SHORT
+            )
             myToast.show()
 
             val intent = Intent(view.context, MeasurementVizActivity::class.java)
             intent.putExtra("measurement_type", newMeasurement.typeOfMeasurement)
             startActivity(intent)
         }
-            .addOnFailureListener{
-                Log.e("SubmitMeasurement", "Failed to add to Firebase at ${newMeasurement.datetimeEntered} " +
-                        "by user ${newMeasurement.userName}, type of measurement: ${newMeasurement.typeOfMeasurement} with value: ${newMeasurement.measuredVal}")
-                val myToast = Toast.makeText(this, "Failed to submit the measurement. Bug Reported", Toast.LENGTH_SHORT)
+            .addOnFailureListener {
+                Log.e(
+                    "SubmitMeasurement",
+                    "Failed to add to Firebase at ${newMeasurement.datetimeEntered} " +
+                            "by user ${newMeasurement.userName}, type of measurement: ${newMeasurement.typeOfMeasurement} with value: ${newMeasurement.measuredVal}"
+                )
+                val myToast = Toast.makeText(
+                    this,
+                    "Failed to submit the measurement. Bug Reported",
+                    Toast.LENGTH_SHORT
+                )
                 myToast.show()
-        }
+            }
     }
 }

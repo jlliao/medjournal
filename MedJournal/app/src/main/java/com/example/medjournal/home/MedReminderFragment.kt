@@ -35,7 +35,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
 /**
  * A simple [Fragment] subclass.
  */
@@ -83,14 +82,18 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     ) {
         //if (selected) Log.d("Calendar", "Current Date: ${date.date}") else "No date selected"
         if (selected) {
-            val date = DateTimeFormatter.ofPattern("MM/dd/yyyy").format(date.date)
-            if (selectedDate != date) {
-                selectedDate = date
-                updateAdapterForDate(date)
+            val dates = DateTimeFormatter.ofPattern("MM/dd/yyyy").format(date.date)
+            if (selectedDate != dates) {
+                selectedDate = dates
+                updateAdapterForDate(dates)
             }
 //            Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(requireContext(), getString(R.string.toast_no_selection), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.toast_no_selection),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -102,7 +105,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
 
     private fun getMedInfoFromFirebaseDatabase() {
         val uid = FirebaseAuth.getInstance().uid
-        val ref = FirebaseDatabase.getInstance().reference.child("medications").child(uid!!)
+        val ref =
+            FirebaseDatabase.getInstance().reference.child("medications").child(uid ?: "UserX")
 
         val medInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
@@ -133,13 +137,14 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     private fun parseMedInfoIntoMedEvent(medInfo: MedInfo) {
         val medItemInfo = medInfo.amount.toString() + " " + medInfo.unit
         for (i in 0 until medInfo.times) {
-
+            if (medInfo.days.isEmpty()) medInfo.days.add(getString(R.string.tv_every_day))
             when (medInfo.days[0]) {
-                "Every day" -> {
+                getString(R.string.tv_every_day) -> {
                     var startDate = SimpleDateFormat("MM/dd/yyyy").parse(medInfo.startDate!!)
                     for (j in 0 until 15) {
-                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate)
-                        val singleMedEvent = MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
+                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate!!)
+                        val singleMedEvent =
+                            MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
                         events[sDate] = events[sDate].orEmpty().plus(singleMedEvent)
                         val c = Calendar.getInstance()
                         c.time = startDate
@@ -147,11 +152,12 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                         startDate = c.time
                     }
                 }
-                "Every other day" -> {
+                getString(R.string.tv_every_day) -> {
                     var startDate = SimpleDateFormat("MM/dd/yyyy").parse(medInfo.startDate!!)
                     for (j in 0 until 15) {
-                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate)
-                        val singleMedEvent = MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
+                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate!!)
+                        val singleMedEvent =
+                            MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
                         events[sDate] = events[sDate].orEmpty().plus(singleMedEvent)
                         val c = Calendar.getInstance()
                         c.time = startDate
@@ -159,7 +165,11 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                         startDate = c.time
                     }
                 }
-                else -> Toast.makeText(requireContext(), "Function not implemented for specific days", Toast.LENGTH_LONG)
+                else -> Toast.makeText(
+                    requireContext(),
+                    "Function not implemented for specific days",
+                    Toast.LENGTH_LONG
+                )
                     .show()
 
             }

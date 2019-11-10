@@ -6,6 +6,7 @@
     <string name="btn_bottom_nav_home">Accueil</string>
     <string name="btn_bottom_nav_measurements">Mesures</string>
     <string name="btn_botton_nav_medications">Médicaments</string>
+    <string name="btn_cancel">Annuler</string>
     <string name="btn_med_config_done">TERMINÉ</string>
     <string name="btn_med_select_next">SUIVANT</string>
     <string name="btn_register">Créer un compte</string>
@@ -61,15 +62,23 @@
 
     <string name="title_add_medicine">Médicaments</string>
     <string name="title_more_details">Détails</string>
+    <string name="title_select_days">Sélectionnez les jours:</string>
+    <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
 
+    <string name="toast_at_least_one_day">Veuillez sélectionner au moins un jour de la semaine</string>
     <string name="toast_empty_email">L\'email ne peut pas être vide.</string>
     <string name="toast_empty_password">Le mot de passe ne peut pas être vide.</string>
     <string name="toast_empty_username">Le nom d\'utilisateur ne peut pas être vide.</string>
+    <string name="toast_enter_medname">Veuillez entrer le nom du médicament</string>
     <string name="toast_failed_to_create_user">Échec de la création de l\'utilisateur: </string>
+    <string name="toast_no_selection">Rien n\'a été sélectionné</string>
+
+    <string name="trick_days">T</string>
+    <string name="trick_duration">n</string>
 
     <string name="tv_8AM">8h00</string>
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
-    <string name="tv_back_to_registration">Retour à l\'inscription</string>
+    <string name="tv_back_to_registration"> Vous n\'avez pas de compte? Inscrivez-vous maintenant. </string>
     <string name="tv_days">Jours</string>
     <string name="tv_days_interval">intervalle de jours</string>
     <string name="tv_duration">Durée</string>
@@ -78,6 +87,7 @@
     <string name="tv_friday">vendredi</string>
     <string name="tv_medicine_name">Nom du Médicament</string>
     <string name="tv_monday">lundi</string>
+    <string name="tv_no_matching">Aucune correspondance trouvée.</string>
     <string name="tv_ok">OK</string>
     <string name="tv_one">1</string>
     <string name="tv_reminder_time_input">Prendre 1 à 8h00</string>
@@ -94,13 +104,4 @@
     <string name="tv_thursday">jeudi</string>
     <string name="tv_tuesday">mardi</string>
     <string name="tv_wednesday">mercredi</string>
-    <string name="title_select_days">Sélectionnez les jours:</string>
-    <string name="tv_no_matching">Aucune correspondance trouvée.</string>
-    <string name="toast_at_least_one_day">Veuillez sélectionner au moins un jour de la semaine</string>
-    <string name="toast_enter_medname">Veuillez entrer le nom du médicament</string>
-    <string name="btn_cancel">Annuler</string>
-    <string name="toast_no_selection">Rien n\'a été sélectionné</string>
-    <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
-    <string name="trick_duration">n</string>
-    <string name="trick_days">T</string>
 </resources>

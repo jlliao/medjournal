@@ -25,8 +25,8 @@ import kotlin.collections.ArrayList
 class MeasurementVizActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private val measurements: MutableList<MeasurementData> = ArrayList()
-    lateinit var yVals : ArrayList<Entry>
-    private lateinit var tempLineChart : LineChart
+    lateinit var yVals: ArrayList<Entry>
+    private lateinit var tempLineChart: LineChart
 
     companion object {
         const val TAG = "MeasurementVizActivity"
@@ -82,7 +82,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         set1.valueTextSize = 0f
         set1.setDrawFilled(false)
 
-        val data : LineData = LineData(set1)
+        val data: LineData = LineData(set1)
 
         tempLineChart = findViewById(com.example.medjournal.R.id.measurement_lineChart)
         tempLineChart.data = data
@@ -112,21 +112,24 @@ class MeasurementVizActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 measurements.clear()
                 Log.e("Firebase+MPChart:", "list is this long: ${snapshot.childrenCount}")
                 for (ds in snapshot.getChildren()) {
-                    val temp : MeasurementData = ds.getValue(MeasurementData::class.java)!!
+                    val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
                     // filter by MeasurementType
                     if (temp.typeOfMeasurement.equals(filter)) {
-                        val format = java.text.SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
-                            Locale.ENGLISH)
+                        val format = java.text.SimpleDateFormat(
+                            "EE MMM dd HH:mm:ss z yyyy",
+                            Locale.ENGLISH
+                        )
                         val d = format.parse(temp.datetimeEntered)!!
                         yVals.add(Entry(d.time.toFloat(), temp.measuredVal))
                     }
                 }
                 tempLineChart.notifyDataSetChanged()
-                tempLineChart.data = LineData(LineDataSet(yVals,"temp"))
+                tempLineChart.data = LineData(LineDataSet(yVals, "temp"))
                 tempLineChart.invalidate()
                 tempLineChart.refreshDrawableState()
             }

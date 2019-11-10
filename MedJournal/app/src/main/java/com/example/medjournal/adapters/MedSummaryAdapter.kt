@@ -35,8 +35,10 @@ class MedSummaryAdapter(val onClick: (MedInfo) -> Unit) :
         }
 
         fun bind(medInfo: MedInfo) {
-            containerView.findViewById<TextView>(R.id.med_summary_event_name_text).text = medInfo.medName
-            containerView.findViewById<TextView>(R.id.med_summary_event_info_text).text = "started date: " + medInfo.startDate
+            containerView.findViewById<TextView>(R.id.med_summary_event_name_text).text =
+                medInfo.medName
+            containerView.findViewById<TextView>(R.id.med_summary_event_info_text).text =
+                "started date: " + medInfo.startDate
         }
     }
 

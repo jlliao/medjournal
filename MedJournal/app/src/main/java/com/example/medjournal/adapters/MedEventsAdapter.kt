@@ -36,7 +36,8 @@ class MedEventsAdapter(val onClick: (MedEvent) -> Unit) :
 
         fun bind(medEvent: MedEvent) {
             containerView.findViewById<TextView>(R.id.med_item_event_time_text).text = medEvent.time
-            containerView.findViewById<TextView>(R.id.med_item_event_name_text).text = medEvent.medName
+            containerView.findViewById<TextView>(R.id.med_item_event_name_text).text =
+                medEvent.medName
             containerView.findViewById<TextView>(R.id.med_item_event_info_text).text = medEvent.info
         }
     }

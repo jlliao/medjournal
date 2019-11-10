@@ -9,10 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import kotlinx.android.synthetic.main.medication_text.view.*
 
-class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context: Context) : RecyclerView.Adapter<MeasurementMenuRvAdapter.ViewHolder>() {
+class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context: Context) :
+    RecyclerView.Adapter<MeasurementMenuRvAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.medication_text, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.medication_text,
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
