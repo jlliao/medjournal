@@ -1,7 +1,6 @@
 package com.example.medjournal.home
 
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,13 +10,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
+import com.example.medjournal.adapters.MedEventsAdapter
+import com.example.medjournal.models.MedEvent
 import com.example.medjournal.models.MedInfo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -31,49 +31,10 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import kotlinx.android.extensions.LayoutContainer
 import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
-internal fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
-}
 
-data class MedEvent(val info: String, val time: String,
-                    val medName: String, val date: String)
-
-class MedEventsAdapter(val onClick: (MedEvent) -> Unit) :
-    RecyclerView.Adapter<MedEventsAdapter.MedEventsViewHolder>() {
-
-    val events = mutableListOf<MedEvent>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedEventsViewHolder {
-        return MedEventsViewHolder(parent.inflate(R.layout.med_item_event))
-    }
-
-    override fun onBindViewHolder(viewHolder: MedEventsViewHolder, position: Int) {
-        viewHolder.bind(events[position])
-    }
-
-    override fun getItemCount(): Int = events.size
-
-    inner class MedEventsViewHolder(override val containerView: View) :
-        RecyclerView.ViewHolder(containerView), LayoutContainer {
-
-        init {
-            itemView.setOnClickListener {
-                onClick(events[adapterPosition])
-            }
-        }
-
-        fun bind(medEvent: MedEvent) {
-            containerView.findViewById<TextView>(R.id.med_item_event_time_text).text = medEvent.time
-            containerView.findViewById<TextView>(R.id.med_item_event_name_text).text = medEvent.medName
-            containerView.findViewById<TextView>(R.id.med_item_event_info_text).text = medEvent.info
-        }
-    }
-
-}
 
 /**
  * A simple [Fragment] subclass.
@@ -151,15 +112,16 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 medications.clear()
                 events.clear()
-                //medications = ArrayList()
 
                 dataSnapshot.children.forEach {
                     val medication = it.getValue(MedInfo::class.java)
                     medications.add(medication!!)
-//                    Log.d(TAG, medications[0].medName ?: "NULLL")
+
                     parseMedInfoIntoMedEvent(medication)
 
                 }
+
+                eventsAdapter.notifyDataSetChanged()
                 Log.d(HomeActivity.TAG, "Update MedInfo Successfully")
 
             }
