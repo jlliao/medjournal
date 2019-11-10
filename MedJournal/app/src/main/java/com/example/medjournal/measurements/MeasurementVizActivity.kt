@@ -27,7 +27,7 @@ import kotlin.collections.ArrayList
 class MeasurementVizActivity : AppCompatActivity() {
     lateinit var measurement_type: String
     private lateinit var database: DatabaseReference
-    private val measurements: MutableList<MeasurementData> = ArrayList()
+    private val measurementObjects = ArrayList<MeasurementData>()
     lateinit var yVals : ArrayList<Entry>
     private lateinit var tempLineChart : LineChart
 
@@ -43,7 +43,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measurement_viz)
 
-        measurement_type = intent.getStringExtra("measurement_type")
+        measurement_type = intent.getStringExtra("measurement_type")!!
         // FIXME: do not concatenate in setText
         findViewById<TextView>(R.id.measurement_activity_header).setText("Your Statistics for " + measurement_type + ":")
 
@@ -74,7 +74,7 @@ class MeasurementVizActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             dropdown2.adapter = adapter
         }
-        
+
         database = FirebaseDatabase.getInstance().reference
 
         // Set up the linechart
@@ -107,42 +107,45 @@ class MeasurementVizActivity : AppCompatActivity() {
         // -------------------------------- GRAPH SETUP ENDS -----------------------------------
 
         // -------------------------- MEASUREMENT HISTORY RV SETUP -----------------------------
-        val measurements = ArrayList<String>(listOf(*resources.getStringArray(R.array.measurement_types_array)))
 
         recyclerView = findViewById<RecyclerView>(R.id.measurement_history_rv)
-        linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager = LinearLayoutManager(this@MeasurementVizActivity)
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = MeasurementMenuRvAdapter(measurements, this)
+        recyclerView.adapter = MeasurementHistoryRvAdapter(measurementObjects, this@MeasurementVizActivity)
         recyclerView.layoutParams.height = 800
     }
 
     override fun onStart() {
         super.onStart()
-        setupLineChartData()
+        setUpDataCallbacks()
     }
 
-    private fun setupLineChartData() {
+    private fun setUpDataCallbacks() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val myRef = database.child("measurements").child(uid)
         val measurementDataListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
-                measurements.clear()
-                Log.e("Firebase+MPChart:", "list is this long: ${snapshot.childrenCount}")
+                measurementObjects.clear()
+                Log.e("Firebase+MPChart:", "list has : ${snapshot.childrenCount} elements")
                 for (ds in snapshot.getChildren()) {
-                    val temp : MeasurementData = ds.getValue(MeasurementData::class.java)!!
+                    val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
                     // filter by MeasurementType
                     if (temp.typeOfMeasurement.equals(measurement_type)) {
-                        val format = java.text.SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
-                            Locale.ENGLISH)
+                        val format = java.text.SimpleDateFormat(
+                            "EE MMM dd HH:mm:ss z yyyy",
+                            Locale.ENGLISH
+                        )
                         val d = format.parse(temp.datetimeEntered)!!
                         yVals.add(Entry(d.time.toFloat(), temp.measuredVal))
+                        measurementObjects.add(temp)
                     }
                 }
                 tempLineChart.notifyDataSetChanged()
-                tempLineChart.data = LineData(LineDataSet(yVals,"temp"))
+                tempLineChart.data = LineData(LineDataSet(yVals, "temp"))
                 tempLineChart.invalidate()
                 tempLineChart.refreshDrawableState()
             }
@@ -151,11 +154,4 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         myRef.addValueEventListener(measurementDataListener)
     }
-
-    private fun setupMeasurementHistoryRv() {
-
-    }
-
-
-
 }

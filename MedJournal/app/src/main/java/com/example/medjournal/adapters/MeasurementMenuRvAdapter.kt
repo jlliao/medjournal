@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.medication_text.view.*
 class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context: Context) : RecyclerView.Adapter<MeasurementMenuRvAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.medication_text, parent, false))
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = layoutInflater.inflate(R.layout.measurement_menu_item, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = items[position]
+        holder.name_tv.text = items[position]
     }
 
     override fun getItemCount(): Int {
@@ -25,6 +27,6 @@ class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) { // OnClickListner
-        val name: LinearLayout = v.findViewById(R.id.)
+        val name_tv: TextView = v.findViewById(R.id.single_measurement_name)
     }
 }
