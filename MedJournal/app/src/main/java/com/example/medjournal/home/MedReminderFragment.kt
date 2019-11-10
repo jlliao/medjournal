@@ -2,6 +2,7 @@ package com.example.medjournal.home
 
 
 import android.os.Bundle
+import android.provider.UserDictionary.Words.LOCALE
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,7 +48,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     private lateinit var widget: MaterialCalendarView
     private val medications: MutableList<MedInfo> = ArrayList()
     private val events = mutableMapOf<String, List<MedEvent>>()
-    private var selectedDate = SimpleDateFormat("mm/dd/yyyy").format(Calendar.getInstance().time)
+    private var selectedDate = SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().time)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
