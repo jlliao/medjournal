@@ -1,4 +1,4 @@
-zlanguage: android
+language: android
 dist: trusty
 env:
   global:
@@ -11,21 +11,31 @@ android:
   - "$ANDROID_TARGET"
   - android-28
 before_script:
+# Download and install GCloud SDK & CLI
 - wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-269.0.0-linux-x86.tar.gz
 - tar zxf google-cloud-sdk-269.0.0-linux-x86.tar.gz google-cloud-sdk
+# Update GCloud components
 - echo n | ./google-cloud-sdk/install.sh
 - echo y | ./google-cloud-sdk/bin/gcloud components update
 - echo y | ./google-cloud-sdk/bin/gcloud components install beta
+# Add google_cloud to the path. Now we can just write gcloud instead of ./google-cloud-sdk/
 - source google-cloud-sdk/path.bash.inc
+# Use Firebase key to authenticate with GCloud
 - gcloud auth activate-service-account --key-file firebase.json
+# Set up the project with project ID
 - gcloud config set project $FIREBASE_PROJECT_ID
+
 script:
 - cd MedJournal/
 - chmod +x gradlew
-- "./gradlew assembleDebug"
-- "./gradlew assembleDebugAndroidTest"
+#- ./gradlew test # for unit tests
+- ./gradlew assembleDebug
+- ./gradlew assembleDebugAndroidTest
+# Send the APK to Firebase Test Lab and Run the Robo tests
 - echo y | gcloud firebase test android run --app app/build/outputs/apk/debug/app-debug.apk
   --type=robo --device model=walleye,version=28,locale=en,orientation=portrait
+
+# For decrypting Firebase key
 before_install:
 - openssl aes-256-cbc -K $encrypted_41abf659cb69_key -iv $encrypted_41abf659cb69_iv
   -in firebase.json.enc -out firebase.json -d
