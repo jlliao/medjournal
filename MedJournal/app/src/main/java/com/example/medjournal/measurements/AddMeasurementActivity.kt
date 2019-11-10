@@ -34,7 +34,6 @@ class AddMeasurementActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             dropdown.adapter = adapter
         }
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         database = FirebaseDatabase.getInstance().reference
     }
 
