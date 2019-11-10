@@ -49,7 +49,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     private val medications: MutableList<MedInfo> = ArrayList()
     private val events = mutableMapOf<String, List<MedEvent>>()
     private var selectedDate =
-        SimpleDateFormat("mm/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+        SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
