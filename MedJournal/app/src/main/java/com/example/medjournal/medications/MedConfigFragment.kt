@@ -348,7 +348,7 @@ class MedConfigFragment : Fragment() {
             }
         }
 
-        var selectedDays = arrayListOf<String>()
+        var selectedDays = arrayListOf<String>(getString(R.string.tv_every_day))
 
         val radioGroup2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
         val radioEveryDay: RadioButton = medConfigView.findViewById(R.id.radio_every_day)
@@ -465,7 +465,6 @@ class MedConfigFragment : Fragment() {
                 else -> arrayListOf(reminderTime1, reminderTime2, reminderTime3)
             }
             val duration = getDuration(rb, rb.isChecked)
-
 
             val medication = MedInfo(
                 uid,
