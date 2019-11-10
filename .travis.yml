@@ -1,44 +1,30 @@
-language: android
+zlanguage: android
 dist: trusty
 env:
   global:
   - ANDROID_TARGET=android-29
   - ANDROID_BUILD_TOOLS_VERSION=29.0.2
-  - FIREBASE_PROJECT_ID==addmeasurement //  # TODO: To be updated the name of the Firebase project
-  - ENCRYPTED_KEY_FILE_NAME= something_something.json.enc # TODO: to be updated to the actual name of the encrypted Google Services.json
+  - FIREBASE_PROJECT_ID==med-journal-47b66
 android:
   components:
   - build-tools-$ANDROID_BUILD_TOOLS_VERSION
   - "$ANDROID_TARGET"
   - android-28
-
 before_script:
-# Download and install gcloud CLI to run firebase test commands
 - wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-269.0.0-linux-x86.tar.gz
 - tar zxf google-cloud-sdk-269.0.0-linux-x86.tar.gz google-cloud-sdk
 - echo n | ./google-cloud-sdk/install.sh
-  # Update GCloud components
 - echo y | ./google-cloud-sdk/bin/gcloud components update
 - echo y | ./google-cloud-sdk/bin/gcloud components install beta
-  # Add google_cloud to the path. So that we can just write gcloud instead of ./google-cloud-sdk/
 - source google-cloud-sdk/path.bash.inc
-  # Set up the project with project ID
 - gcloud auth activate-service-account --key-file decrypted_key_file.json
 - gcloud config set project $FIREBASE_PROJECT_ID
-
 script:
 - chmod +x gradlew
-- ./gradlew assembleDebug
-#- ./gradlew test # for unit tests
-- ./gradlew assembleDebugAndroidTest
-# List available options for logging purpose only (so that we can review available options)
-#- gcloud firebase test android models list
-#- gcloud firebase test android versions list
-# Send the APK to Firebase Test Lab and Run the Robo tests
-- echo y | gcloud firebase test android run --app app/build/outputs/apk/debug/app-debug.apk --type=robo --device model=walleye,version=28,locale=en,orientation=portrait
-
+- "./gradlew assembleDebug"
+- "./gradlew assembleDebugAndroidTest"
+- echo y | gcloud firebase test android run --app app/build/outputs/apk/debug/app-debug.apk
+  --type=robo --device model=walleye,version=28,locale=en,orientation=portrait
 before_install:
-- openssl aes-256-cbc -K $encrypted_d86a70f54397_key -iv $encrypted_d86a70f54397_iv
-  -in $ENCRYPTED_KEY_FILE_NAME -out decrypted_key_file.json
-  -d
-
+- openssl aes-256-cbc -K $encrypted_41abf659cb69_key -iv $encrypted_41abf659cb69_iv
+  -in firebase.json.enc -out firebase.json -d
