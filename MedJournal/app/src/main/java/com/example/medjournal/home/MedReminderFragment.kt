@@ -2,6 +2,7 @@ package com.example.medjournal.home
 
 
 import android.os.Bundle
+import android.provider.UserDictionary.Words.LOCALE
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,7 +48,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     private lateinit var widget: MaterialCalendarView
     private val medications: MutableList<MedInfo> = ArrayList()
     private val events = mutableMapOf<String, List<MedEvent>>()
-    private var selectedDate = SimpleDateFormat("mm/dd/yyyy").format(Calendar.getInstance().time)
+    private var selectedDate =
+        SimpleDateFormat("mm/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -140,9 +142,13 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
             if (medInfo.days.isEmpty()) medInfo.days.add(getString(R.string.tv_every_day))
             when (medInfo.days[0]) {
                 getString(R.string.tv_every_day) -> {
-                    var startDate = SimpleDateFormat("MM/dd/yyyy").parse(medInfo.startDate!!)
+                    var startDate = SimpleDateFormat(
+                        "MM/dd/yyyy",
+                        Locale.getDefault()
+                    ).parse(medInfo.startDate!!)
                     for (j in 0 until 15) {
-                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate!!)
+                        val sDate =
+                            SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(startDate!!)
                         val singleMedEvent =
                             MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
                         events[sDate] = events[sDate].orEmpty().plus(singleMedEvent)
@@ -153,9 +159,13 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                     }
                 }
                 getString(R.string.tv_every_day) -> {
-                    var startDate = SimpleDateFormat("MM/dd/yyyy").parse(medInfo.startDate!!)
+                    var startDate = SimpleDateFormat(
+                        "MM/dd/yyyy",
+                        Locale.getDefault()
+                    ).parse(medInfo.startDate!!)
                     for (j in 0 until 15) {
-                        val sDate = SimpleDateFormat("MM/dd/yyyy").format(startDate!!)
+                        val sDate =
+                            SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(startDate!!)
                         val singleMedEvent =
                             MedEvent(medItemInfo, medInfo.medTimes[i], medInfo.medName!!, sDate)
                         events[sDate] = events[sDate].orEmpty().plus(singleMedEvent)
@@ -165,17 +175,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                         startDate = c.time
                     }
                 }
-                else -> Toast.makeText(
-                    requireContext(),
-                    "Function not implemented for specific days",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-
+                else -> Log.d("TEST", "Function not implemented for specific days")
             }
-
         }
     }
-
-
 }
