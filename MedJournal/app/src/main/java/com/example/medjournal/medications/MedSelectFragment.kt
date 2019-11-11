@@ -32,6 +32,9 @@ class MedSelectFragment : Fragment() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
+    /**
+     * Enables the recycler view to update real-time with the edit text.
+     */
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)
     }
@@ -53,6 +56,9 @@ class MedSelectFragment : Fragment() {
         })
     }
 
+    /**
+     * Creates the view for the select medicine fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,11 +66,15 @@ class MedSelectFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title =
             getString(R.string.title_add_medicine)
 
-        var textlength: Int
+        var textLength: Int
 
         // Inflate the layout for this fragment
         val medSelectView = inflater.inflate(R.layout.fragment_med_select, container, false)
 
+        /**
+         * Clicking on the next NEXT button will send the medication name to the medication
+         * configuration fragment.
+         */
         val nextBtn = medSelectView.findViewById<Button>(R.id.med_select_next_button)
         nextBtn.setOnClickListener {
             if (medSelectView.findViewById<TextInputEditText>(R.id.et_med_name).text.toString() == "") {
@@ -88,6 +98,9 @@ class MedSelectFragment : Fragment() {
         val medicationsSort: ArrayList<String> = ArrayList()
         medicationsSort.addAll(medications)
 
+        /**
+         * Sets up the recycler view that displays the list of medication.
+         */
         val recyclerView = medSelectView.findViewById<RecyclerView>(R.id.rv_med_name)
         linearLayoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = linearLayoutManager
@@ -108,23 +121,30 @@ class MedSelectFragment : Fragment() {
             }
         })
 
-        val etsearch: EditText = medSelectView.findViewById(R.id.et_med_name)
+        /**
+         * Typing on the edit text prompts the recycler view to change according to the text
+         * that the user typed.
+         */
+        val etSearch: EditText = medSelectView.findViewById(R.id.et_med_name)
 
-        etsearch.addTextChangedListener(object : TextWatcher {
+        etSearch.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
+            /**
+             * When the edit text changes, the recycler view matches each of its item with the
+             * edit text, and only keep the matching items.
+             */
             @SuppressLint("DefaultLocale")
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                textlength = etsearch.text.length
+                textLength = etSearch.text.length
                 medicationsSort.clear()
                 for (i in medications.indices) {
-                    if (textlength <= medications[i].length) {
-                        //Log.d("ertyyy", medications[i].trim())
+                    if (textLength <= medications[i].length) {
                         if (medications[i].trim().toLowerCase().contains(
-                                etsearch.text.toString().toLowerCase().trim { it <= ' ' })
+                                etSearch.text.toString().toLowerCase().trim { it <= ' ' })
                         ) {
                             medicationsSort.add(medications[i])
                         }

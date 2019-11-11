@@ -30,7 +30,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * A simple [Fragment] subclass.
+ * The fragment for medication configuration.
  */
 class MedConfigFragment : Fragment() {
 
@@ -50,6 +50,9 @@ class MedConfigFragment : Fragment() {
     }
 
 
+    /**
+        Creates the view for this fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,7 +85,12 @@ class MedConfigFragment : Fragment() {
         spinner.adapter = adapter
         dosageSpinner.adapter = dosageAdapter
 
-        // reminder time spinner
+
+        /**
+         * Handles user input about how many times the medication is taken. If the users needs
+         * to take the medicine more than once a day, additional input fields will be
+         * displayed.
+         */
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -165,6 +173,11 @@ class MedConfigFragment : Fragment() {
 
         }
 
+        /**
+         * Handles user input about the time that the medication is taken. If the users needs
+         * to take the medicine more than once a day, additional input fields will be
+         * displayed.
+         */
         reminderDateSelected1!!.setOnClickListener {
             val cal1 = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
@@ -219,6 +232,9 @@ class MedConfigFragment : Fragment() {
             ).show()
         }
 
+        /**
+         * Handles user input about the start date of the treatment.
+         */
         textViewDate = medConfigView.findViewById(R.id.tv_schedule_start_date_input)
 
         textViewDate!!.text = "--/--/----"
@@ -248,6 +264,11 @@ class MedConfigFragment : Fragment() {
 
         })
 
+        /**
+         * Handles the user's choice of how long the medication will last. If the medication is an
+         * ongoing treatment, then no further action is required, otherwise a dialog window will
+         * show up and ask the user to input the exact days of the treatment.
+         */
         val rb: RadioButton = medConfigView.findViewById(R.id.radio_number_of_days)
         val rb1: RadioButton = medConfigView.findViewById(R.id.radio_ongoing)
         var curDuration = ""
@@ -348,6 +369,12 @@ class MedConfigFragment : Fragment() {
             }
         }
 
+        /**
+         * Handles the user's choice of how frequent the medication should be taken.
+         * If the medication is taken every day or every other day, then no further action
+         * is required, otherwise a dialog window will show up and ask the user to select
+         * which days of the week should the medicine be taken.
+         */
         var selectedDays = arrayListOf<String>(getString(R.string.tv_every_day))
 
         val radioGroup2: RadioGroup = medConfigView.findViewById(R.id.radio_days)
@@ -450,6 +477,10 @@ class MedConfigFragment : Fragment() {
             }
         }
 
+        /**
+         * Clicking on the done button will wrap all useful information into an object and store
+         * it in Firebase.
+         */
         val doneButton: Button = medConfigView.findViewById(R.id.med_config_done_button)
 
         doneButton.setOnClickListener {
@@ -504,17 +535,37 @@ class MedConfigFragment : Fragment() {
         return medConfigView
     }
 
+    /**
+     * Updates the date displayed in the view.
+     */
     private fun updateDateInView() {
         val myFormat = "MM/dd/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         textViewDate!!.text = sdf.format(cal.time)
     }
 
+    /**
+     * Convert the dosage and the unit to a string that can be displayed
+     * with the correct grammar. In particular, this function combines the dosage and
+     * the unit, and handles singular forms and plural forms apporpriately.
+     *
+     * @param dosage the dosage to take
+     * @param unit the unit for the medicine
+     *
+     */
     private fun takeString(dosage: String, unit: String) =
         if (unit.length <= 2 || dosage.isEmpty() || dosage.toInt() < 2)
             R.string.tv_take_pill else
             R.string.tv_take_pill_plural
 
+    /**
+     * From the user's selection of how many times a day they should have medication,
+     * return the corresponding number from the string; 1 denotes once daily, 2 denotes
+     * twice daily, and 3 denotes three times a day.
+     *
+     * @param spinnerText a string that denotes how many times a day the patient needs to
+     * take medication
+     */
     private fun getTimes(spinnerText: String) =
         when (spinnerText) {
             (resources.getStringArray(R.array.medication_frequency))[0] -> 1
@@ -522,12 +573,27 @@ class MedConfigFragment : Fragment() {
             else -> 3
         }
 
+    /**
+     * From the text of the radio button, and whether it is selected,
+     * determine the exact duration. The function returns 0 if the treatment
+     * is an ongoing treatment, otherwise the number of days that compose of
+     * the duration is returned.
+     *
+     * @param rb the radio button for duration
+     * @param inputBool true if the radio button rb is checked, otherwise false
+     */
     private fun getDuration(rb: RadioButton, inputBool: Boolean) =
         when (inputBool) {
             false -> 0
             else -> (rb.text.split(" "))[0].toInt()
         }
 
+    /**
+     * Save the information of the treatment to firbase.
+     *
+     * @param medication the medication object that stores the information of the treatment
+     * @param view the current view of the application
+     */
     private fun saveMedInfoToFirebaseDatabase(medication: MedInfo, view: View) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref =
