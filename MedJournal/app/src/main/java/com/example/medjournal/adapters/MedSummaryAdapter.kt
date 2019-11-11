@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import com.example.medjournal.models.MedInfo
 import kotlinx.android.extensions.LayoutContainer
-import java.security.AccessController.getContext
 
 /** Adapter that listens to changes in medication info (each medicine item)
  */
@@ -54,7 +53,7 @@ class MedSummaryAdapter(val onClick: (MedInfo) -> Unit) :
             containerView.findViewById<TextView>(R.id.med_summary_event_name_text).text =
                 medInfo.medName
             containerView.findViewById<TextView>(R.id.med_summary_event_info_text).text =
-                containerView.context.getString(R.string.tv_started_date) + medInfo.startDate
+                "started date: " + medInfo.startDate
         }
     }
 

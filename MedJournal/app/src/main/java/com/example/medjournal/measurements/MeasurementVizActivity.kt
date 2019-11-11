@@ -45,7 +45,7 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         measurement_type = intent.getStringExtra("measurement_type")!!
         // FIXME: do not concatenate in setText
-        findViewById<TextView>(R.id.measurement_activity_header).text = getString(R.string.tv_your_statistics_for) + " " + measurement_type!!.toLowerCase() + ":"
+        findViewById<TextView>(R.id.measurement_activity_header).setText("Your " + measurement_type + " measurements:")
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
@@ -113,10 +113,6 @@ class MeasurementVizActivity : AppCompatActivity() {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = MeasurementHistoryRvAdapter(measurementObjects, this@MeasurementVizActivity)
         recyclerView.layoutParams.height = 800
-
-        val actionbar = supportActionBar
-        actionbar!!.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onStart() {
@@ -125,12 +121,6 @@ class MeasurementVizActivity : AppCompatActivity() {
     }
 
     private fun setUpDataCallbacks() {
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
-    private fun setupLineChartData() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val myRef = database.child("measurements").child(uid)
         val measurementDataListener = object : ValueEventListener {

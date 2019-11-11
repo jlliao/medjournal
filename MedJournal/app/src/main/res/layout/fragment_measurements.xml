@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".home.MeasurementsFragment">
 
 
@@ -17,9 +16,9 @@
             android:id="@+id/my_measurements_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_my_measurements"
-            android:layout_marginStart="8dp">
-        </TextView>
+            android:layout_marginStart="8dp"
+            android:text="My Measurements"
+            android:textSize="14pt"></TextView>
 
         <Button
             android:id="@+id/measurement_menu_add_measurement_btn"
