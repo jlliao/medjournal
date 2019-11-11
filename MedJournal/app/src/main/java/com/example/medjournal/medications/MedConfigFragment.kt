@@ -203,7 +203,7 @@ class MedConfigFragment : Fragment() {
                 cal2.set(Calendar.MINUTE, minute)
                 reminderTime2 = SimpleDateFormat("HH:mm", Locale.US).format(cal2.time)
                 reminderDateSelected2?.text =
-                    getString(takeString(dosage, unit), dosage, unit, reminderTime3)
+                    getString(takeString(dosage, unit), dosage, unit, reminderTime2)
             }
             TimePickerDialog(
                 requireContext(),
