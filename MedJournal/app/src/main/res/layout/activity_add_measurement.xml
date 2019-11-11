@@ -12,21 +12,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="60dp"
+        android:textAlignment="center"
         android:text="@string/tv_type_of_measurement"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <Spinner
         android:id="@+id/chooseTypeOfMeasurementSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="160dp" />
+        android:layout_marginStart="60dp" />
 
     <TextView
         android:id="@+id/valueOfMeasurementTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="120dp"
         android:text="@string/tv_value"
         android:textSize="20sp" />
 
@@ -35,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="60dp"
         android:ems="10"
         android:hint="@string/tv_e_g_8"
         android:inputType="numberDecimal"
@@ -45,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="50dp"
         android:onClick="submitMeasurement"
         android:text="@string/tv_submit_measurement_data" />
 

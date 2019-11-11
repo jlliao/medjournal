@@ -46,9 +46,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         measurementType = intent.getStringExtra("measurementType")!!
-        // FIXME: do not concatenate in setText
-        findViewById<TextView>(R.id.measurement_activity_header).text =
-            "$measurementType:"
+        findViewById<TextView>(R.id.measurement_activity_header).text = String.format(resources.getString(R.string.tv_your_health_statistics), measurementType)
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
@@ -63,20 +61,6 @@ class MeasurementVizActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             dropdown1.adapter = adapter
         }
-
-//        val dropdown2: Spinner = findViewById(R.id.health_indicator_spinner)
-//
-//        // Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter.createFromResource(
-//            this,
-//            R.array.measurement_types_array,
-//            android.R.layout.simple_spinner_item
-//        ).also { adapter ->
-//            // Specify the layout to use when the list of choices appears
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            // Apply the adapter to the spinner
-//            dropdown2.adapter = adapter
-//        }
 
         database = FirebaseDatabase.getInstance().reference
 

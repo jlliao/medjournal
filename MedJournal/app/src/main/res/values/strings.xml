@@ -328,6 +328,6 @@
     <string name="tv_wednesday">Wednesday</string>
     <string name="tv_weight">Weight</string>
     <string name="tv_your">Your</string>
-    <string name="tv_your_health_statistics">Your health statistics</string>
+    <string name="tv_your_health_statistics">%s statistics:</string>
     <string name="tv_your_statistics_for">Your Statistics for</string>
 </resources>
