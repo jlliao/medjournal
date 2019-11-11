@@ -1,5 +1,6 @@
 package com.example.medjournal.adapters
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import com.example.medjournal.models.MedInfo
 import kotlinx.android.extensions.LayoutContainer
+import java.security.AccessController.getContext
 
 class MedSummaryAdapter(val onClick: (MedInfo) -> Unit) :
     RecyclerView.Adapter<MedSummaryAdapter.MedSummaryViewHolder>() {
@@ -38,7 +40,7 @@ class MedSummaryAdapter(val onClick: (MedInfo) -> Unit) :
             containerView.findViewById<TextView>(R.id.med_summary_event_name_text).text =
                 medInfo.medName
             containerView.findViewById<TextView>(R.id.med_summary_event_info_text).text =
-                "started date: " + medInfo.startDate
+                containerView.context.getString(R.string.tv_started_date) + medInfo.startDate
         }
     }
 

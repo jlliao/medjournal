@@ -297,6 +297,7 @@
     <string name="tv_friday">Friday</string>
     <string name="tv_medicine_name">Medication Name</string>
     <string name="tv_monday">Monday</string>
+    <string name="tv_my_measurements">My Measurements</string>
     <string name="tv_no_matching">No matching found.</string>
     <string name="tv_ok">OK</string>
     <string name="tv_one">1</string>
@@ -306,6 +307,7 @@
     <string name="tv_schedule_title">Schedule</string>
     <string name="tv_specific_days">Specific days of the week</string>
     <string name="tv_start_date">Start date:</string>
+    <string name="tv_started_date">started date:</string>
     <string name="tv_sunday">Sunday</string>
     <string name="tv_take">Take</string>
     <string name="tv_take_2_pills">Take 2 pills</string>
@@ -314,4 +316,12 @@
     <string name="tv_thursday">Thursday</string>
     <string name="tv_tuesday">Tuesday</string>
     <string name="tv_wednesday">Wednesday</string>
+    <string name="tv_your_health_statistics">Your health statistics</string>
+    <string name="tv_add_measurement">Add Measurement</string>
+    <string name="tv_type_of_measurement">Type of Measurement</string>
+    <string name="tv_value">Value:</string>
+    <string name="tv_submit_measurement_data">Submit Measurement Data</string>
+    <string name="tv_e_g_8">e.g. 8</string>
+    <string name="tv_weight">Weight</string>
+    <string name="tv_your_statistics_for">Your Statistics for</string>
 </resources>

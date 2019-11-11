@@ -36,6 +36,15 @@ class AddMeasurementActivity : AppCompatActivity() {
             dropdown.adapter = adapter
         }
         database = FirebaseDatabase.getInstance().reference
+
+        val actionbar = supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     fun submitMeasurement(view: View) {

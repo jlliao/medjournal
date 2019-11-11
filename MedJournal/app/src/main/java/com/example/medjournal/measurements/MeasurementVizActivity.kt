@@ -38,7 +38,7 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         val measurement_type = intent.getStringExtra("measurement_type")
         // FIXME: do not concatenate in setText
-        findViewById<TextView>(R.id.measurement_activity_header).setText("Your Statistics for " + measurement_type + ":")
+        findViewById<TextView>(R.id.measurement_activity_header).text = getString(R.string.tv_your_statistics_for) + " " + measurement_type!!.toLowerCase() + ":"
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
@@ -97,11 +97,20 @@ class MeasurementVizActivity : AppCompatActivity() {
         xAxis.valueFormatter = ChartValueDateFormatter("yyyy.MM.dd")
 
         tempLineChart.notifyDataSetChanged()
+
+        val actionbar = supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onStart() {
         super.onStart()
         setupLineChartData()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setupLineChartData() {
