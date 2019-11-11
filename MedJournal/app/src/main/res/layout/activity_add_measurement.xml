@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="120dp"
         android:text="Add Measurement"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -22,7 +23,9 @@
         android:id="@+id/typeOfMeasurement_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
         android:text="Type of Measurement" />
 
     <Spinner
@@ -37,7 +40,7 @@
         android:id="@+id/valueOfMeasurementTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="170dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Value:" />
@@ -46,7 +49,7 @@
         android:id="@+id/editMeasurementValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="e.g. 8"
@@ -57,8 +60,9 @@
         android:id="@+id/addMeasurementData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="24dp"
-        android:text="Submit Measurement Data"
-        android:onClick="submitMeasurement" />
+        android:onClick="submitMeasurement"
+        android:text="Submit Measurement Data" />
 
 </LinearLayout>

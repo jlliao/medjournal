@@ -14,11 +14,11 @@
 
         <TextView
             android:id="@+id/my_measurements_header"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="My Measurements"
-            android:layout_marginStart="8dp">
-        </TextView>
+            android:textSize="14pt"></TextView>
 
         <Button
             android:id="@+id/measurement_menu_add_measurement_btn"
@@ -32,6 +32,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/measurement_menu_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

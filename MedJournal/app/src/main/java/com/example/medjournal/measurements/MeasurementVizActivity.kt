@@ -45,7 +45,7 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         measurement_type = intent.getStringExtra("measurement_type")!!
         // FIXME: do not concatenate in setText
-        findViewById<TextView>(R.id.measurement_activity_header).setText("Your Statistics for " + measurement_type + ":")
+        findViewById<TextView>(R.id.measurement_activity_header).setText("Your " + measurement_type + " measurements:")
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
@@ -61,19 +61,19 @@ class MeasurementVizActivity : AppCompatActivity() {
             dropdown1.adapter = adapter
         }
 
-        val dropdown2: Spinner = findViewById(R.id.health_indicator_spinner)
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.measurement_types_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            dropdown2.adapter = adapter
-        }
+//        val dropdown2: Spinner = findViewById(R.id.health_indicator_spinner)
+//
+//        // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter.createFromResource(
+//            this,
+//            R.array.measurement_types_array,
+//            android.R.layout.simple_spinner_item
+//        ).also { adapter ->
+//            // Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            // Apply the adapter to the spinner
+//            dropdown2.adapter = adapter
+//        }
 
         database = FirebaseDatabase.getInstance().reference
 
