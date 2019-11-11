@@ -1,6 +1,7 @@
 package com.example.medjournal.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,7 @@ class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>,
         val d = format.parse(items[position].datetimeEntered)!!
 
         holder.measTimeTv.text = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(d.time)
-        holder.measDateTv.text = context.getString(R.string.tv_12_nov_2019)
+        holder.measDateTv.text = SimpleDateFormat("dd MMM y").format(d)
         holder.measValTv.text = items[position].measuredVal.toString()
     }
 
