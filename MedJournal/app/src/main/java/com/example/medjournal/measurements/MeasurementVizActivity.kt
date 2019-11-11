@@ -96,7 +96,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         tempLineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
         tempLineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
         tempLineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
-        xAxis.valueFormatter = ChartValueDateFormatter("yyyy.MM.dd")
+        xAxis.valueFormatter = ChartValueDateFormatter("y.MM.dd")
 
         tempLineChart.notifyDataSetChanged()
         // -------------------------------- GRAPH SETUP ENDS -----------------------------------
@@ -135,6 +135,11 @@ class MeasurementVizActivity : AppCompatActivity() {
     private fun setUpDataCallbacks() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val myRef = database.child("measurements").child(uid)
+
+        /**
+         * Create a DataListener for graph values in date range from the start point (selected in spinner)
+         * to current datetime
+         */
         val measurementDataListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
@@ -146,8 +151,8 @@ class MeasurementVizActivity : AppCompatActivity() {
              */
             override fun onDataChange(snapshot: DataSnapshot) {
                 measurementObjects.clear()
-                Log.e("Firebase+MPChart:", "list has : ${snapshot.childrenCount} elements")
-                for (ds in snapshot.getChildren()) {
+//                Log.e("Firebase+MPChart:", "list has : ${snapshot.childrenCount} elements")
+                for (ds in snapshot.children) {
                     val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
                     // Only add measurements which have the same MeasurementType as this visualization requires
                     if (temp.typeOfMeasurement == measurementType) {
@@ -157,7 +162,6 @@ class MeasurementVizActivity : AppCompatActivity() {
                         )
                         val d = format.parse(temp.datetimeEntered)!!
                         yVals.add(Entry(d.time.toFloat(), temp.measuredVal))
-                        measurementObjects.add(temp)
                     }
                 }
                 tempLineChart.notifyDataSetChanged()
@@ -165,9 +169,34 @@ class MeasurementVizActivity : AppCompatActivity() {
                 tempLineChart.invalidate()
                 tempLineChart.refreshDrawableState()
             }
-
         }
-
         myRef.addValueEventListener(measurementDataListener)
+
+        /**
+         * Create a DataListener for most recent measurement entries' recyclerview
+         */
+        val last10query : Query = myRef.orderByKey().limitToLast(5)
+        val recentMeasurementsDataListener = object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
+            }
+
+            /**
+             * Specifies how the view data structures should be updated upon a change
+             * in Firebase node for this user
+             */
+            override fun onDataChange(snapshot: DataSnapshot) {
+                measurementObjects.clear()
+//                Log.e("Firebase+MPChart:", "list has : ${snapshot.childrenCount} elements")
+                for (ds in snapshot.getChildren().reversed()) {
+                    val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
+                    // Only add measurements which have the same MeasurementType as this visualization requires
+                    if (temp.typeOfMeasurement == measurementType) {
+                        measurementObjects.add(temp)
+                    }
+                }
+            }
+        }
+        last10query.addValueEventListener(recentMeasurementsDataListener)
     }
 }
