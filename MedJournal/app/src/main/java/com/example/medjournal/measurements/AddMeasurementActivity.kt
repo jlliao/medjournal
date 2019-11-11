@@ -22,6 +22,10 @@ class AddMeasurementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_measurement)
 
+        supportActionBar?.title = getString(R.string.tv_add_measurement)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val dropdown: Spinner = findViewById(R.id.chooseTypeOfMeasurementSpinner)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -36,6 +40,11 @@ class AddMeasurementActivity : AppCompatActivity() {
             dropdown.adapter = adapter
         }
         database = FirebaseDatabase.getInstance().reference
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     fun submitMeasurement(view: View) {
@@ -58,7 +67,7 @@ class AddMeasurementActivity : AppCompatActivity() {
             myToast.show()
 
             val intent = Intent(view.context, MeasurementVizActivity::class.java)
-            intent.putExtra("measurement_type", newMeasurement.typeOfMeasurement)
+            intent.putExtra("measurementType", newMeasurement.typeOfMeasurement)
             startActivity(intent)
         }
             .addOnFailureListener {

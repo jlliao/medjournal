@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import kotlinx.android.synthetic.main.medication_text.view.*
 
-class RecylerAdapter(private val items: ArrayList<String>, val context: Context) :
-    RecyclerView.Adapter<RecylerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val items: ArrayList<String>, val context: Context) :
+    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

@@ -6,6 +6,5 @@ package com.example.medjournal.models
  *  @param username user name
  *  @param profileImageUrl url of user profile picture in Firebase Storage
  */
-class User(val uid: String, val username: String, val profileImageUrl: String) {
-    constructor() : this("", "", "")
+class User(val uid: String, private val username: String, private val profileImageUrl: String) {
 }

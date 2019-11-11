@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import com.example.medjournal.adapters.MeasurementHistoryRvAdapter
-import com.example.medjournal.adapters.MeasurementMenuRvAdapter
 import com.example.medjournal.models.MeasurementData
 import com.example.medjournal.utils.ChartValueDateFormatter
 import com.github.mikephil.charting.charts.LineChart
@@ -25,14 +24,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MeasurementVizActivity : AppCompatActivity() {
-    lateinit var measurement_type: String
+    lateinit var measurementType: String
     private lateinit var database: DatabaseReference
     private val measurementObjects = ArrayList<MeasurementData>()
-    lateinit var yVals : ArrayList<Entry>
-    private lateinit var tempLineChart : LineChart
+    lateinit var yVals: ArrayList<Entry>
+    private lateinit var tempLineChart: LineChart
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var rvAdapter : MeasurementHistoryRvAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     companion object {
@@ -43,9 +41,14 @@ class MeasurementVizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measurement_viz)
 
-        measurement_type = intent.getStringExtra("measurement_type")!!
+        supportActionBar!!.title = getString(R.string.title_measurement_visualization)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        measurementType = intent.getStringExtra("measurementType")!!
         // FIXME: do not concatenate in setText
-        findViewById<TextView>(R.id.measurement_activity_header).setText("Your " + measurement_type + " measurements:")
+        findViewById<TextView>(R.id.measurement_activity_header).text =
+            "$measurementType:"
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
@@ -78,8 +81,8 @@ class MeasurementVizActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
 
         // Set up the linechart
-        yVals = ArrayList<Entry>()
-        val set1: LineDataSet = LineDataSet(yVals, "temp")
+        yVals = ArrayList()
+        val set1 = LineDataSet(yVals, "temp")
 
         set1.color = Color.BLUE
         set1.setCircleColor(Color.BLUE)
@@ -89,7 +92,7 @@ class MeasurementVizActivity : AppCompatActivity() {
         set1.valueTextSize = 0f
         set1.setDrawFilled(false)
 
-        val data: LineData = LineData(set1)
+        val data = LineData(set1)
 
         tempLineChart = findViewById(com.example.medjournal.R.id.measurement_lineChart)
         tempLineChart.data = data
@@ -108,11 +111,17 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         // -------------------------- MEASUREMENT HISTORY RV SETUP -----------------------------
 
-        recyclerView = findViewById<RecyclerView>(R.id.measurement_history_rv)
+        recyclerView = findViewById(R.id.measurement_history_rv)
         linearLayoutManager = LinearLayoutManager(this@MeasurementVizActivity)
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = MeasurementHistoryRvAdapter(measurementObjects, this@MeasurementVizActivity)
+        recyclerView.adapter =
+            MeasurementHistoryRvAdapter(measurementObjects, this@MeasurementVizActivity)
         recyclerView.layoutParams.height = 800
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun onStart() {
@@ -134,7 +143,7 @@ class MeasurementVizActivity : AppCompatActivity() {
                 for (ds in snapshot.getChildren()) {
                     val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
                     // filter by MeasurementType
-                    if (temp.typeOfMeasurement.equals(measurement_type)) {
+                    if (temp.typeOfMeasurement == measurementType) {
                         val format = java.text.SimpleDateFormat(
                             "EE MMM dd HH:mm:ss z yyyy",
                             Locale.ENGLISH

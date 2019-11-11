@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.medjournal.R
-import com.example.medjournal.adapters.RecylerAdapter
+import com.example.medjournal.adapters.RecyclerAdapter
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.collections.ArrayList
 
@@ -91,7 +91,7 @@ class MedSelectFragment : Fragment() {
         val recyclerView = medSelectView.findViewById<RecyclerView>(R.id.rv_med_name)
         linearLayoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = RecylerAdapter(medications, context!!)
+        recyclerView.adapter = RecyclerAdapter(medications, context!!)
         recyclerView.layoutParams.height = 800
         recyclerView.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
@@ -134,7 +134,7 @@ class MedSelectFragment : Fragment() {
                 if (medicationsSort.size == 0) {
                     medicationsSort.add(getString(R.string.tv_no_matching))
                 }
-                recyclerView!!.adapter = RecylerAdapter(medicationsSort, context!!)
+                recyclerView!!.adapter = RecyclerAdapter(medicationsSort, context!!)
                 recyclerView.layoutManager = linearLayoutManager
                 recyclerView.layoutParams.height = 800
 

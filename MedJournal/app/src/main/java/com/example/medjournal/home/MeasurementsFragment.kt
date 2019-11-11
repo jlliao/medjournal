@@ -64,7 +64,7 @@ class MeasurementsFragment : Fragment() {
             override fun onItemClicked(position: Int, view: View) {
                 if (position >= 0 && position < measurements.size) {
                     val intent = Intent(view.context, MeasurementVizActivity::class.java)
-                    intent.putExtra("measurement_type", measurements[position])
+                    intent.putExtra("measurementType", measurements[position])
                     startActivity(intent)
                 }
             }

@@ -1,58 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center_vertical"
+    android:padding="16dp"
     tools:context=".measurements.AddMeasurementActivity">
-
-    <TextView
-        android:id="@+id/addMeasurementTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="120dp"
-        android:text="Add Measurement"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/typeOfMeasurement_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
         android:layout_marginTop="24dp"
-        android:gravity="center_horizontal"
-        android:text="Type of Measurement" />
+        android:text="@string/tv_type_of_measurement"
+        android:textSize="20sp" />
 
     <Spinner
         android:id="@+id/chooseTypeOfMeasurementSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="160dp" />
 
     <TextView
         android:id="@+id/valueOfMeasurementTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Value:" />
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_value"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editMeasurementValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="e.g. 8"
+        android:hint="@string/tv_e_g_8"
         android:inputType="numberDecimal"
         android:textAlignment="center" />
 
@@ -60,9 +44,8 @@
         android:id="@+id/addMeasurementData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="24dp"
         android:onClick="submitMeasurement"
-        android:text="Submit Measurement Data" />
+        android:text="@string/tv_submit_measurement_data" />
 
 </LinearLayout>

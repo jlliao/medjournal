@@ -4,11 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
-import kotlinx.android.synthetic.main.medication_text.view.*
 
 class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context: Context) :
     RecyclerView.Adapter<MeasurementMenuRvAdapter.ViewHolder>() {
@@ -20,7 +18,7 @@ class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name_tv.text = items[position]
+        holder.nameTv.text = items[position]
     }
 
     override fun getItemCount(): Int {
@@ -28,6 +26,6 @@ class MeasurementMenuRvAdapter(private val items: ArrayList<String>, val context
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) { // OnClickListner
-        val name_tv: TextView = v.findViewById(R.id.single_measurement_name)
+        val nameTv: TextView = v.findViewById(R.id.single_measurement_name)
     }
 }

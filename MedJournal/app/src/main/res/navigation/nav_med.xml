@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_med_select">
         <action
             android:id="@+id/action_medSelectFragment_to_medConfigFragment"
-            app:destination="@id/medConfigFragment" />
+            app:destination="@id/medConfigFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/medConfigFragment"
@@ -21,8 +24,8 @@
         tools:layout="@layout/fragment_med_config">
         <action
             android:id="@+id/action_medConfigFragment_to_homeActivity"
-            app:destination="@id/homeActivity" >
-        </action>
+            app:destination="@id/homeActivity"
+            app:exitAnim="@anim/push_up_out" />
         <argument android:name="medName"
             app:argType="string"/>
     </fragment>
