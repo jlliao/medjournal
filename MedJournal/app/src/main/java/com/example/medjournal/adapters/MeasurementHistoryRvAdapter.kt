@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>, val context: Context) : RecyclerView.Adapter<MeasurementHistoryRvAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

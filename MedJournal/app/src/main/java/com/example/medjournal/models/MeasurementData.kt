@@ -8,6 +8,13 @@ data class MeasurementData(
     val datetimeEntered: String,
     val measuredVal: Float
 ) {
+    constructor() : this("UserX", "cholesterol", Date().toString(), 7.5f)
+    constructor(type: String, value: Float) : this(
+        "UserX",
+        type,
+        Calendar.getInstance().time.toString(),
+        value
+    )
 
     constructor(uid: String, type: String, value: Float) : this(
         uid,

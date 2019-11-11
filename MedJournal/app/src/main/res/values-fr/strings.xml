@@ -9,6 +9,7 @@
     <string name="btn_cancel">Annuler</string>
     <string name="btn_med_config_done">TERMINÉ</string>
     <string name="btn_med_select_next">SUIVANT</string>
+    <string name="btn_plus">+</string>
     <string name="btn_register">Créer un compte</string>
     <string name="btn_select_photo">Sélectionner Une Photo</string>
 
@@ -271,6 +272,7 @@
     <string name="test_username">Bodin Bruno</string>
 
     <string name="title_add_medicine">Médicaments</string>
+    <string name="title_measurement_visualization">Visualisation de mesure</string>
     <string name="title_more_details">Détails</string>
     <string name="title_select_days">Sélectionnez les jours:</string>
     <string name="title_set_number_of_days">Définir le nombre de jours à partir de la date de début:</string>
@@ -286,15 +288,19 @@
     <string name="trick_days">T</string>
     <string name="trick_duration">n</string>
 
+    <string name="tv_11_oct_2019">11 octobre 2019</string>
     <string name="tv_8AM">8h00</string>
+    <string name="tv_add_measurement">Ajouter une mesure</string>
     <string name="tv_already_have_an_account">Vous avez déjà un compte?</string>
     <string name="tv_back_to_registration"> Vous n\'avez pas de compte? Inscrivez-vous maintenant. </string>
     <string name="tv_days">Jours</string>
     <string name="tv_days_interval">intervalle de jours</string>
     <string name="tv_duration">Durée</string>
+    <string name="tv_e_g_8">par ex. 8</string>
     <string name="tv_every_day">Tous les jours</string>
     <string name="tv_every_other_day">Tous les deux jours</string>
     <string name="tv_friday">vendredi</string>
+    <string name="tv_measurements">mesures</string>
     <string name="tv_medicine_name">Nom du Médicament</string>
     <string name="tv_monday">lundi</string>
     <string name="tv_my_measurements">Mes mesures</string>
@@ -308,6 +314,7 @@
     <string name="tv_specific_days">Jours spécifiques de la semaine</string>
     <string name="tv_start_date">Date de début:</string>
     <string name="tv_started_date">Date de debut:</string>
+    <string name="tv_submit_measurement_data">Soumettre des mesures</string>
     <string name="tv_sunday">dimanche</string>
     <string name="tv_take">Prendre</string>
     <string name="tv_take_2_pills">Prendre 2 comprimés</string>
@@ -315,18 +322,11 @@
     <string name="tv_take_pill_plural">Prendre %s %ss a %s</string>
     <string name="tv_thursday">jeudi</string>
     <string name="tv_tuesday">mardi</string>
-    <string name="tv_wednesday">mercredi</string>
-    <string name="tv_your_health_statistics">Vos statistiques de santé</string>
-    <string name="tv_add_measurement">Ajouter une mesure</string>
-    <string name="tv_value">Mesure</string>
-    <string name="tv_submit_measurement_data">Soumettre des mesures</string>
-    <string name="tv_e_g_8">par ex. 8</string>
     <string name="tv_type_of_measurement">Type de mesure</string>
+    <string name="tv_value">Mesure</string>
+    <string name="tv_wednesday">mercredi</string>
     <string name="tv_weight">Poids</string>
-    <string name="tv_your_statistics_for">Vos statistiques pour</string>
-    <string name="btn_plus">+</string>
-    <string name="tv_11_oct_2019">11 octobre 2019</string>
     <string name="tv_your">Votre</string>
-    <string name="tv_measurements">mesures</string>
-    <string name="title_measurement_visualization">Measurement Visualization</string>
+    <string name="tv_your_health_statistics">Vos statistiques de santé</string>
+    <string name="tv_your_statistics_for">Vos statistiques pour</string>
 </resources>
