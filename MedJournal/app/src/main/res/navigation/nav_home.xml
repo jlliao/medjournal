@@ -14,7 +14,9 @@
         tools:layout="@layout/fragment_med_reminder">
         <action
             android:id="@+id/action_home_to_med"
-            app:destination="@id/nav_med" />
+            app:destination="@id/nav_med"
+            app:enterAnim="@anim/push_down_in"
+            app:popExitAnim="@anim/push_up_out"/>
     </fragment>
     <fragment
         android:id="@+id/action_medications"
