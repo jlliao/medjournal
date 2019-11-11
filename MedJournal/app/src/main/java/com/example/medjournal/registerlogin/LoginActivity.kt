@@ -10,8 +10,14 @@ import com.example.medjournal.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * Activity that controls login
+ */
 class LoginActivity : AppCompatActivity() {
 
+    /**
+     * Instantiate login view
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,6 +32,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Perform login activity, including input validation and varifying with Firebase Auth
+     */
     private fun performLogin() {
         val email = email_edittext_login.text.toString()
         val password = password_edittext_login.text.toString()

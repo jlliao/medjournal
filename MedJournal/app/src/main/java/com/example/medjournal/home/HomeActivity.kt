@@ -3,33 +3,24 @@ package com.example.medjournal.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.medjournal.R
-import com.example.medjournal.models.MedInfo
 import com.example.medjournal.registerlogin.RegisterActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.FirebaseError
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.jakewharton.threetenabp.AndroidThreeTen
-import kotlinx.coroutines.delay
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
 
 
+/** Base activity for home that controls the host of navigation
+ */
 class HomeActivity : AppCompatActivity() {
 
+    /** TAG for logging purpose
+     */
     companion object {
         const val TAG = "HomeActivity"
     }
@@ -44,6 +35,8 @@ class HomeActivity : AppCompatActivity() {
 //    private var duration: Int? = 14
 //    private var days: ArrayList<String>? = arrayListOf()
 
+    /** Create view of navigation host, including bottom navigation and top tool bar
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -73,7 +66,8 @@ class HomeActivity : AppCompatActivity() {
 //            }
 //        }
 
-
+        /** Set home activity as host of navigation controller
+         */
         val navController = findNavController(R.id.nav_host_fragment)
         setupActionBarWithNavController(navController)
         findViewById<BottomNavigationView>(R.id.home_bottom_navigation)
@@ -99,6 +93,8 @@ class HomeActivity : AppCompatActivity() {
 //        ).show()
     }
 
+    /** Verify with Firebase that user has indeed logged in
+     */
     private fun verifyUserIsLoggedIn() {
         val uid = FirebaseAuth.getInstance().uid
         if (uid == null) {
@@ -108,6 +104,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    /** Option menu on tool bar to allow user to sign out
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_sign_out -> {
@@ -121,11 +119,15 @@ class HomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /** Instantiate option menu on tool bar
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.flow_nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /** Allow pressing back button to nagivate to previous activity
+     */
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

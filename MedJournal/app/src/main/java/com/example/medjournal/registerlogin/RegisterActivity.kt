@@ -17,12 +17,18 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
+/**
+ * A class that performs register activity
+ */
 class RegisterActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "RegisterActivity"
     }
 
+    /**
+     * Instantiate register activity view
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -48,8 +54,14 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Uri object of selected profile photo from the mobile phone
+     */
     var selectedPhotoUri: Uri? = null
 
+    /**
+     * Get Uri from the photo gallery of mobile phone and control interactions of photo gallery
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -71,6 +83,12 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Perform registration with Firebase Auth
+     *
+     * Perform registration with email and password, validate user input
+     * and handle registration error
+     */
     private fun performRegister() {
         val username = username_edittext_register.text.toString()
         val email = email_edittext_register.text.toString()
@@ -130,6 +148,9 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Upload image to Firebase storage and handle error
+     */
     private fun uploadImageToFirebaseStorage() {
         if (selectedPhotoUri == null) {
             saveUserToFirebaseDatabase("No image")
@@ -154,6 +175,9 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Save user to Firebase database with profile image url in Firebase Storage
+     */
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")

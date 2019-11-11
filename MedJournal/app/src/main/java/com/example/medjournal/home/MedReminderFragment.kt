@@ -37,31 +37,59 @@ import kotlin.collections.ArrayList
 
 
 /**
- * A simple [Fragment] subclass.
+ * MedReminderFragement that controls the view of medication reminder
  */
 class MedReminderFragment : Fragment(), OnDateSelectedListener {
 
+    /**
+     * Add medication events adapter
+     */
     private val eventsAdapter = MedEventsAdapter {
 
     }
 
+    /**
+     * Add calendar view
+     */
     private lateinit var widget: MaterialCalendarView
+
+    /**
+     * List of all medication info
+     */
     private val medications: MutableList<MedInfo> = ArrayList()
+
+    /**
+     * Hashmap of medication events by key of date formatted in String
+     */
     private val events = mutableMapOf<String, List<MedEvent>>()
+
+    /**
+     * selected date in calendar, deflaut is today
+     */
     private var selectedDate =
         SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 
+    /**
+     * Create view of medication reminder
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        /** Sudo user name on tool bar
+         */
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
 
+        /**
+         * Add onDateChangedListener for calendar view
+         */
         val medView = inflater.inflate(R.layout.fragment_med_reminder, container, false)
         widget = medView.findViewById(R.id.calendarView)
         widget.setOnDateChangedListener(this)
 
+        /**
+         * Add medication button that directs user to MedActivity
+         */
         val addMedBtn = medView.findViewById<FloatingActionButton>(R.id.add_med_button)
         addMedBtn.setOnClickListener {
             medView.findNavController().navigate(R.id.action_home_to_med)
@@ -69,6 +97,9 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
 
         getMedInfoFromFirebaseDatabase()
 
+        /**
+         * Set up adapter for recycler view
+         */
         val medRv = medView.findViewById<RecyclerView>(R.id.med_item_event_rv)
         medRv.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         medRv.adapter = eventsAdapter
@@ -77,6 +108,12 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
         return medView
     }
 
+    /**
+     * Update adapter when selected date changes
+     * @param widget calendar view
+     * @param date selected date
+     * @param selected whether date selected or not
+     */
     override fun onDateSelected(
         widget: MaterialCalendarView,
         date: CalendarDay,
@@ -99,12 +136,19 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
         }
     }
 
+    /**
+     * Update adpater with specific date
+     * @param date specific date string
+     */
     private fun updateAdapterForDate(date: String) {
         eventsAdapter.events.clear()
         eventsAdapter.events.addAll(events[date].orEmpty())
         eventsAdapter.notifyDataSetChanged()
     }
 
+    /**
+     * Retrieve and listen to medication info from Firebase Database
+     */
     private fun getMedInfoFromFirebaseDatabase() {
         val uid = FirebaseAuth.getInstance().uid
         val ref =
@@ -136,6 +180,9 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
         ref.addListenerForSingleValueEvent(medInfoListener)
     }
 
+    /**
+     * A parser that parses medication info into medication event (reminder object)
+     */
     private fun parseMedInfoIntoMedEvent(medInfo: MedInfo) {
         val medItemInfo = medInfo.amount.toString() + " " + medInfo.unit
         for (i in 0 until medInfo.times) {

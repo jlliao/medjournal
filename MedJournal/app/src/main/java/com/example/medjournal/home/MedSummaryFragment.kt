@@ -25,21 +25,30 @@ import kotlinx.android.extensions.LayoutContainer
 
 
 /**
- * A simple [Fragment] subclass.
+ * A Fragment that controls the view of medication summary page
  */
 class MedSummaryFragment : Fragment() {
 
+    /**
+     * Add medication summary adapter for recycler view
+     */
     private val eventsAdapter = MedSummaryAdapter {
 
     }
 
+    /**
+     * A mutable list of medications info
+     */
     private val medications = mutableListOf<MedInfo>()
 
+    /**
+     * Instantiate view of medication summary page
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
 
         val medView = inflater.inflate(R.layout.fragment_med_summary, container, false)
@@ -55,6 +64,9 @@ class MedSummaryFragment : Fragment() {
         return medView
     }
 
+    /**
+     * Retrieve and listen to medication info from Firebase Database
+     */
     private fun getMedInfoFromFirebaseDatabase() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().reference.child("medications").child(uid!!)
