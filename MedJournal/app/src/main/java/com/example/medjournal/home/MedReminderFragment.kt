@@ -66,7 +66,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
     private val events = mutableMapOf<String, List<MedEvent>>()
 
     /**
-     * selected date in calendar, deflaut is today
+     * selected date in calendar, default is today
      */
     private var selectedDate =
         SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
@@ -78,7 +78,8 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        /** Sudo user name on tool bar
+        /**
+         * Sudo user name on tool bar
          */
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
 
