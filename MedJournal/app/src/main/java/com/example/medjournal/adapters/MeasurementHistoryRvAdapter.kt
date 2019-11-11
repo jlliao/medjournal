@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medjournal.R
 import com.example.medjournal.models.MeasurementData
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,7 +28,7 @@ class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>,
         val d = format.parse(items[position].datetimeEntered)!!
 
         holder.measTimeTv.text = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(d.time)
-        holder.measDateTv.text = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(d.date)
+        holder.measDateTv.text = context.getString(R.string.tv_12_nov_2019)
         holder.measValTv.text = items[position].measuredVal.toString()
     }
 

@@ -80,7 +80,7 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference
 
-        // Set up the linechart
+        // Set up the line chart
         yVals = ArrayList()
         val set1 = LineDataSet(yVals, "temp")
 
@@ -94,7 +94,7 @@ class MeasurementVizActivity : AppCompatActivity() {
 
         val data = LineData(set1)
 
-        tempLineChart = findViewById(com.example.medjournal.R.id.measurement_lineChart)
+        tempLineChart = findViewById(R.id.measurement_lineChart)
         tempLineChart.data = data
         val xAxis = tempLineChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM

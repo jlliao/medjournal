@@ -30,7 +30,7 @@ class RecyclerAdapter(private val items: ArrayList<String>, val context: Context
         return items.size
     }
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) { // OnClickListner
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) { // OnClickListener
         val name: TextView = v.tv_med_names
     }
 }
