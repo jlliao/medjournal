@@ -15,9 +15,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.example.medjournal.models.MeasurementData
 import com.google.firebase.database.DatabaseReference
 
+/**
+ * The activity for adding new measurements
+ */
 class AddMeasurementActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
 
+    /**
+     * Creates the default view for this activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_measurement)
@@ -28,7 +34,9 @@ class AddMeasurementActivity : AppCompatActivity() {
 
         val dropdown: Spinner = findViewById(R.id.chooseTypeOfMeasurementSpinner)
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        /**
+         * Creates an ArrayAdapter for the TypeOfMeasurement Spinner to update the view depending upon user input
+          */
         ArrayAdapter.createFromResource(
             this,
             R.array.measurement_types_array,
@@ -42,11 +50,18 @@ class AddMeasurementActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
     }
 
+    /**
+     * Overrides a method to enable navigation up the app hierarchy.
+     */
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
+    /**
+     * Takes user input for a new measurement and pushes a new measurement object into the Firebase Realtime Database
+     * @param view the current state of the UI
+     */
     fun submitMeasurement(view: View) {
         val measurementType: String =
             (findViewById<Spinner>(R.id.chooseTypeOfMeasurementSpinner).selectedItem.toString())
@@ -70,6 +85,7 @@ class AddMeasurementActivity : AppCompatActivity() {
             intent.putExtra("measurementType", newMeasurement.typeOfMeasurement)
             startActivity(intent)
         }
+            // If transaction unsuccessful, inform the user by raising a Toast
             .addOnFailureListener {
                 Log.e(
                     "SubmitMeasurement",

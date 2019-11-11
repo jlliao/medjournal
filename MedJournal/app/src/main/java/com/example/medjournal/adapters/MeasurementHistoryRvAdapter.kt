@@ -13,16 +13,24 @@ import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
+/** Adapter that listens to changes to Measurements ArrayList
+ */
 @Suppress("DEPRECATION")
-class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>, val context: Context) : RecyclerView.Adapter<MeasurementHistoryRvAdapter.ViewHolder>() {
+class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>, val context: Context) : RecyclerView.Adapter<MeasurementHistoryRvAdapter.RecentMeasurementsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    /** Return RecentMeasurementsViewHolder when ViewHolder is created
+     * @return RecentMeasurementsViewHolder which holds view of each individual item
+     * inside MeasurementHistoryRecyclerview
+     */
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentMeasurementsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.measurement_history_single_item, parent, false)
-        return ViewHolder(view)
+        return RecentMeasurementsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    /** Bind view to changes to Measurements ArrayList
+     */
+    override fun onBindViewHolder(holder: RecentMeasurementsViewHolder, position: Int) {
         val format = SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
             Locale.ENGLISH)
         val d = format.parse(items[position].datetimeEntered)!!
@@ -32,11 +40,15 @@ class MeasurementHistoryRvAdapter(private val items: ArrayList<MeasurementData>,
         holder.measValTv.text = items[position].measuredVal.toString()
     }
 
+    /** Return the number of measurements
+     */
     override fun getItemCount(): Int {
         return items.size
     }
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    /** ViewHolder that holds data for measurement history RecyclerView items (recent measurements)
+     */
+    class RecentMeasurementsViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val measValTv: TextView = v.findViewById(R.id.measurement_value_text)
         val measDateTv: TextView = v.findViewById(R.id.measurement_event_date_text)
         val measTimeTv: TextView = v.findViewById(R.id.measurement_event_time_text)

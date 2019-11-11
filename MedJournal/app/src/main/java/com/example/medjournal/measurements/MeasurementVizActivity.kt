@@ -23,8 +23,13 @@ import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * The activity for visualizing the measurement data.
+ * Takes care of fetching the data from the database, visualizes it in a line graph,
+ * lists most recent measurements in a RecyclerView
+ */
 class MeasurementVizActivity : AppCompatActivity() {
-    lateinit var measurementType: String
+    lateinit var measurementType: String // the measurement type for which the visualization is made
     private lateinit var database: DatabaseReference
     private val measurementObjects = ArrayList<MeasurementData>()
     lateinit var yVals: ArrayList<Entry>
@@ -37,6 +42,9 @@ class MeasurementVizActivity : AppCompatActivity() {
         const val TAG = "MeasurementVizActivity"
     }
 
+    /**
+     * Creates the default view for this activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measurement_viz)
@@ -45,12 +53,12 @@ class MeasurementVizActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        measurementType = intent.getStringExtra("measurementType")!!
+        measurementType = intent.getStringExtra(getString(R.string.intent_parameter_for_measurement_viz_type))!!
         findViewById<TextView>(R.id.measurement_activity_header).text = String.format(resources.getString(R.string.tv_your_health_statistics), measurementType)
 
         val dropdown1: Spinner = findViewById(R.id.period_for_graph_spinner)
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter to control the data period range
         ArrayAdapter.createFromResource(
             this,
             R.array.period_choices_for_measurement_graphs,
@@ -103,16 +111,27 @@ class MeasurementVizActivity : AppCompatActivity() {
         recyclerView.layoutParams.height = 800
     }
 
+    /**
+     * Overrides a method to enable navigation up the app hierarchy.
+     */
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
+    /**
+     *  Updates the view every time activity is started or restarted
+     *  Includes a callback to update the line graph and recent measurement recyclerview
+     */
     override fun onStart() {
         super.onStart()
         setUpDataCallbacks()
     }
 
+    /**
+     * Sets up callbacks to Firebase database node for the logged-in user
+     * and defines the logic for model updates executed when the data changes in the Firebase node
+     */
     private fun setUpDataCallbacks() {
         val uid = FirebaseAuth.getInstance().uid ?: "UserX"
         val myRef = database.child("measurements").child(uid)
@@ -121,12 +140,16 @@ class MeasurementVizActivity : AppCompatActivity() {
                 Log.w(TAG, "loadMeasurementData:onCancelled", databaseError.toException())
             }
 
+            /**
+             * Specifies how the view data structures should be updated upon a change
+             * in Firebase node for this user
+             */
             override fun onDataChange(snapshot: DataSnapshot) {
                 measurementObjects.clear()
                 Log.e("Firebase+MPChart:", "list has : ${snapshot.childrenCount} elements")
                 for (ds in snapshot.getChildren()) {
                     val temp: MeasurementData = ds.getValue(MeasurementData::class.java)!!
-                    // filter by MeasurementType
+                    // Only add measurements which have the same MeasurementType as this visualization requires
                     if (temp.typeOfMeasurement == measurementType) {
                         val format = java.text.SimpleDateFormat(
                             "EE MMM dd HH:mm:ss z yyyy",

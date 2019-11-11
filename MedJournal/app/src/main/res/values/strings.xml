@@ -330,4 +330,6 @@
     <string name="tv_your">Your</string>
     <string name="tv_your_health_statistics">%s statistics:</string>
     <string name="tv_your_statistics_for">Your Statistics for</string>
+    <string name="intent_parameter_for_measurement_viz_type">measurementType</string>
+    <string name="measurement_menu_name">Measurement Menu</string>
 </resources>

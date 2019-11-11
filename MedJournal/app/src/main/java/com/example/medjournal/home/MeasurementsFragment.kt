@@ -18,23 +18,35 @@ import com.example.medjournal.measurements.AddMeasurementActivity
 import com.example.medjournal.measurements.MeasurementVizActivity
 
 /**
- * A simple [Fragment] subclass.
+ * The fragment for measurement menu. It lists types of all measurements the user has added
+ * with links to the visualizations for each Measurement type and includes a link
+ * to the AddMeasurementActivity, which allows to add a new measurement entry.
  */
 class MeasurementsFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
 
+    /**
+     * An interface listing methods for a listener catching events of clicks on RecyclerView items
+     */
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)
     }
 
+    /**
+     * A method for adding a event listeners which respond to clicks on RecyclerView items
+     */
     private fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
         this.addOnChildAttachStateChangeListener(object :
             RecyclerView.OnChildAttachStateChangeListener {
 
+            /** Unbinds a listener from the view
+             */
             override fun onChildViewDetachedFromWindow(view: View) {
                 view.setOnClickListener(null)
             }
 
+            /** Binds a listener from the view
+             */
             override fun onChildViewAttachedToWindow(view: View) {
                 view.setOnClickListener {
                     val holder = getChildViewHolder(view)
@@ -43,13 +55,15 @@ class MeasurementsFragment : Fragment() {
             }
         })
     }
-
+    /**
+    Creates the default view for this fragment. Sets up the RecyclerView of Measurement types (menu)
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.test_username)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.measurement_menu_name)
         val measurementMenuView = inflater.inflate(R.layout.fragment_measurements, container, false)
 
         val measurements =
@@ -57,6 +71,7 @@ class MeasurementsFragment : Fragment() {
 
         val recyclerView = measurementMenuView.findViewById<RecyclerView>(R.id.measurement_menu_rv)
         linearLayoutManager = LinearLayoutManager(activity)
+        // Set up the RecyclerView of Measurement types (menu)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = MeasurementMenuRvAdapter(measurements, context!!)
         recyclerView.layoutParams.height = 800
@@ -72,6 +87,8 @@ class MeasurementsFragment : Fragment() {
 
         val addNewMeasurementBtn =
             measurementMenuView.findViewById<Button>(R.id.measurement_menu_add_measurement_btn)
+
+        // Add a listener for button press tracking. If button pressed, take to AddMeasurement activity/
         addNewMeasurementBtn.setOnClickListener {
             val intent = Intent(context, AddMeasurementActivity::class.java)
             startActivity(intent)
