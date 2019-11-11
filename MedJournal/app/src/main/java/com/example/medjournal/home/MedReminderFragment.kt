@@ -188,6 +188,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
      */
     private fun parseMedInfoIntoMedEvent(medInfo: MedInfo) {
         val medItemInfo = medInfo.amount.toString() + " " + medInfo.unit
+        val dur = if (medInfo.duration == 0) 30 else medInfo.duration
         for (i in 0 until medInfo.times) {
             if (medInfo.days.isEmpty()) medInfo.days.add(getString(R.string.tv_every_day))
             when (medInfo.days[0]) {
@@ -196,7 +197,7 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                         "MM/dd/yyyy",
                         Locale.getDefault()
                     ).parse(medInfo.startDate!!)
-                    for (j in 0 until 15) {
+                    for (j in 0 until dur) {
                         val sDate =
                             SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(startDate!!)
                         val singleMedEvent =
@@ -208,12 +209,12 @@ class MedReminderFragment : Fragment(), OnDateSelectedListener {
                         startDate = c.time
                     }
                 }
-                getString(R.string.tv_every_day) -> {
+                getString(R.string.tv_every_other_day) -> {
                     var startDate = SimpleDateFormat(
                         "MM/dd/yyyy",
                         Locale.getDefault()
                     ).parse(medInfo.startDate!!)
-                    for (j in 0 until 15) {
+                    for (j in 0 until (dur + 1) / 2) {
                         val sDate =
                             SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(startDate!!)
                         val singleMedEvent =

@@ -53,7 +53,7 @@ class MedConfigFragment : Fragment() {
 
 
     /**
-        Creates the view for this fragment.
+    Creates the view for this fragment.
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -170,6 +170,9 @@ class MedConfigFragment : Fragment() {
                     getString(takeString(dosage, unit), dosage, unit, reminderTime2)
                 reminderDateSelected3?.text =
                     getString(takeString(dosage, unit), dosage, unit, reminderTime3)
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(medConfigView.windowToken, 0)
 
             }
 
@@ -335,11 +338,12 @@ class MedConfigFragment : Fragment() {
                         ContextCompat.getColor(
                             requireContext(),
                             R.color.design_default_color_primary
-                        ))
+                        )
+                    )
 
                     val imm =
-                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(view.windowToken, 0)
+                        context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(medConfigView.windowToken, 0)
 
 
                     rb.setOnClickListener {
