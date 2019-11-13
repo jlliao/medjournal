@@ -26,7 +26,7 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlin.collections.ArrayList
 
 /**
- * A simple [Fragment] subclass.
+ * The fragment for medication selection
  */
 class MedSelectFragment : Fragment() {
 

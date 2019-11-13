@@ -36,13 +36,36 @@ import kotlin.collections.ArrayList
  */
 class MedConfigFragment : Fragment() {
 
+    /**
+     * Text view for displaying selected date
+     */
     private var textViewDate: TextView? = null
+
+    /**
+     * An calendar object
+     */
     var cal: Calendar = Calendar.getInstance()
+
+    /**
+     * Textview for date of medication reminer
+     */
     var reminderDateSelected1: TextView? = null
     var reminderDateSelected2: TextView? = null
     var reminderDateSelected3: TextView? = null
+
+    /**
+     * Amount of dosage per time
+     */
     var dosage: String = "1" // default dosage
+
+    /**
+     * Unit of dosage in string
+     */
     var unit: String = "pill" // default dosage unit
+
+    /**
+     * Store time of medication reminder as string
+     */
     var reminderTime1: String = "08:00" // default time
     var reminderTime2: String = "08:00" // default time
     var reminderTime3: String = "08:00" // default time
@@ -495,31 +518,38 @@ class MedConfigFragment : Fragment() {
 
         doneButton.setOnClickListener {
 
-            val uid = FirebaseAuth.getInstance().uid ?: ""
-            val medName = arguments?.getString("medName")
-            val times = getTimes(spinner.selectedItem.toString())
-            val amount = medication_reminder_dosage_text.text.toString().toInt()
-            val startDate = textViewDate?.text.toString()
-            val timesArray = when (times) {
-                1 -> arrayListOf(reminderTime1)
-                2 -> arrayListOf(reminderTime1, reminderTime2)
-                else -> arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+            if (selectedDays[0] != "Every day" && selectedDays[0] != "Every other day") {
+                Toast.makeText(requireContext(),
+                    "Currently, app does not support specific days",
+                    Toast.LENGTH_LONG).show()
+            } else {
+                val uid = FirebaseAuth.getInstance().uid ?: ""
+                val medName = arguments?.getString("medName")
+                val times = getTimes(spinner.selectedItem.toString())
+                val amount = medication_reminder_dosage_text.text.toString().toInt()
+                val startDate = textViewDate?.text.toString()
+                val timesArray = when (times) {
+                    1 -> arrayListOf(reminderTime1)
+                    2 -> arrayListOf(reminderTime1, reminderTime2)
+                    else -> arrayListOf(reminderTime1, reminderTime2, reminderTime3)
+                }
+                val duration = getDuration(rb, rb.isChecked)
+
+                val medication = MedInfo(
+                    uid,
+                    medName ?: "null",
+                    times,
+                    amount,
+                    unit,
+                    timesArray,
+                    startDate,
+                    duration,
+                    selectedDays
+                )
+
+
+                saveMedInfoToFirebaseDatabase(medication, medConfigView)
             }
-            val duration = getDuration(rb, rb.isChecked)
-
-            val medication = MedInfo(
-                uid,
-                medName ?: "null",
-                times,
-                amount,
-                unit,
-                timesArray,
-                startDate,
-                duration,
-                selectedDays
-            )
-
-            saveMedInfoToFirebaseDatabase(medication, medConfigView)
 
 //            val bundle = bundleOf(
 //                "uid" to "sample_uid",
