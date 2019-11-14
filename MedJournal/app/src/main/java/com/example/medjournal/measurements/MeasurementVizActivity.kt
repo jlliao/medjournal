@@ -4,6 +4,8 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
@@ -20,6 +22,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,6 +38,8 @@ class MeasurementVizActivity : AppCompatActivity() {
     lateinit var yVals: ArrayList<Entry>
     private lateinit var tempLineChart: LineChart
 
+    private lateinit var fromGraphLimitTv : TextView
+    private lateinit var periods : Array<out String?>
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
 
@@ -70,15 +75,15 @@ class MeasurementVizActivity : AppCompatActivity() {
             dropdown1.adapter = adapter
         }
 
-        database = FirebaseDatabase.getInstance().reference
-
+        fromGraphLimitTv = findViewById(R.id.earliest_measurement_graphed_tv)
+        periods = resources.getStringArray(R.array.period_choices_for_measurement_graphs)
         // Set up the line chart
         yVals = ArrayList()
         val set1 = LineDataSet(yVals, "temp")
 
         set1.color = Color.BLUE
         set1.setCircleColor(Color.BLUE)
-        set1.lineWidth = 1f
+        set1.lineWidth = 2f
         set1.circleRadius = 3f
         set1.setDrawCircleHole(false)
         set1.valueTextSize = 0f
@@ -99,6 +104,44 @@ class MeasurementVizActivity : AppCompatActivity() {
         xAxis.valueFormatter = ChartValueDateFormatter("y.MM.dd")
 
         tempLineChart.notifyDataSetChanged()
+
+        // Set up the onItemSelectedListener which listens to changes in Spinner's item and updates graphs boundaries and its textviews.
+        dropdown1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            // When the view is initialized
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing, graph will be initialized separately
+            }
+
+            // When the user selects a different timeframe for the graph, update the legend and graph zoom.
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val cal = Calendar.getInstance()
+                val period : String = periods[position] as String
+                when(period) {
+                    "Last 24 hours" -> cal.add(Calendar.HOUR_OF_DAY, -24)
+                    "Last 3 days" -> cal.add(Calendar.DAY_OF_YEAR, -3)
+                    "Last week" -> cal.add(Calendar.DAY_OF_YEAR, -7)
+                    "Last month" -> cal.add(Calendar.DAY_OF_YEAR, -30)
+                    "Last 3 months" -> cal.add(Calendar.DAY_OF_YEAR, -90)
+                    "Last year" -> cal.add(Calendar.DAY_OF_YEAR, -365)
+                }
+                // Update the left end of the visible part of the chart
+                tempLineChart.xAxis.setAxisMinimum(cal.timeInMillis.toFloat());
+
+                // Update the textview in the legend
+                val myFormat = "MM/dd/yyyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                fromGraphLimitTv.text = getString(R.string.measurement_viz_start_limit, sdf.format(cal.getTime()))
+            }
+        }
+
+        // Get a reference to our Firebase Database
+        database = FirebaseDatabase.getInstance().reference
+
         // -------------------------------- GRAPH SETUP ENDS -----------------------------------
 
         // -------------------------- MEASUREMENT HISTORY RV SETUP -----------------------------

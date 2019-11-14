@@ -254,6 +254,8 @@
     </string-array>
 
     <string-array name="period_choices_for_measurement_graphs">
+        <item> Dernières 24 heures </item>
+        <item> 3 derniers jours </item>
         <item> La semaine dernière </item>
         <item> Le mois dernier </item>
         <item> Les 3 derniers mois </item>
@@ -331,7 +333,7 @@
     <string name="tv_your_health_statistics">Vos statistiques de santé</string>
     <string name="tv_your_statistics_for">Vos statistiques pour</string>
     <string name="measurement_viz_start_limit">à partir de %s</string>
-    <string name="measurement_viz_end_limit">à %s</string>
+    <string name="measurement_viz_end_limit">à présent</string>
     <string name="pick_time">7:00</string>
     <string name="pick_date">15/11/2019</string>
 </resources>

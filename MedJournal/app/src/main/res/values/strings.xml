@@ -254,6 +254,8 @@
     </string-array>
 
     <string-array name="period_choices_for_measurement_graphs">
+        <item> Last 24 hours </item>
+        <item> Last 3 days </item>
         <item> Last week </item>
         <item> Last month </item>
         <item> Last 3 months </item>
@@ -333,7 +335,7 @@
     <string name="intent_parameter_for_measurement_viz_type" translatable="false">measurementType</string>
     <string name="measurement_menu_name">Measurement Menu</string>
     <string name="measurement_viz_start_limit">From: %s</string>
-    <string name="measurement_viz_end_limit">To %s</string>
+    <string name="measurement_viz_end_limit">Now</string>
     <string name="meas_menu_image_contentDescript" translatable="false">Button Illustration</string>
     <string name="pick_time">7:00</string>
     <string name="pick_date">15/11/2019</string>
