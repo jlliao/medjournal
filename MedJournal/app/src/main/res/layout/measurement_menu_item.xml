@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="horizontal" android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/back">
 
     <TextView
-        android:id="@+id/single_measurement_name"
-        android:layout_width="match_parent"
+        android:id="@+id/meas_menu_single_tv"
+        android:layout_width="235dp"
         android:layout_height="40dp"
-        android:text="@string/tv_weight"
         android:layout_margin="8dp"
-        android:background="@drawable/back"
-        android:textAlignment="textStart" />
+        android:text="@string/tv_weight"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/meas_menu_single_img_btn"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:clickable="false"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/mcv_action_next"
+        android:contentDescription="@string/meas_menu_image_contentDescript" />
 </LinearLayout>

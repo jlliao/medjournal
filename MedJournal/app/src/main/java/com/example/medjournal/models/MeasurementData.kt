@@ -28,10 +28,10 @@ data class MeasurementData(
     )
     /** Returns a default Measurement data object (used in production)
      */
-    constructor(uid: String, type: String, value: Float) : this(
+    constructor(uid: String, calendar: Calendar,type: String, value: Float) : this(
         uid,
         type,
-        Calendar.getInstance().time.toString(),
+        calendar.time.toString(),
         value
     )
 }

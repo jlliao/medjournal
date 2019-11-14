@@ -12,25 +12,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="80dp"
         android:textAlignment="center"
         android:text="@string/tv_type_of_measurement"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
+    <LinearLayout
+        android:id="@+id/addMeasDatetimeLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/datePicker_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="@string/pick_date"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/timePicker_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="105dp"
+            android:text="@string/pick_time"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+    </LinearLayout>
+
     <Spinner
         android:id="@+id/chooseTypeOfMeasurementSpinner"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="60dp" />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp" />
 
     <TextView
         android:id="@+id/valueOfMeasurementTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="130dp"
         android:text="@string/tv_value"
         android:textSize="20sp" />
 

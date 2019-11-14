@@ -323,11 +323,15 @@
     <string name="tv_take_pill_plural">Prendre %s %ss a %s</string>
     <string name="tv_thursday">jeudi</string>
     <string name="tv_tuesday">mardi</string>
-    <string name="tv_type_of_measurement">Type de mesure</string>
+    <string name="tv_type_of_measurement">Nouvelle mesure</string>
     <string name="tv_value">Mesure</string>
     <string name="tv_wednesday">mercredi</string>
     <string name="tv_weight">Poids</string>
     <string name="tv_your">Votre</string>
     <string name="tv_your_health_statistics">Vos statistiques de santé</string>
     <string name="tv_your_statistics_for">Vos statistiques pour</string>
+    <string name="measurement_viz_start_limit">à partir de %s</string>
+    <string name="measurement_viz_end_limit">à %s</string>
+    <string name="pick_time">7:00</string>
+    <string name="pick_date">15/11/2019</string>
 </resources>
